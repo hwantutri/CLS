@@ -78,6 +78,7 @@ h2 {
 .btn-sign a { color:#fff; text-shadow:0 1px 2px #161616; }
 
 #mask {
+	background:#000;
 	display: none; 
 	position: fixed; left: 0; top: 0; 
 	z-index: 10;
@@ -223,7 +224,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 				if(data.length==2){
 				//	header("location:test.php");
 					//alert("Success!");
-					window.open("form.php","_self");
+					window.open("test.php","_self");
 					}
 				else if(data.length ==1){
 					alert("Incorrect username/password!");
@@ -271,7 +272,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
                 <input id="password" name="password" value="" type="password" placeholder="Password">
                 </label>
                 
-                <button type="button" id="submit_btn" name="submit_btn" class="submit button">Continue</button>
+                <button name="submit_btn" id="submit_btn" class="submit button" type="button">Continue</button>
                 
                 </fieldset>
           </form>
@@ -279,13 +280,14 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
     
     </div>
 </div>
+<div id="home-bokeh">
 <div id="featured"> 
      <img src="images/dummy-images/overflow.jpg" alt="Overflow: Hidden No More" height="300" width="450"/>
      <img src="images/dummy-images/captions.jpg"  alt="HTML Captions" height="300" width="450" />
      <img src="images/dummy-images/features.jpg" alt="and more features" height="300" width="450" />
 	 <img src="images/dummy-images/coffee.jpg" alt="CLS" height="300" width="450"/>
 </div>
+</div>
 </body>
-    
-
+     <div id="footer-span"></div>
 </html>

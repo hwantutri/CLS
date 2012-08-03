@@ -7,7 +7,7 @@ $login = new Login();
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 	$user = $login->validate($_POST['username'],$_POST['password']);
-	if($user){header("location:test.php");}
+	if($user){header("location:form.php");}
 	else{$msg = 'Incorrect username and password';}
 }
 ?>
@@ -63,7 +63,9 @@ font-family:"Times New Roman",Georgia,Serif;
 	<div id="content">
     
 		<div class="post">
-			<div id="header"></div>
+			<div id="header">
+			<a href="logout.php" class="login-window"><img STYLE="position:absolute; TOP:7px; Right:212px;" src="images/close_pop.png"></a>
+			</div>
 			
 			</div>
 				
