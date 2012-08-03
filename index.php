@@ -1,33 +1,14 @@
 <?php
-// Connect to server and select databse.
-mysql_connect("localhost", "root", "")or die("cannot connect"); 
-mysql_select_db("cls")or die("cannot select DB");
+session_start();
+include_once 'class_login.php';
+$login = new Login();
+	//if($login->get_session()){
+//}
 
-// username and password sent from form 
-$myusername=$_POST['root']; 
-$mypassword=$_POST['']; 
-
-// To protect MySQL injection (more detail about MySQL injection)
-$myusername = stripslashes(root);
-$mypassword = stripslashes();
-$myusername = mysql_real_escape_string(rot);
-$mypassword = mysql_real_escape_string();
-$sql="SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
-$result=mysql_query($sql);
-
-// Mysql_num_row is counting table row
-$count=mysql_num_rows($result);
-
-// If result matched $myusername and $mypassword, table row must be 1 row
-if($count==1){
-
-// Register $myusername, $mypassword and redirect to file "login_success.php"
-session_register("myusername");
-session_register("mypassword"); 
-header("location:login_success.php");
-}
-else {
-echo "Wrong Username or Password";
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+	$user = $login->validate($_POST['username'],$_POST['password']);
+	if($user){header("location:test.php");}
+	else{$msg = 'Incorrect username and password';}
 }
 ?>
 <html>
@@ -228,14 +209,42 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 	}); 
 	return false;
 	});
-});
-
-	$("#submit_btn").click(function(){
 	
-	
+	$("#submit_btn").click(function(e){
+		e.preventDefault();
+		var uname = $("#username").val();
+		var pass = $("#password").val();
+		if((uname.length==0)&&(pass.length==0)){
+			alert("Both fields are required!");
+		}
+		else if(uname.length>0){
+			$.post("checkindex.php",{uname:uname,pass:pass}, function(data){
+				data = $.trim(data);
+				if(data.length==2){
+				//	header("location:test.php");
+					//alert("Success!");
+					window.open("test.php","_self");
+					}
+				else if(data.length ==1){
+					alert("Incorrect username/password!");
+				}
+			});
+		}
 	});
+});
 	</script>
 </head>
+
+<script type="text/javascript">
+	//function check(){
+	//	if((document.loginform.username =="") | (document.loginform.password=="")){
+	//		alert("Both fields are required!");
+	//		return false;
+	//	}else{
+	//		return true;
+	//	}
+	//}
+	</script>
 <body background="images/bg1.jpg">
 
 <div class="container">
@@ -248,7 +257,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
         <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
 		<img height="30" STYLE="position:absolute; TOP:16px; Left:160px;" src="images/pen_paper_icon2.png">
-          <form method="post" class="signin" action="#">
+          <form name="loginform" method="post" class="signin" action="#">
                 <fieldset class="textbox">
 				<font size="5" face="andy">Log in to CLS</font>
 				</br></br>
@@ -262,7 +271,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
                 <input id="password" name="password" value="" type="password" placeholder="Password">
                 </label>
                 
-                <button name="submit_btn" id="submit_btn" class="submit button" type="button">Continue</button>
+                <button type="button" id="submit_btn" name="submit_btn" class="submit button">Continue</button>
                 
                 </fieldset>
           </form>
