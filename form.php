@@ -1,3 +1,16 @@
+<?php
+session_start();
+include_once 'class_login.php';
+$login = new Login();
+	//if($login->get_session()){
+//}
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+	$user = $login->validate($_POST['username'],$_POST['password']);
+	if($user){header("location:test.php");}
+	else{$msg = 'Incorrect username and password';}
+}
+?>
 <html>
 <head>
 <title>Consultation Logs System</title>
@@ -45,7 +58,7 @@ font-family:"Times New Roman",Georgia,Serif;
 </script>
 </head>
 <body background = "bg1.jpg">
-<h1>SSS</h1>
+
 <div class="container">
 	<div id="content">
     
@@ -56,12 +69,29 @@ font-family:"Times New Roman",Georgia,Serif;
 				
 				
 				<form name="input" action="" style="text-shadow:4px 4px 8px blue;"align ="left" method="get">
-					Faculty ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			<input type="text" name="Fac_id" /><br />
-					Student ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<input type="text" name="Student_id" /><br />
-					Date and Time: 	<input type="date" name="Date_and_Time" /><br />
-					Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<input type="text" name="Duration" /><br />
-					Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	<input type="text" name="Description" /><br />
-					<input class="gray"type="submit" value = "Submit" style="width:150px; height:30px;"/>
+				<center>
+					<br><br><br><br><br><br>
+					<table border="0">
+					<tr>
+					<td>Faculty ID:</td><td><input type="text" name="Fac_id" /></td>
+					</tr>
+					<tr>
+					<td>Student ID:</td><td><input type="text" name="Student_id" /></td>
+					</tr>
+					<tr>
+					<td>Date and Time:</td><td><input type="date" name="Date_and_Time" /></td>
+					</tr>
+					<tr>
+					<td>Duration:</td><td><input type="text" name="Duration" /></td>
+					</tr>
+					<tr>
+					<td>Description:</td><td><input type="text" name="Description" /></td>
+					</tr>
+					<tr>
+					<td><input class="gray"type="submit" value = "Submit" style="width:150px; height:30px;"/></td>
+					</tr>
+					</table>
+				</center>
 				</form>
 			
 		</div>

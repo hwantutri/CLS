@@ -223,7 +223,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 				if(data.length==2){
 				//	header("location:test.php");
 					//alert("Success!");
-					window.open("test.php","_self");
+					window.open("form.php","_self");
 					}
 				else if(data.length ==1){
 					alert("Incorrect username/password!");
