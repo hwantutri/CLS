@@ -120,7 +120,7 @@ h2 {
 
 img.btn_close {
 	float: right; 
-	margin: -28px -28px 0 0;
+	margin: -25px -20px 0 0;
 }
 
 fieldset { 
@@ -185,7 +185,23 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 
 <script type="text/javascript">
      $(window).load(function() {
-         $('#featured').orbit();
+         $('#featured').orbit({
+     animation: 'horizontal-slide',                  // fade, horizontal-slide, vertical-slide, horizontal-push
+     animationSpeed: 800,                // how fast animtions are
+     timer: true, 			 // true or false to have the timer
+     advanceSpeed: 3500, 		 // if timer is enabled, time between transitions 
+     pauseOnHover: true, 		 // if you hover pauses the slider
+     startClockOnMouseOut: true, 	 // if clock should start on MouseOut
+     startClockOnMouseOutAfter: 0, 	 // how long after MouseOut should the timer start again
+     directionalNav: true, 		 // manual advancing directional navs
+     captions: true, 			 // do you want captions?
+     captionAnimation: 'fade', 		 // fade, slideOpen, none
+     captionAnimationSpeed: 800, 	 // if so how quickly should they animate in
+     bullets: true,			 // true or false to activate the bullet navigation
+     bulletThumbs: false,		 // thumbnails for the bullets
+     bulletThumbLocation: '',		 // location from this file where thumbs will be
+     afterSlideChange: function(){} 	 // empty function 
+});
 		 //$('.orbit-wrapper').css({ width: 470, height: 225 });
 		 //$('.orbit').css({ width: 470, height: 225 });
      });
@@ -239,7 +255,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 					//alert("Success!");
 					window.open("form.php","_self");
 					}
-				else if(data.length ==1){
+				else if(data.length==1){
 					alert("Incorrect username/password!");
 				}
 			});
@@ -250,47 +266,53 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 </head>
 
 <body background="images/bg1.jpg">
-
-<div class="container">
-	<div id="content">
-    
-		<div class="post">
-			<div id="header"><a href="#login-box" class="login-window"><img STYLE="position:absolute; TOP:7px; Right:212px;" src="images/login.png"></a></div>-->
-		</div>
-        
-        <div id="login-box" class="login-popup">
-        <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-		<img height="30" STYLE="position:absolute; TOP:16px; Left:160px;" src="images/pen_paper_icon2.png">
-          <form name="loginform" method="post" class="signin" action="#">
-                <fieldset class="textbox">
-				<lol><font size="5">Log in to CLS</font></lol>
-				</br></br>
-            	<label class="username">
-                <span>Username</span>
-                <input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Username">
-                </label>
-                
-                <label class="password">
-                <span>Password</span>
-                <input id="password" name="password" value="" type="password" placeholder="Password">
-                </label>
-                
-                <button name="submit_btn" id="submit_btn" class="submit button" type="button">Continue</button>
-                
-                </fieldset>
-          </form>
-		</div>
-    
-    </div>
+<!--
+<div class="post">
+	<div id="header"><a href="#login-box" class="login-window"><img STYLE="position:absolute; TOP:7px; Right:212px;" src="images/login.png"></a></div>
 </div>
-<div id="home-bokeh">
-<div id="featured"> 
+-->
+
+<div id="header">
+  <div class="wrapper">
+  		<ul id="main" class="loggedout-right">
+  			<li><a href="#login-box" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Login</a></li>
+  		</ul>
+  </div>
+</div>
+
+<div id="home-bokeh"> </br></br></br></br></br></br></br>
+      <div id="featured"> 
      <img src="images/dummy-images/overflow.jpg" alt="Overflow: Hidden No More" height="300" width="450"/>
      <img src="images/dummy-images/captions.jpg"  alt="HTML Captions" height="300" width="450" />
      <img src="images/dummy-images/features.jpg" alt="and more features" height="300" width="450" />
-	 <img src="images/dummy-images/coffee.jpg" alt="CLS" height="300" width="450"/>
+	  <img src="images/dummy-images/coffee.jpg" alt="CLS" height="300" width="450"/>
+		</div>
 </div>
-</div>
+
+  <div id="login-box" class="login-popup">
+        <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+		<img height="30" STYLE="position:absolute; TOP:30px; Left:190px;" src="images/pen_paper_icon2.png">
+          <form name="loginform" method="post" class="signin" action="#">
+                <fieldset class="textbox">
+                <label>
+				<lol><font size="5">Log in to CLS</font></lol>
+				</br></br>
+					</label>
+            	<label class="username">
+                <span><font size="2.5px">Username</font></span>
+                <input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Username" autofocus="autofocus">
+                </label>
+                
+                <label class="password">
+                <span><font size="2.5px">Password</font></span>
+                <input id="password" name="password" value="" type="password" placeholder="Password">
+                </label>
+                <label>
+                <button name="submit_btn" id="submit_btn" class="submit button" type="button">Continue</button>
+                </label>
+                </fieldset>
+          </form>
+	</div>
 </body>
      <div id="footer-span"></div>
 </html>

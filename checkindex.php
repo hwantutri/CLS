@@ -3,9 +3,9 @@ include 'database.php';
 $db = new Database();
 
 $uname = $_POST['uname'];
-$uname = mysql_escape_string($uname);
+//$uname = mysql_escape_string($uname);
 $pass = $_POST['pass'];
-$pass = mysql_escape_string($pass);
+//$pass = mysql_escape_string($pass);
 
 $string = "g";
 $sql = "select * from faculty where Fac_id='$uname' and Password='$pass'";
