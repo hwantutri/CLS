@@ -1,0 +1,151 @@
+BODY {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+    color: #666666;
+    font-size: 12px;
+    background: #FFFFFF;
+}
+
+A { color: #0A8ECC; }
+A:HOVER {
+	text-decoration: none;
+	color: #8FCB2F;
+}	
+H1 {
+	font-weight: normal;
+	color: #0A8ECC;
+}
+
+
+IMG {border: none;}
+
+LABEL {cursor: pointer;}
+H1, H2, H3, H4, H5, H6, P, UL, FORM, OL {
+	padding: 0;
+	margin: 0;
+}
+
+H2{
+	font-size: 16px;
+	color: #666666;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.relax {
+	clear: both;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+}
+
+/*  Page  */
+#page {
+    margin: auto;
+    text-align: left;
+    min-width: 1000px;
+    width: 80%;
+    padding-top: 20px;
+}
+
+.left-column {
+	width: 47%;
+	float: left;
+	padding: 20px 0px;
+}
+
+.right-column {
+	width: 47%;
+	float: right;
+	padding: 20px 0px;
+}
+
+
+.fm { margin-top: 35px; }
+.fm INPUT { width: 40%; }
+.fm SELECT { width: 40%; }
+
+.fm P {
+	margin: 0 0 8px;
+	padding: 0;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+.fm P LABEL {
+	width: 18%;
+	float: left;
+	display: inline;
+	margin-right: 10px;
+	font-weight: bold;
+	line-height: 50%;
+}
+
+.fm P TEXTAREA { 
+	width: 80%;
+	height: 200px;
+
+	left:100px;
+top:10000px;
+}
+
+.fm P.buttons BUTTON {
+	margin-right: 10px;
+	float: left;
+}
+
+.fm P.buttons A {
+	float: left;
+	line-height: 200%;
+	margin-top: 5px;
+}
+
+.fm P.check-set INPUT {
+	float: left;
+	width: auto;
+}
+
+.fm P.check-set LABEL {
+	float: left;
+	display: inline;
+	margin-left: 5px;
+	white-space: nowrap;
+	line-height: 200%;
+}
+
+.fm .ctrls-set,
+.fm .buttons {
+	float: left;
+	display: inline;
+	margin-left: 19%;
+	padding: 10px 0;
+}
+
+.fm .buttons { margin-left: 18%; }
+
+.fm .ctrls-set INPUT {
+	float: left;
+	width: auto;
+	display: inline;
+	margin-left: 10px;
+}
+
+.fm .ctrls-set LABEL {
+	float: left;
+	width: auto;
+	margin: 0 0 0 5px;
+	display: inline;
+	padding: 0;
+	line-height: 100%;
+}
+
+.fm .ctrls-set LABEL.align {
+	margin-top: 4px;
+}
+.script-page {
+	border-top: 1px dotted #CCCCCC;
+	clear: both;
+	padding: 20px 0;
+}

@@ -1,0 +1,391 @@
+
+/*	INPUT	*/
+
+.fmInput {
+	background: url("../images/input-box-left.gif") no-repeat left top;
+	width: 100%;
+	float: left;
+}
+
+.fmInput SPAN {
+	display: block;
+	padding: 7px 7px;
+	background: transparent url("../images/input-box-right.gif") no-repeat right top;
+}
+
+.fmInput SPAN INPUT { 
+	border: 0px;
+	outline: none; 
+	width: 100%;
+	padding: 0 3px; 
+	position: relative;
+	z-index: 50;
+	color: #777;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+} 
+
+.fmInput.fmInFocus { background-image: url("./images/jniceit/input-box-left-focus.gif"); }
+.fmInput.fmInFocus SPAN { background-image: url("./images/jniceit/input-box-right-focus.gif"); }
+.fmInput.fmInFocus SPAN INPUT { background-color: #FBFBFB; }
+
+.fmInput.disabled { background-image: url("./images/jniceit/input-box-left-disabled.gif"); }
+.fmInput.disabled SPAN { background-image: url("./images/jniceit/input-box-right-disabled.gif"); }
+.fmInput.disabled SPAN INPUT { background-color: #F0F0F0; }
+
+/*	BUTTON	*/
+
+.fmButton { 
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	white-space: nowrap;
+	cursor: pointer;
+
+	width: auto;
+	overflow: visible;
+}
+
+.fmButton STRONG {
+	background: url("./images/jniceit/button-submit-left.gif") no-repeat left top;
+	float: left;
+}
+
+.fmButton SPAN  {
+	background: url("./images/jniceit/button-left.gif") no-repeat left top;
+	float: left;
+}
+
+.fmButton STRONG SPAN {
+	background: url("./images/jniceit/button-submit-right.gif") no-repeat right top;
+	padding: 8px 15px;
+	float: left;
+}
+
+.fmButton SPAN SPAN {
+	background: url("./images/jniceit/button-right.gif") no-repeat right top;
+	padding: 8px 15px;
+	float: left;
+	font-weight: bold;
+}
+
+.fmButton:HOVER SPAN  { background-position: left -33px; } 
+.fmButton:HOVER SPAN SPAN { background-position: right -33px; }
+
+.fmButton:HOVER STRONG { background-position: left -33px; }
+.fmButton:HOVER STRONG SPAN { background: url("./images/jniceit/button-submit-right.gif") no-repeat right -33px; }
+
+
+/*  CHECKBOX */
+
+B.fmCheckbox {
+	float: left;
+	width: 12px;
+	height: 12px;
+	background: red;
+	position: relative;
+	cursor: pointer;
+	background: url("./images/jniceit/checkbox.gif") no-repeat left -12px;
+	margin-top: 5px;
+	font-size: 9px;
+	line-height: 1%;
+	text-indent: -1000em;
+}
+
+B.fmCheckbox.checked { background-position: left top; }
+B.fmCheckbox:HOVER { background-position: -12px -12px; }
+B.fmCheckbox.checked:HOVER { background-position: -12px top; }
+
+B.fmCheckbox.chbx-disabled { background-position: -24px -12px; }
+
+B.fmCheckbox.checked.chbx-disabled,
+B.fmCheckbox.checked.chbx-disabled:HOVER { background-position: -24px top; }
+
+/*  TEXTAREA */
+
+.fmTextarea {
+	float: left;
+	background: url("./images/jniceit/textarea-tl.gif") no-repeat left top;
+}
+
+.fmTextarea SPAN {
+	float: left;
+	height: 100%;
+	width: 100%;
+	background: url("./images/jniceit/textarea-br.gif") no-repeat right bottom;
+}
+
+.fmTextarea SPAN SPAN {
+	float: left;
+	height: 100%;
+	width: 100%;
+	background: url("./images/jniceit/textarea-blc.gif") no-repeat left bottom;
+}
+
+.fmTextarea SPAN SPAN SPAN {
+	float: left;
+	width: 100%;
+	//padding-bottom: 10px;
+	_padding-bottom: 0;
+	background: url("./images/jniceit/textarea-trc.gif") no-repeat right top;
+}
+
+HTML BODY .fmTextarea TEXTAREA {
+	margin: 2%;
+	width: 96%;
+	height: 96%;
+	background: none;
+	border: none;
+	overflow: auto;
+	outline: none;
+	font-size: 13px;
+	color: #777;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	
+	max-width: 96%;
+	max-height: 500px;
+}
+
+HTML BODY .fmTextarea.fmInFocus,
+HTML BODY .fmTextarea.fmInFocus TEXTAREA { background-color: #FBFBFB; }
+
+
+SPAN.fmTextarea.tx-disabled,
+SPAN.fmTextarea.tx-disabled TEXTAREA { background-color: #F0F0F0; }
+
+/*	SELECT BOX	*/
+
+.fmSelect {
+	width: 40%;
+	
+	float: left;
+	position: relative;
+	outline: none;
+	background: white;
+	z-index: 150;
+}
+
+.fmSelect STRONG { 
+	float: left;
+	width: 100%;
+	background: url("./images/jniceit/select-box-left.gif") no-repeat left top;
+	cursor: pointer;
+	position: relative;
+}
+
+.fmSelect STRONG SPAN {
+	display: block;
+	font-size: 13px;
+	font-weight: normal;
+	background: url("./images/jniceit/select-box-right.gif") no-repeat right top;
+}
+
+.fmSelect STRONG SPAN CITE{
+	display: block;
+	padding: 7px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-style: normal;
+	margin-right: 20px;
+}
+
+.fmSelect UL {
+	position: absolute;
+	left: 0;
+	top: 30px;
+	margin: 0 !important;
+	padding: 0;
+	border: 1px solid #AEAFB0;
+	width: 100%;
+	list-style: none;
+	font-size: 13px;
+	background: white;
+	padding-top: 1px;
+
+	max-height: 108px;
+	_height: 108px;
+	overflow-y: scroll;
+	z-index: 1500;
+
+	display: none;
+}
+
+.fmSelect UL LI {
+	display: block;
+	padding: 5px 7px;
+	border-bottom: 1px solid white;
+}
+
+.fmSelect UL LI.active {
+	background: #D3E9F6;
+	cursor: pointer;
+}
+
+/* RADIO BUTTON */
+
+.fmRadio {
+	float: left;
+	width: 12px;
+	height: 12px;
+	font-size: 0;
+	line-height: 1%;
+	text-decoration: none;
+	cursor: pointer;
+	background: url("./images/jniceit/radiobutton.gif") no-repeat left -12px;
+}
+
+.fmRadio.checked { background-position: left top; }
+.fmRadio:HOVER { 
+	background-position: -12px -12px;
+	text-decoration: none;
+}
+.fmRadio.checked:HOVER { background-position: -12px top; }
+
+.fmRadio.rbtn-disabled,
+.fmRadio.checked.rbtn-disabled, 
+.fmRadio.rbtn-disabled:HOVER { background-position: -24px -12px; }
+
+/*	FILE INPUT	*/
+
+.fnFileInput {
+	float: left;
+	background: url("./images/jniceit/file-input-left.gif") no-repeat left top;
+	font-size: 15px;
+	cursor: text;
+	text-decoration: none;
+	position: relative;
+}
+
+.fnFileInput SPAN {
+	float: left;
+	width: 100%;
+	height: 29px;
+	position: relative;
+	z-index: 150;
+	background: url("./images/jniceit/file-input-right.gif") no-repeat right top;
+}
+
+.fnFileInput SPAN CITE {
+	float: left;
+	margin: 6px 7px;
+	display: inline;
+	font-size: 13px;
+	width: 67%;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #777;
+	cursor: text;
+}
+
+.fnFileInput SPAN STRONG {
+	float: right;
+	display: inline;
+	border-left: 2px solid #CDDFE9;
+	font-family: Arial, Verdana, Tahoma, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 1px 2px;
+	line-height: 195%;
+	overflow: hidden;
+	height: 27px;
+	width: 22%;
+	color: #000033;
+	white-space: nowrap;
+	text-decoration: none;
+	background: url("./images/jniceit/file-input-button.gif") repeat-x left top;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	max-width: 230px;
+}
+
+A.fnFileInput.fmInFocus { background-image: url("./images/jniceit/file-input-left-focus.gif"); }
+A.fnFileInput:HOVER SPAN { background-image: url("./images/jniceit/file-input-right-hover.gif"); }
+A.fnFileInput:HOVER SPAN STRONG { background-image: url("./images/jniceit/file-input-button-hover.gif"); border-color: #DCE9F0; }
+
+.fnFileInput.disabled,
+A.fnFileInput.fmInFocus.disabled { background-image: url("./images/jniceit/file-input-left-disabled.gif"); }
+
+A.fnFileInput.disabled:HOVER SPAN STRONG {
+	background-image: url("./images/jniceit/file-input-button.gif");
+	border-left: 2px solid #CDDFE9;
+}
+
+.fnFileHidden {
+	position: absolute;
+	top: 0;
+	right: 0;
+	
+	z-index: 150;
+	height: 30px;
+	width: 15em !important;
+	filter: alpha(opacity: 0);
+	opacity: 0;
+	font-size: 30px;
+	padding: 0 1px;
+}
+
+/*	MULTIPLE SELECT BOX 	*/
+
+.fmMultipleSelect {
+	float: left;
+	background: url("./images/jniceit/textarea-tl.gif") no-repeat left top;
+}
+
+.fmMultipleSelect SPAN {
+	float: left;
+	height: 100%;
+	width: 100%;
+	background: url("./images/jniceit/textarea-br.gif") no-repeat right bottom;
+}
+
+.fmMultipleSelect SPAN SPAN {
+	float: left;
+	height: 100%;
+	width: 100%;
+	background: url("./images/jniceit/textarea-blc.gif") no-repeat left bottom;
+}
+
+.fmMultipleSelect SPAN SPAN SPAN {
+	float: left;
+	width: 100%;
+	//padding-bottom: 10px;
+	_padding-bottom: 0;
+	background: url("./images/jniceit/textarea-trc.gif") no-repeat right top;
+}
+
+.fmMultipleSelect SELECT {
+	margin: 2%;
+	width: 96%;
+	height: 96%;
+	background: none;
+	padding: 0;
+	border: 0px;
+	outline: none;
+	font-size: 15px;
+	color: #777;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	
+	max-width: 96%;
+	max-height: 500px;
+}
+
+.fmMultipleSelect SELECT OPTION { 
+	padding: 3px 7px;
+	margin: 0;
+	cursor: pointer;
+}
+
+.fmMultipleSelect.fmInFocus,
+.fmMultipleSelect.fmInFocus SELECT { background-color: #FBFBFB; }
+
+/* * */
+
+.fmZero {
+	margin: 0 !important;
+	position: relative !important;
+}
+
+.fmHidden { display: none; }

@@ -1,104 +1,68 @@
-<?php
-session_start();
-include_once 'class_login.php';
-$login = new Login();
-	//if($login->get_session()){
-//}
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-	$user = $login->validate($_POST['username'],$_POST['password']);
-	if($user){header("location:form.php");}
-	else{$msg = 'Incorrect username and password';}
-}
-?>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Consultation Logs System</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/orbit-1.2.3.css">
-	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery.orbit-1.2.3.min.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
+ 	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
+	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	
-    <style type="text/css">
-	body{
-	 //background:#202020;
-	 font:bold 12px Arial, Helvetica, sans-serif;
-	 margin:0;
-	 padding:0;
-	 min-width:960px;
-	 color:#736F6E; 
-	 font-size:20px;
-	 font-style:italic;
-background-color:#ddd;
-}
-input.gray{background-color:#6698FF;
-color:white;
-font-family:"Times New Roman",Georgia,Serif;	
+	<script type="text/javascript" charset="utf-8">
+		$(function(){ $("label").inFieldLabels(); });
+	</script>
 
-
-
-
-		}
-}
-.container {width: 960px; margin: 0 auto; overflow: hidden;}
-
-
-
-#content {	float: left; width: 100%;}
-
-.post { margin: 0 auto; padding-bottom: 50px; float: left; width: 960px; }
-
-
-</style>
-</script>
-
-<script type="text/javascript">
-
-</script>
 </head>
 <body background = "bg1.jpg">
 
-<div class="container">
-	<div id="content">
-    
-		<div class="post">
-			<div id="header">
-			<a href="logout.php" class="login-window"><img STYLE="position:absolute; TOP:7px; Right:212px;" src="images/close_pop.png"></a>
-			</div>
-			
-			</div>
-				
-				
-				<form name="input" action="" style="text-shadow:4px 4px 8px blue;"align ="left" method="get">
-				<center>
-					<br><br><br><br><br><br>
-					<table border="0">
-					<tr>
-					<td>Faculty ID:</td><td><input type="text" name="Fac_id" /></td>
-					</tr>
-					<tr>
-					<td>Student ID:</td><td><input type="text" name="Student_id" /></td>
-					</tr>
-					<tr>
-					<td>Date and Time:</td><td><input type="date" name="Date_and_Time" /></td>
-					</tr>
-					<tr>
-					<td>Duration:</td><td><input type="text" name="Duration" /></td>
-					</tr>
-					<tr>
-					<td>Description:</td><td><input type="text" name="Description" /></td>
-					</tr>
-					<tr>
-					<td><input class="gray"type="submit" value = "Submit" style="width:150px; height:30px;"/></td>
-					</tr>
-					</table>
-				</center>
-				</form>
-			
-		</div>
-	</div>
+<div id="header">
+  <div class="wrapper">
+  		<ul id="main" class="loggedout-right">
+  			<li><a href="index.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
+  			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Ginji Amano</a></li>
+  		</ul>
+  </div>
 </div>
+
+	<form  accept-charset="utf-8">
+		<fieldset> <br /><br /><br /> <br /> <br /> <br />
+			<p><legend>Consultation Form</legend></p>
+			<p>
+				<label for="idno" style="display: block; opacity: 1;">ID No.</label><br />
+				<input type="text" name="idno" value="" id="idno" autocomplete="off">
+			</p>
+			<p>
+				<label for="name" style="display: block; opacity: 1;">Name</label><br />
+				<input type="text" name="name" value="" id="name" autocomplete="off">
+			</p>
+			<p>
+				<label for="courseyrlvl" style="display: block; opacity: 1;">Course and Year Level</label><br />
+				<input type="text" name="courseyrlvl" value="" id="courseyrlvl">
+			</p>
+			<p>
+				<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />
+				<input type="text" name="subsec" value="" id="subsec">
+			</p>
+			<p>
+				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
+				<textarea cols="30" rows="10" name="comment" id="comment"></textarea>
+			</p>
+		</fieldset>
+		<p><input type="submit" value="Submit &rarr;"></p>
+	</form>	
+		<div id="navigation-block">
+			<img src="images/background.jpg" id="hide" />
+            <ul id="sliding-navigation">
+                <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
+                <li class="sliding-element"><a href="#">Consult</a></li>
+                <li class="sliding-element"><a href="#">Review</a></li>
+                <li class="sliding-element"><a href="#">Chart</a></li>
+                <li class="sliding-element"><a href="#">Search</a></li>
+                <li class="sliding-element"><a href="#">Help</a></li>
+            </ul>
+        </div>
 
 
 </body>
