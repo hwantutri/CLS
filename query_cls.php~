@@ -1,0 +1,14 @@
+<?php
+include_once 'database.php';
+$db = new Database();
+
+$date = $_POST['datepicker'];
+$comment = $_POST['comment'];
+$idnum = $_POST['idno'];
+$fid = $_POST['fid'];
+
+$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description) VALUES ('$fid','$idnum','$date','$comment')";
+mysql_query($query);			
+echo "string";
+
+?>
