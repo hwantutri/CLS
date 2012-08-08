@@ -31,7 +31,7 @@ form legend {
 }
 
 form {
-	padding: 0 20px 20px 100px;
+	padding: 0 20px 20px 200px;
 }
 
 form, form fieldset input, form fieldset textarea, form label {
@@ -47,7 +47,7 @@ form fieldset p input,
 form fieldset p textarea {
 	display: block;
 	padding: 4px;
-	width: 400px;
+	width: 300px;
 	margin: 0;
 }
 
@@ -60,7 +60,7 @@ form fieldset p label {
 
 form fieldset p textarea {
 	padding: 2px;
-	width: 600px;
+	width: 400px;
 }
 
 form fieldset p textarea,

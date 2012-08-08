@@ -23,7 +23,14 @@ p
 
 #navigation-block {
 	position:relative;
-	top:-550px;
+	top:-580px;
+	left:-245px;
+	margin-right: 700px;
+}
+
+#navigation-block2 {
+	position:relative;
+	top:-500px;
 	left:-245px;
 	margin-right: 700px;
 }

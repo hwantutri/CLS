@@ -2,8 +2,11 @@
 
 $mysqli = new mysqli('localhost', 'root', '', 'cls');
 $text = $mysqli->real_escape_string($_GET['term']);
+$phrase = $_GET['phrase'];
+
+if($phrase=='phrase') {
  
-$query = "SELECT Student_id as idno, Name as fullname, Department as course, Year_Level as year FROM student WHERE Student_id LIKE '%$text%' ORDER BY Student_id ASC";
+$query = "SELECT stud_id as idno, stud_name as fullname, stud_course as course, yearlvl as year FROM student WHERE stud_id LIKE '%$text%' ORDER BY stud_id ASC";
 $result = $mysqli->query($query);
 $json = '[';
 $first = true;
@@ -14,6 +17,6 @@ while($row = $result->fetch_assoc())
 }
 $json .= ']';
 echo $json;
-
+}
 
 ?>

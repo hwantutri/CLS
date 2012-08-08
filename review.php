@@ -1,3 +1,26 @@
+<?php
+session_start();
+include_once 'class_login.php';
+
+$login = new Login();
+$uid = $_SESSION['uid_new'];
+
+if(!$login->get_session()){
+	header("location:index.php");
+}
+//if($_GET['q'] == 'logout'){
+	//$login->logout();
+	//header("location:index.php");
+//}
+
+//if($_SERVER["REQUEST_METHOD"]=="POST"){
+	//$user = $login->validate($_POST['username'],$_POST['password']);
+	//if($user){header("location:form.php");}
+	//else{$msg = 'Incorrect username and password';}
+//}
+?>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Consultation Logs System</title>
@@ -56,8 +79,8 @@
 <div id="header">
   <div class="wrapper">
   		<ul id="main" class="loggedout-right">
-  			<li><a href="index.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
-  			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Ginji Amano</a></li>
+  			<li><a href="logout.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
+  			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header"><?php $login->get_name($uid);?></a></li>
   		</ul>
   </div>
 </div>

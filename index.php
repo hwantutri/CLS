@@ -1,16 +1,30 @@
 <?php
 session_start();
-include_once 'class_login.php';
-$login = new Login();
-	//if($login->get_session()){
-//}
+include('class_login.php');
 
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-	$user = $login->validate($_POST['username'],$_POST['password']);
-	if($user){header("location:form.php");}
-	else{$msg = 'Incorrect username and password';}
+$login = new Login();
+
+if(isset($_SESSION['uid_new'])) {
+header("location:form.php");
 }
+
+//	if($login->get_session()){
+	//	header("location:form.php");
+	//	$msg = "hurray!";
+	//}
+	
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		$user = $login->validate($_POST['username'],$_POST['password']);
+		if($user){
+		//successful login
+		header("location:form.php");
+		}else{
+		//login failed
+		$msg = 'Incorrect username or password';
+		}
+	}
 ?>
+
 <html>
 <head>
 	<title>Consultation Logs System</title>
@@ -239,7 +253,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 	}); 
 	return false;
 	});
-	
+	/*
 	$("#submit_btn").click(function(e){
 		e.preventDefault();
 		var uname = $("#username").val();
@@ -260,9 +274,21 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 				}
 			});
 		}
-	});
+	});*/
 });
 	</script>
+	
+	<script type="text/javascript">
+// Validation scripts
+function check(){
+	if((document.loginform.username.value=="") | (document.loginform.password.value=="")){
+		alert("Both fields are required!");
+		return false;
+		}
+	else
+		return true;
+}
+</script>
 </head>
 
 <body >
@@ -292,7 +318,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
   <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
 		<img height="30" STYLE="position:absolute; TOP:30px; Left:190px;" src="images/pen_paper_icon2.png">
-          <form name="loginform" method="post" class="signin" action="#">
+          <form name="loginform" method="post" class="signin" action="#" onsubmit="return check()">
                 <fieldset class="textbox">
                 <label>
 				<lol><font size="5">Log in to CLS</font></lol>
@@ -308,7 +334,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
                 <input id="password" name="password" value="" type="password" placeholder="Password">
                 </label>
                 <label>
-                <button name="submit_btn" id="submit_btn" class="submit button" type="button">Continue  &rarr;</button>
+                <button name="submit_btn" id="submit_btn" class="submit button" type="submit">Continue  &rarr;</button>
                 </label>
                 </fieldset>
           </form>
