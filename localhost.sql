@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.5.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 02, 2012 at 06:00 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Aug 08, 2012 at 03:14 AM
+-- Server version: 5.5.25a
+-- PHP Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,24 +29,21 @@ USE `cls`;
 --
 
 CREATE TABLE IF NOT EXISTS `consultation` (
-  `Consultation_id` int(255) NOT NULL,
-  `Fac_id` int(255) NOT NULL,
-  `Student_id` int(255) NOT NULL,
-  `Date_and_Time` date NOT NULL,
-  `Duration` int(255) NOT NULL,
-  `Description` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `cid` int(255) NOT NULL AUTO_INCREMENT,
+  `faculty_uid` varchar(20) NOT NULL,
+  `stud_id` varchar(10) NOT NULL,
+  `date` varchar(10) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `consultation`
 --
 
-INSERT INTO `consultation` (`Consultation_id`, `Fac_id`, `Student_id`, `Date_and_Time`, `Duration`, `Description`) VALUES
-(101, 1, 11, '2012-08-02', 1, 'Java Programming'),
-(102, 1, 12, '2012-08-01', 2, 'Thesis'),
-(103, 2, 13, '2012-08-01', 3, 'Thesis'),
-(104, 4, 21, '2012-08-03', 3, 'C++ Programming'),
-(105, 6, 18, '2012-08-03', 2, 'Yacc and Lex Programming');
+INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`) VALUES
+(6, 'dorward.villaruz', '2009-0000', '08/05/2012', '2012-08-06 04:28:38', 'aadadad');
 
 -- --------------------------------------------------------
 
@@ -54,28 +52,22 @@ INSERT INTO `consultation` (`Consultation_id`, `Fac_id`, `Student_id`, `Date_and
 --
 
 CREATE TABLE IF NOT EXISTS `faculty` (
-  `Fac_id` int(255) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  `Name` text NOT NULL,
-  `College` text NOT NULL,
-  `Department` text NOT NULL,
-  `Chairman` int(11) NOT NULL
+  `faculty_uid` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `college` varchar(40) NOT NULL,
+  `dept` varchar(30) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`faculty_uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `faculty`
 --
 
-INSERT INTO `faculty` (`Fac_id`, `Password`, `Name`, `College`, `Department`, `Chairman`) VALUES
-(1, 'at', 'Alquine Taculin', 'School of Computer Studies', 'Computer Science', 1),
-(2, 'rc', 'Rene Crisostomo', 'School of Computer Studies', 'Computer Science', 0),
-(3, 'dv', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 0),
-(4, 'ol', 'Orven Llantos', 'School of Computer Studies', 'Computer Science', 0),
-(5, 'cg', 'Cyrus Gabilla', 'School of Computer Studies', 'Computer Science', 0),
-(6, 'jm', 'Jennifer Montemayor', 'School of Computer Studies', 'Computer Science', 0),
-(7, 'mm', 'Mark Manlimos', 'School of Computer Studies', 'Computer Science', 0),
-(8, 'vm', 'Val Madrid', 'School of Computer Studies', 'Computer Science', 0),
-(9, 'jp', 'Jeremy Pinzon', 'School of Computer Studies', 'Computer Science', 0);
+INSERT INTO `faculty` (`faculty_uid`, `password`, `name`, `college`, `dept`, `status`) VALUES
+('dorward.villaruz', 'stevenseagal', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 0),
+('val.madrid', 'jack.sparrow', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 0);
 
 -- --------------------------------------------------------
 
@@ -84,34 +76,23 @@ INSERT INTO `faculty` (`Fac_id`, `Password`, `Name`, `College`, `Department`, `C
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `Student_id` int(255) NOT NULL,
-  `Name` text NOT NULL,
-  `College` text NOT NULL,
-  `Department` text NOT NULL,
-  `Year_Level` text NOT NULL
+  `stud_id` varchar(10) NOT NULL,
+  `stud_name` varchar(40) NOT NULL,
+  `stud_college` varchar(30) NOT NULL,
+  `stud_course` varchar(30) NOT NULL,
+  `yearlvl` int(1) NOT NULL,
+  PRIMARY KEY (`stud_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`Student_id`, `Name`, `College`, `Department`, `Year_Level`) VALUES
-(11, 'Carl Rudolf Berondo', 'School of Computer Studies', 'Computer Science', '4'),
-(12, 'Rufo Barbarona 2', 'School of Computer Studies', 'Computer Science', '4'),
-(13, 'Mellhakim Angni', 'School of Computer Studies', 'Computer Science', '4'),
-(14, 'Genesis Baccarisas', 'School of Computer Studies', 'Computer Science', '4'),
-(15, 'Keith Bandiola', 'School of Computer Studies', 'Computer Science', '4'),
-(16, 'Novo Dimaporo', 'School of Computer Studies', 'Computer Science', '4'),
-(17, 'Arven Aguilar', 'School of Computer Studies', 'Computer Science', '4'),
-(26, 'Mellhakim Angni', 'School of Computer Studies', 'Computer Science', '4'),
-(27, 'Genesis Baccarisas', 'School of Computer Studies', 'Computer Science', '4'),
-(28, 'Keith Bandiola', 'School of Computer Studies', 'Computer Science', '4'),
-(29, 'Novo Dimaporo', 'School of Computer Studies', 'Computer Science', '4'),
-(18, 'Nadine Chu', 'School of Computer Studies', 'Information Technology', '2'),
-(19, 'Rheaman Apugan', 'School of Engineering Technology', 'Civil Engineering Technology', '1'),
-(20, 'Cliff Sumalpong', 'College of Business Administration and Accountancy', 'Marketing', '1'),
-(21, 'Glory Faith N.Paza', 'School of Engineering Technology', 'Electrical Engineering', '2'),
-(22, 'Rowena Grace S.Balaba', 'School of Computer Science ', 'Information Technology', '3'),
-(23, 'Sarah Elizabeth N.Allen', 'College of Arts and Social Science', 'English', '4'),
-(24, 'Reynalou S.Bontilao', 'College of Science and Mathematics', 'Physics', '1'),
-(25, 'Jann Dainver L.Maravilla', 'College of Nursing', 'Nursing', '1');
+INSERT INTO `student` (`stud_id`, `stud_name`, `stud_college`, `stud_course`, `yearlvl`) VALUES
+('2009-0000', 'James L. Antiquina', 'School of Computer Studies', 'BSIT', 4),
+('2009-3869', 'Rodel S. Pepino', 'School of Engineering Technolo', 'ELET -  EPD', 3),
+('2009-7604', 'Febris P. Pacarro', 'College of Science and Mathema', 'BSChem', 4);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
