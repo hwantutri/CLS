@@ -1,3 +1,11 @@
+<?php
+require_once('database.php');
+$db = new Database();
+//redirect to index if session is unset
+session_start();
+if(!isset($_SESSION['user']))
+header( 'location:index.php' ) ;
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Consultation Logs System</title>
@@ -20,8 +28,8 @@
 <div id="header">
   <div class="wrapper">
   		<ul id="main" class="loggedout-right">
-  			<li><a href="index.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
-  			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Ginji Amano</a></li>
+  			<li><a href="logout.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
+  			<li><a href="" id="login_header_link" class="login-window" data-event="homepage.login" rel="header"><?php echo $_SESSION['user'] 	?></a></li>
   		</ul>
   </div>
 </div>
@@ -34,16 +42,16 @@
 				<input type="text" name="idno" value="" id="idno" autocomplete="off">
 			</p>
 			<p>
-				<label for="name" style="display: block; opacity: 1;">Name</label><br />
-				<input type="text" name="name" value="" id="name" autocomplete="off">
-			</p>
-			<p>
-				<label for="courseyrlvl" style="display: block; opacity: 1;">Course and Year Level</label><br />
-				<input type="text" name="courseyrlvl" value="" id="courseyrlvl">
-			</p>
-			<p>
 				<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />
 				<input type="text" name="subsec" value="" id="subsec">
+			</p>
+			<p>
+				<label for="subsec" style="display: block; opacity: 1;">Time & Date</label><br />
+				<input type="text" name="date" value="" id="date">
+			</p>
+			<p>
+				<label for="subsec" style="display: block; opacity: 1;">Duration</label><br />
+				<input type="text" name="duration" value="" id="duration">
 			</p>
 			<p>
 				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
