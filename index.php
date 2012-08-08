@@ -1,7 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['user']))
-header( 'location:form.php' ) ;
+include_once 'class_login.php';
+$login = new Login();
+	//if($login->get_session()){
+//}
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 	$user = $login->validate($_POST['username'],$_POST['password']);

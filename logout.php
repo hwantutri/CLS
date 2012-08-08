@@ -1,5 +1,6 @@
 <?php
 session_start();
-session_destroy();
-header( 'location:form.php' ) ;
+include_once 'class_login.php';
+logout();
+header( 'Location: http://www.yoursite.com/new_page.html' ) ;
 ?>
