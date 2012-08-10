@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 09, 2012 at 05:33 PM
+-- Generation Time: Aug 10, 2012 at 06:31 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -66,25 +66,24 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 
 INSERT INTO `faculty` (`faculty_uid`, `password`, `name`, `college`, `dept`, `status`) VALUES
 ('dorward.villaruz', 'stevenseagal', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 0),
-('val.madrid', 'jack.sparrow', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 1),
+('val.madrid', 'jack.sparrow', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 0),
 ('rene.crisostomo', 'rcris', 'Rene Crisostomo', 'School of Computer Studies', 'Computer Science', 0),
 ('cyrus.gabilla', 'cgab', 'Cyrus Gabilla', 'School of Computer Studies', 'Computer Science', 0),
 ('eli.mostrales', 'elmo', 'Eli Mostrales', 'School of Computer Studies', 'Computer Science', 0),
 ('mark.manlimos', 'mman', 'Mark Manlimos', 'School of Computer Studies', 'Computer Science', 0),
 ('jennifer.montemayor', 'jmon', 'Jennifer Montemayor', 'School of Computer Studies', 'Computer Science', 0),
-('fatima.santos', 'fsan', 'FATIMAH JOY SANTOS', 'College of Arts and Social Science', 'English', 0),
-('nelia.balgoa', 'nbal', 'NELIA GAYOSA BALGOA', 'College of Arts and Social Science', 'English', 1),
-('rosie.boniao', 'rbon', 'ROSIE ENDERES BONIAO', 'College of Arts and Social Science', 'English', 0),
-('judith.cagaanan', 'jcag', 'JUDITH SUBRABAS CAGAANAN', 'College of Arts and Social Science', 'English', 0),
-('michelle.caracut', 'mcar', 'MICHELLE JEANNE CASIPLE CARACUT', 'College of Arts and Social Science', 'Filipino', 0),
-('honeylet.dumoran', 'hdum', 'HONEYLET ERMAC DUMORAN', 'College of Arts and Social Science', 'Filipino', 0),
-('rosario.dizon', 'rdiz', 'ROSARIO BUTRON DIZON', 'College of Arts and Social Science', 'Filipino', 0),
-('kristine.herbito', 'kher', 'KRISTINE RAMO HERBITO', 'College of Arts and Social Science', 'Filipino', 0),
-('melba.ijan', 'mij', 'MELBA BAGUIO IJAN', 'College of Arts and Social Science', 'Filipino', 0),
-('', '', '', 'College of Arts and Social Science', 'Filipino', 1),
-('lydia.mata', 'lmat', 'LYDIA LARANJO  MATA', 'College of Arts and Social Science', 'Filipino', 0),
-('melecita.baena', 'mbae', 'MELECITA GALERA BAENA', 'College of Arts and Social Science', 'Filipino', 0),
-('nora.clar', 'ncla', 'Nora Ador Clar', 'College of Arts and Social Science', 'History', 1);
+('fatima.santos', 'fsan', 'Fatimah Joy Santos', 'College of Arts and Social Science', 'English', 0),
+('nelia.balgoa', 'nbal', 'Nelia Galosa Balgoa', 'College of Arts and Social Science', 'English', 0),
+('rosie.boniao', 'rbon', 'Rosie Enderes Boniao', 'College of Arts and Social Science', 'English', 0),
+('judith.cagaanan', 'jcag', 'Judith Cagaanan', 'College of Arts and Social Science', 'English', 0),
+('michelle.caracut', 'mcar', 'Michelle Jeanne Casiple Caracut', 'College of Arts and Social Science', 'Filipino', 0),
+('honeylet.dumoran', 'hdum', 'Honeylet Ermac Dumoran', 'College of Arts and Social Science', 'Filipino', 0),
+('rosario.dizon', 'rdiz', 'Rosario Butron Dizon', 'College of Arts and Social Science', 'Filipino', 0),
+('kristine.herbito', 'kher', 'Kristine Ramo Herbito', 'College of Arts and Social Science', 'Filipino', 0),
+('melba.ijan', 'mij', 'Melba Baguio Ijan', 'College of Arts and Social Science', 'Filipino', 0),
+('lydia.mata', 'lmat', 'Lydia Laranjo Mata', 'College of Arts and Social Science', 'Filipino', 0),
+('melecita.baena', 'mbae', 'Melecita Galera Baena', 'College of Arts and Social Science', 'Filipino', 0),
+('nora.clar', 'ncla', 'Nora Ador Clar', 'College of Arts and Social Science', 'History', 0);
 
 -- --------------------------------------------------------
 
