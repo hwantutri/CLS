@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2012 at 06:31 AM
+-- Generation Time: Aug 11, 2012 at 07:57 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   `date` varchar(10) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `description` mediumtext NOT NULL,
+  `subsec` varchar(30) NOT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -41,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 -- Dumping data for table `consultation`
 --
 
-INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`) VALUES
-(6, 'dorward.villaruz', '2009-0666', '08/05/2012', '2012-08-09 23:31:03', 'how to load external fonts to using css');
+INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`, `subsec`) VALUES
+(6, 'dorward.villaruz', '2009-0666', '08/05/2012', '2012-08-09 23:31:03', 'how to load external fonts to using css', '');
 
 -- --------------------------------------------------------
 
@@ -65,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 --
 
 INSERT INTO `faculty` (`faculty_uid`, `password`, `name`, `college`, `dept`, `status`) VALUES
-('dorward.villaruz', 'stevenseagal', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 0),
-('val.madrid', 'jack.sparrow', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 0),
+('dorward.villaruz', 'stevenseagal', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 1),
+('val.madrid', 'jack.sparrow', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 1),
 ('rene.crisostomo', 'rcris', 'Rene Crisostomo', 'School of Computer Studies', 'Computer Science', 0),
 ('cyrus.gabilla', 'cgab', 'Cyrus Gabilla', 'School of Computer Studies', 'Computer Science', 0),
 ('eli.mostrales', 'elmo', 'Eli Mostrales', 'School of Computer Studies', 'Computer Science', 0),
