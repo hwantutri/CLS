@@ -70,10 +70,9 @@ if(!$login->get_session()){
      		 //var fid = <?php echo $uid;?>;
        	 var datepicker = $("#datepicker").val();
 			 var comment = $("#comment").val();
-			 var subsec = $("#subsec").val();
 			 var string = "phrase2";
 	         //var time = $("#visittime").val();
-        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, subsec:subsec }, function(data){
+        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
              			//$("#search_results").html(data)

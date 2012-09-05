@@ -48,7 +48,7 @@ font-family:myFirstFont;
  
     <style type="text/css">
 body{
-	 //background:#202020;
+	 background:#202020;
 	 font:bold 12px Arial, Helvetica, sans-serif;
 	 margin:0;
 	 padding:0;
@@ -292,12 +292,6 @@ function check(){
 </head>
 
 <body >
-<!--
-<div class="post">
-	<div id="header"><a href="#login-box" class="login-window"><img STYLE="position:absolute; TOP:7px; Right:212px;" src="images/login.png"></a></div>
-</div>
--->
-
 <div id="header">
   <div class="wrapper">
   		<ul id="main" class="loggedout-right">

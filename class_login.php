@@ -13,6 +13,7 @@ class Login{
 			if($no_rows == 1){
 				$_SESSION['user_new'] = true;
 				$_SESSION['uid_new'] = $user_data['faculty_uid'];
+				mysql_query("UPDATE faculty SET status=1 where faculty_uid='$username'");
 				return TRUE;
 			}else{
 				return FALSE;
