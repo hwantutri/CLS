@@ -107,7 +107,7 @@ if(!$login->get_session()){
 <div id="header">
   <div class="wrapper">
   		<ul id="main" class="loggedout-right">
-  			<li><a href="logout.php" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
+  			<li><a href="logout.php" id="sign_up_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
   			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header"><?php $login->get_name($uid);?></a></li>
   		</ul>
   </div>
@@ -134,7 +134,7 @@ if(!$login->get_session()){
 			</p>
 			<p>
 				<label for="datepicker" style="display: block; opacity: 1;">Date</label><br />
-				<input type="text" name="datepicker" value="" id="datepicker" >
+				<input type="text" name="datepicker" value="<?php echo date("d/m/Y"); ?>" id="datepicker" >
 			</p>
 			<p>
 				<label for="comment" style="display: block; opacity: 1;">Description</label><br />

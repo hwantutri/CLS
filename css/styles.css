@@ -184,12 +184,30 @@ body.browser_internet-explorer #main li a#sign_up_header_link {
 	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,0.2);
 	text-decoration:none;
 }
+#main li a#sign_up_header_link { 
+	background: linear-gradient(top, #82BE00 0%, #6EA100 100%);
+	background: -webkit-linear-gradient(top, #82BE00 0%, #6EA100 100%);
+	background: -moz-linear-gradient(top, #82BE00 0%, #6EA100 100%);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0 1px 0 rgba(255,255,255,0.3);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0 1px 0 rgba(255,255,255,0.3);
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3),0 1px 0 rgba(255,255,255,0.3);
+	text-shadow: 0 1px #486E00;
+}
+
+#main li a#sign_up_header_link:hover {
+	background: rgba(100, 160, 0, 0.9);
+}
+
 
 body.browser_internet-explorer #main a:active, 
 body.browser_internet-explorer #main .selected, 
 body.browser_internet-explorer #main .selected:hover, 
 body.browser_internet-explorer #main li a#login_header_link:hover {
 	background: #396d94;
+}
+body.browser_internet-explorer #main li a#sign_up_header_link:hover {
+	background: #678d00;
+	border: 1px solid #4d6a00;
 }
 
 #main a:active, 
