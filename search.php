@@ -9,7 +9,7 @@ $search_value = $_POST['fullname'];
 $selected_radio = $_POST['radioval']; 
 
 $s_query = mysql_query("select name,college,dept,status,location from faculty WHERE faculty.name LIKE '%$search_value%' OR faculty.dept LIKE '%$search_value%'");
-$n_query = mysql_query("SELECT * FROM faculty WHERE name LIKE '%$search_value%'");
+//$n_query = mysql_query("SELECT * FROM faculty WHERE name LIKE '%$search_value%'");
 $d_query = mysql_query("SELECT * FROM faculty WHERE dept LIKE '%$search_value%'");
 
 
@@ -152,11 +152,11 @@ h1 {
             echo "<td>" . $row['dept'] . "</td>";  
             echo "<td>" . $row['location'] . "</td>";
                if ($row['status']==0) {
-                echo "<td><font color='red'>Offline</font></td>";
+                echo "<td><font color='red'>Not Available</font></td>";
                }
                else
                 {
-                echo "<td><font color='green'>Online</font></td>";
+                echo "<td><font color='green'>Available</font></td>";
                 }
             echo "</tr>";
             echo "</thead>";
@@ -173,11 +173,11 @@ h1 {
             echo "<td>" . $row['dept'] . "</td>";  
             echo "<td>" . $row['location'] . "</td>";
                if ($row['status']==0) {
-                echo "<td><font color='red'>Offline</font></td>";
+                echo "<td><font color='red'>Not Available</font></td>";
                }
                else
                 {
-                echo "<td><font color='green'>Online</font></td>";
+                echo "<td><font color='green'>Available</font></td>";
                 }
             echo "</tr>";
             echo "</thead>";
