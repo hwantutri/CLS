@@ -8,16 +8,6 @@ $uid = $_SESSION['uid_new'];
 if(!$login->get_session()){
 	header("location:index.php");
 }
-//if($_GET['q'] == 'logout'){
-	//$login->logout();
-	//header("location:index.php");
-//}
-
-//if($_SERVER["REQUEST_METHOD"]=="POST"){
-	//$user = $login->validate($_POST['username'],$_POST['password']);
-	//if($user){header("location:form.php");}
-	//else{$msg = 'Incorrect username and password';}
-//}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -28,79 +18,16 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
+
+	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="js/form-script.js"></script>
 	
-	<script type="text/javascript" charset="utf-8">
-		$(function(){ $("label").inFieldLabels(); });
-	</script>
-
-	<script>
-	$(function() {
-			var ac_config = {
-				source: "query.php?phrase=phrase",
-				select: function(event, ui){
-						$("#idno").val(ui.item.idno);
-						$("#name").val(ui.item.fullname);
-						$("#courseyrlvl").val(ui.item.courseyrlvl);
-				},
-				minLength:1
-			};		
-		
-		$( "#idno" ).autocomplete(ac_config);
-		
-		
-		//update script
-	$("#submitbtn").click(function(e){ 
-        	e.preventDefault();
-		var sval = $("#idno").val();
-		if (sval.length > 0){
-	        search_key(sval);
-		}
-		else {
-			alert('No Input : Please enter ID number');
-		}
-             $("#idno").val("");
-     });
-     
-     function search_key(sk){
-     		 //var fid = <?php echo $uid;?>;
-       	 var datepicker = $("#datepicker").val();
-			 var comment = $("#comment").val();
-			 var string = "phrase2";
-	         //var time = $("#visittime").val();
-        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk }, function(data){
-		     data = $.trim(data);
-				if (data.length > 0){ 
-             			//$("#search_results").html(data)
-					alert('Consultation successfully logged!');
-          		}
-			});
-		}
-		//{
-			//source: "query.php",
-			//minLength: 1
-		//});
-	});
-	</script>
-	<script type="text/javascript" charset="utf-8">
-	function resetForm(id) {
-	$('#'+id).each(function(){
-	        this.reset();
-	});
-	idno.focus();
-	}
-	</script>	
-	<script>
-	$(function() {
-		$( "#datepicker" ).datepicker();
-	});
-	</script>
-	
-
 </head>
 <body background = "bg1.jpg">
 
@@ -150,9 +77,26 @@ if(!$login->get_session()){
                 <li class="sliding-element"><a href="form.php">Consult</a></li>
                 <li class="sliding-element"><a href="review.php">Review</a></li>
                 <li class="sliding-element"><a href="#">Chart</a></li>
-                <li class="sliding-element"><a href="#">Search</a></li>
+                <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
                 <li class="sliding-element"><a href="#">Help</a></li>
             </ul>
         </div>
+		<div id="location-box" class="location-popup">
+        <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+          <form name="loginform" class="signin">
+                <fieldset class="textbox">
+                <label>
+				<font size="5" color="white">Set Location</font>
+				</br></br>
+					</label>
+            	<label class="location">
+                <input id="location" name="location" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus">
+                </label>
+                <label>
+                <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
+                </label>
+                </fieldset>
+          </form>
+	</div>
 </body>
 </html>

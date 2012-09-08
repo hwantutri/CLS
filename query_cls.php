@@ -8,8 +8,14 @@ $uid = $_SESSION['uid_new'];
 $date = $_POST['datepicker'];
 $comment = $_POST['comment'];
 $idnum = $_POST['idno'];
+$option = $_POST['string'];
+$location = $_POST['location'];
 
-$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description) VALUES ('$uid','$idnum','$date','$comment')";
+if($option=="update"){
+	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description) VALUES ('$uid','$idnum','$date','$comment')";
+}else{
+	$query = "UPDATE faculty SET location='$location' where faculty_uid='$uid'";
+}
 mysql_query($query);			
 echo "string";
 
