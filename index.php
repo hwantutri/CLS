@@ -8,11 +8,6 @@ if(isset($_SESSION['uid_new'])) {
 header("location:form.php");
 }
 
-//	if($login->get_session()){
-	//	header("location:form.php");
-	//	$msg = "hurray!";
-	//}
-	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$user = $login->validate($_POST['username'],$_POST['password']);
 		if($user){
@@ -253,28 +248,6 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 	}); 
 	return false;
 	});
-	/*
-	$("#submit_btn").click(function(e){
-		e.preventDefault();
-		var uname = $("#username").val();
-		var pass = $("#password").val();
-		if((uname.length==0)&&(pass.length==0)){
-			alert("Both fields are required!");
-		}
-		else if(uname.length>0){
-			$.post("checkindex.php",{uname:uname,pass:pass}, function(data){
-				data = $.trim(data);
-				if(data.length==2){
-				//	header("location:test.php");
-					//alert("Success!");
-					window.open("form.php","_self");
-					}
-				else if(data.length==1){
-					alert("Incorrect username/password!");
-				}
-			});
-		}
-	});*/
 });
 	</script>
 	

@@ -7,7 +7,8 @@ class Login{
 		$db = new Database();
 	}
 	public function validate($username,$password){
-		$result = mysql_query("select * from faculty where faculty_uid='$username' and password='$password'");
+		$pass = md5($password);
+		$result = mysql_query("select * from faculty where faculty_uid='$username' and password='$pass'");
 			$user_data=mysql_fetch_array($result);
 			$no_rows = mysql_num_rows($result);
 			if($no_rows == 1){
