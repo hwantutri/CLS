@@ -5,7 +5,6 @@
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
  	
-
  	<!--<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />-->
  	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
@@ -15,6 +14,7 @@
 
 body {background-image:url('images/wallpaper3.jpg');
 background-repeat: no-repeat;}
+
 form legend {
 	color: #2F4F4F;
 	padding: 0 0 20px 0;
@@ -26,13 +26,6 @@ form legend {
 	
 }
 
-h1 {
-  color:#2F4F4F;
-  padding: 0 0 20px 0;
-  font-weight: bold;
-  font-size: 19pt;
-  
-}
 #style {
 	color: #2F4F4F;
 	padding: 0 0 20px 0;
@@ -41,27 +34,15 @@ h1 {
 	font-size: 14px;
 	left: 580px;
 }
-	#footer
-	{
-		width: 1020px;
-		height: 20px;
-		background-repeat: no-repeat;
-	}
-#footer .strong {font-weight: bold; font-size: 16px;}
-#footer p, p:hover, p:visited {color: #2F4F4F;}
-#footer .col1 {float: left; padding: 10px 0 10px 10px; width: 30%; }
-#footer .col2 {float: left; padding: 10px 0 10px ; width: 34%; }
-#footer .col3 {float: left; padding: 10px 0 10px ; width: 34%; }
-#footer {position: relative;
-	margin-top: 80px;
-	height: 80px;
-	clear:both;} 
-#wrap {min-height: 	10%;}
-
-p{color: white;font-size:0.4px;}
-.CSSTableGenerator {width:100%;	box-shadow: 10px 10px 20px #888888;
+#footer {
+	border-top: 1px solid #202020;
+	background:white;
+	bottom:0;
+	position:absolute;
+	height: 60px;
+	width: 100%;
+	text-align: center;
 }
-
 #mid {
 	background: url(..images/white.png) 0 center no-repeat;
 	text-align: center;
@@ -72,6 +53,17 @@ p{color: white;font-size:0.4px;}
 	position: relative;
 
 }
+
+
+#footer .strong {font-weight: bold; font-size: 16px; color:black;}
+#footer p, p:hover, p:visited {color: #2F4F4F;}
+#footer .col1 {float: left; padding: 10px 0 10px 10px; width: 34%; }
+#footer .col2 {float: left; padding: 10px 0 10px ; width: 30%; }
+#footer .col3 {float: left; padding: 5px 0 10px ; width: 34%; }
+
+#wrap {min-height:   10%;}
+p{color: white;font-size:0.4px;}
+
 </style>
  <script>
  
@@ -117,7 +109,6 @@ p{color: white;font-size:0.4px;}
 <body background="bg1.jpg">
 
 <div id="header">
-<img src="images/cls.png" alt="logo" height="44" width="100">
 </div>
 <div id="mid">
 	
@@ -127,7 +118,7 @@ p{color: white;font-size:0.4px;}
 <div class="demo">	
 	<legend>Faculty Availability Search</legend>
 	
-<input id="fullname" name="fullname" type = "text"  style="width: 23em; height:1.87em;" >
+<input id="fullname" name="fullname" type = "text"  style="width: 23em; height:1.87em;" autofocus>
  </br></br>
 <input type = "submit" value = "Search">
 <div id="style"></br></br>
@@ -138,43 +129,29 @@ p{color: white;font-size:0.4px;}
 </div>
 </div>
 
-</form>
-<div id="footer">
-<hr />
-	<div class="col1">
-	
-		<p>
-			<span class="strong"><font size="2">Consultation Log System</font></span>
-		</p>
-	</div><!--col1-->
-	
-	<div class="col2">
-		<p>
-		<span class="strong"><font size="2">Contact US:</font></span>		
-		</p >
-		<p>
-		<span><font size="2">0906-139-1950</font></span>
-		<span><font size="2">0905-123-4567</font></span>
-		</p>
-	<p>
-		<span><font size="2">0915-322-4421</font></span>
-		</p>
-		
-	</div><!--col2-->
-	
-	<div class="col3">
-		<p>
-			<span class="strong"><font size="2">Visit US:</font></span>		
-		</p>
-		<p><a href="https://www.facebook.com/"><img src="images/fb.png" alt="facebook" height="25" width="25"></a>
-		<a href="http://twitter.com/"><img src="images/twit.jpg" alt="twitter" height="25" width="25"></a>
-		<a href="https://accounts.google.com/ServiceLogin?service=oz&continue=https://plus.google.com/?gpsrc%3Dgplp0&hl=en"><img src="images/g+.png" alt="google+" height="25" width="25"></a></p>
-	</div><!--col3-->
-</div><!--footer-->
-
-	
+</form>	
 </div>
 
+<div id = "footer">
+ <div class="col1">
+   <p>
+     <span class="strong"><font size="2">Consultation Log System</font></span>
+   </p>
+  </div><!--col1-->
+ <div class="col2">
+    <p>
+   <span class="strong"><font size="2">Contact Us: </font></span>    
+    <span><font size="2">0906-139-1950</font></span>
+    </p>
+ </div><!--col2-->
+  <div class="col3">
+    <p>
+     <span class="strong"><font size="2">Visit Us: </font></span>
+    <a href="https://www.facebook.com/"><img src="images/fb.png" alt="facebook" height="20" width="20"></a>
+   <a href="http://twitter.com/"><img src="images/twit.jpg" alt="twitter" height="20" width="20"></a>
+    <a href="https://accounts.google.com/ServiceLogin?service=oz&continue=https://plus.google.com/?gpsrc%3Dgplp0&hl=en"><img src="images/g+.png" alt="google+" height="20" width="20"></a></p>
+  </div><!--col3-->
+</div>
 
 </body>
 </html>

@@ -52,7 +52,13 @@ $( "#datepicker" ).datepicker(); //date picker
 	$("#location_btn").click(function(e){ 
         e.preventDefault();
 		//alert("Bitch please!");
+		
 		var location = $("#location").val();
+		
+		if(location.length == 0){
+			alert("You cannot set your location to blank!");
+		}else{
+		
 		var string = "location";
 		$.post("query_cls.php", {location: location, string: string }, function(data){
 		     data = $.trim(data);
@@ -64,7 +70,11 @@ $( "#datepicker" ).datepicker(); //date picker
 					$("#location").val("");
           		}
 		});
+		}
     });
+	 
+	 
+	 // Function to submit clsform data to database using jquery post
 	 
      function search_key(sk){
        	 var datepicker = $("#datepicker").val();
@@ -82,7 +92,8 @@ $( "#datepicker" ).datepicker(); //date picker
 
 $('a.location-window').click(function() {
 		
-                //Getting the variable's value from a link 
+        //Getting the variable's value from a link 
+				
 		var locationBox = $(this).attr('href');
 
 		//Fade in the Popup
