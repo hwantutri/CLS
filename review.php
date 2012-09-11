@@ -8,16 +8,6 @@ $uid = $_SESSION['uid_new'];
 if(!$login->get_session()){
 	header("location:index.php");
 }
-//if($_GET['q'] == 'logout'){
-	//$login->logout();
-	//header("location:index.php");
-//}
-
-//if($_SERVER["REQUEST_METHOD"]=="POST"){
-	//$user = $login->validate($_POST['username'],$_POST['password']);
-	//if($user){header("location:form.php");}
-	//else{$msg = 'Incorrect username and password';}
-//}
 ?>
 
 
@@ -34,43 +24,7 @@ if(!$login->get_session()){
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
-	
-	<script type="text/javascript" charset="utf-8">
-		$(function(){ $("label").inFieldLabels(); });
-	</script>
-
-	<script>
-	$(function() {
-			var ac_config = {
-				source: "query.php",
-				select: function(event, ui){
-						$("#idno").val(ui.item.idno);
-						$("#name").val(ui.item.fullname);
-						$("#courseyrlvl").val(ui.item.courseyrlvl);
-				},
-				minLength:1
-			};		
-		
-		$( "#idno" ).autocomplete(ac_config);
-		//{
-			//source: "query.php",
-			//minLength: 1
-		//});
-	});
-	</script>
-	<script type="text/javascript" charset="utf-8">
-	function resetForm(id) {
-	$('#'+id).each(function(){
-	        this.reset();
-	});
-	idno.focus();
-	}
-	</script>	
-	<script>
-	$(function() {
-		$( "#datepicker" ).datepicker();
-	});
-	</script>
+	<script type="text/javascript" src="js/form-script.js"></script>
 	
 
 </head>
@@ -114,7 +68,7 @@ if(!$login->get_session()){
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
                 <li class="sliding-element"><a href="form.php">Consult</a></li>
                 <li class="sliding-element"><a href="review.php">Review</a></li>
-                <li class="sliding-element"><a href="#">Chart</a></li>
+                <li class="sliding-element"><a href="chart.php">Chart</a></li>
                 <li class="sliding-element"><a href="#">Search</a></li>
                 <li class="sliding-element"><a href="#">Help</a></li>
             </ul>

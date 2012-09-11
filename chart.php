@@ -19,13 +19,17 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
-
+	<link rel="stylesheet" type="text/css" href="development-bundle/themes/base/jquery.ui.all.css" media="screen" />
+	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
-	<!--<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>-->
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script type="text/javascript" src="development-bundle/ui/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="development-bundle/ui/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="development-bundle/ui/jquery.ui.tabs.js"></script>
 	
 </head>
 <body background = "bg1.jpg">
@@ -39,37 +43,68 @@ if(!$login->get_session()){
   </div>
 </div>
 
-	<form id="clsform" name="clsform" action="" accept-charset="utf-8">
-		<fieldset> <br /><br /><br /> <br /> <br /> <br />
-			<p><legend>Consultation Form</legend></p>
-			<p>
-				<label for="idno" style="display: block; opacity: 1;">ID No.</label><br />
-				<input type="text" name="idno" value="" id="idno" autocomplete="off" autofocus="autofocus">
-			</p>
-			<p>
-				<label for="name" style="display: block; opacity: 1;">Name</label><br />
-				<input type="text" name="name" value="Name" id="name" disabled="disabled">
-			</p>
-			<p>
-				<label for="courseyrlvl" style="display: block; opacity: 1;">Course and Year Level</label><br />
-				<input type="text" name="courseyrlvl" value="Course & Year Level" id="courseyrlvl" disabled="disabled">
-			</p>
-			<p>
-				<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />
-				<input type="text" name="subsec" value="" id="subsec" >
-			</p>
-			<p>
-				<label for="datepicker" style="display: block; opacity: 1;">Date</label><br />
-				<input type="text" name="datepicker" value="<?php echo date("d/m/Y"); ?>" id="datepicker" >
-			</p>
-			<p>
-				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
-				<textarea cols="30" rows="10" name="comment" id="comment"></textarea>
-			</p>
-		</fieldset>
-		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
-	</form>	
-		<div id="navigation-block">
+<!--Chart Tabs-->
+<div class="demo">
+</br></br></br></br>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Daily</a></li>
+		<li><a href="#tabs-2">Monthly</a></li>
+	</ul>
+	<div id="tabs-1">
+		<p><font color="black">Generate a daily chart for consultations.</font></p>
+		
+		<form style="padding: 0 20px 20px 50px;">
+			<br /> <br />			
+				<select name="month" id="month">
+					<option value="1">January</option>
+					<option value="2">February</option>
+					<option value="3">March</option>
+					<option value="4">April</option>
+					<option value="5">May</option>
+					<option value="6">June</option>
+					<option value="7">July</option>
+					<option value="8">August</option>
+					<option value="9">September</option>
+					<option value="10">October</option>
+					<option value="11">November</option>
+					<option value="12">December</option>
+				</select>
+				<select name="year">
+                    <?php
+						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
+                            while ($row = mysql_fetch_object($result)) {
+                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
+                            }
+					?>
+				</select>
+			<input type="button" name="genbtn" id="genbtn" value="Generate &rarr;">
+		</form>
+		<div id="myChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	</div>
+	
+	<div id="tabs-2">
+		<p><font color="black">Generate a monthly chart for consultations.</font></p>
+		
+		<form style="padding: 0 20px 20px 50px;">
+			<br /> <br />			
+				<select name="year">
+                    <?php
+						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
+                            while ($row = mysql_fetch_object($result)) {
+                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
+                            }
+					?>
+				</select>
+			<input type="button" name="genbtn" id="genbtn" value="Generate &rarr;">
+		</form>	
+		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	</div>
+</div>
+
+</div>
+	
+		<div id="navigation-block3">
 			<img src="images/background.jpg" id="hide" />
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
