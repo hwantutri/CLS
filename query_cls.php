@@ -9,10 +9,11 @@ $date = $_POST['datepicker'];
 $comment = $_POST['comment'];
 $idnum = $_POST['idno'];
 $option = $_POST['string'];
+$subsec = $_POST['subsec'];
 $location = $_POST['location'];
 
 if($option=="update"){
-	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description) VALUES ('$uid','$idnum','$date','$comment')";
+	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description,subsec) VALUES ('$uid','$idnum','$date','$comment','$subsec')";
 }else{
 	$query = "UPDATE faculty SET location='$location' where faculty_uid='$uid'";
 }

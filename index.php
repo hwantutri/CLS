@@ -44,7 +44,8 @@ font-family:myFirstFont;
  
     <style type="text/css">
 body{
-	 background:#202020;
+	 background-image:url('images/wallpaper3.jpg');
+background-repeat: no-repeat;
 	 font:bold 12px Arial, Helvetica, sans-serif;
 	 margin:0;
 	 padding:0;

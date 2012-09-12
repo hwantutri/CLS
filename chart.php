@@ -70,7 +70,7 @@ if(!$login->get_session()){
 					<option value="11">November</option>
 					<option value="12">December</option>
 				</select>
-				<select name="year">
+				<select name="year" id="year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
                             while ($row = mysql_fetch_object($result)) {
@@ -78,7 +78,7 @@ if(!$login->get_session()){
                             }
 					?>
 				</select>
-			<input type="button" name="genbtn" id="genbtn" value="Generate &rarr;">
+			<input type="button" name="genbtn0" id="genbtn0" value="Generate &rarr;">
 		</form>
 		<div id="myChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
@@ -88,7 +88,7 @@ if(!$login->get_session()){
 		
 		<form style="padding: 0 20px 20px 50px;">
 			<br /> <br />			
-				<select name="year">
+				<select name="year" id="year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
                             while ($row = mysql_fetch_object($result)) {
@@ -96,7 +96,7 @@ if(!$login->get_session()){
                             }
 					?>
 				</select>
-			<input type="button" name="genbtn" id="genbtn" value="Generate &rarr;">
+			<input type="button" name="genbtn1" id="genbtn1" value="Generate &rarr;">
 		</form>	
 		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
