@@ -201,7 +201,8 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
   <div class="wrapper">
   		<ul id="main" class="loggedout-right">
   			<li><a href="#login-box" id="login_header_link" class="login-window" data-event="homepage.login" rel="header">Login</a></li>
-  		</ul>
+			<input type="image" src="images/cls_logo.png" name="name" width="300" height="45" style="margin-left:-70px;">
+		</ul>
   </div>
 </div>
 

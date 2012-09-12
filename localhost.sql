@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 12, 2012 at 08:24 AM
+-- Generation Time: Sep 12, 2012 at 10:34 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -36,16 +36,19 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   `description` mediumtext NOT NULL,
   `subsec` varchar(30) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `consultation`
 --
 
 INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`, `subsec`) VALUES
-(6, 'dorward.villaruz', '2009-0666', '08/05/2012', '2012-09-12 05:12:41', 'how to load external fonts to using css', 'CSc 100 - T3M8'),
-(7, 'dorward.villaruz', '2012-2525', '08/10/2012', '2012-09-12 05:13:00', 'churva', 'CSc 171 - AI'),
-(8, 'dorward.villaruz', '2008-4123', '08/17/2012', '2012-09-12 05:13:23', 'char', 'ENG I - ENGENG');
+(6, 'dorward.villaruz', '2009-0666', '2012/08/05', '2012-09-12 10:26:10', 'how to load external fonts to using css', 'CSc 100 - T3M8'),
+(7, 'dorward.villaruz', '2012-2525', '2012/08/10', '2012-09-12 10:26:10', 'churva', 'CSc 171 - AI'),
+(8, 'dorward.villaruz', '2008-4123', '2012/08/17', '2012-09-12 10:26:10', 'char', 'ENG I - ENGENG'),
+(21, 'dorward.villaruz', '2009-4441', '2012/09/01', '2012-09-12 10:26:10', 'Growth and Decay', 'ES81 - T5'),
+(20, 'dorward.villaruz', '2010-3321', '2012/09/01', '2012-09-12 10:26:10', 'Project Proposal', 'CSc 181 - T23'),
+(19, 'dorward.villaruz', '2009-0005', '2012/09/29', '2012-09-12 10:26:10', 'Stats', 'ES85 - COE');
 
 -- --------------------------------------------------------
 
@@ -69,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 --
 
 INSERT INTO `faculty` (`faculty_uid`, `password`, `name`, `college`, `dept`, `location`, `status`) VALUES
-('dorward.villaruz', '123e7cd7f3c39c508f07c8f974dd2f55', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 'CS Department', 1),
+('dorward.villaruz', '123e7cd7f3c39c508f07c8f974dd2f55', 'Dorward Villaruz', 'School of Computer Studies', 'Computer Science', 'Computer Center, COE', 1),
 ('val.madrid', 'd34f9f73de4e49c41bb8cb5ae0a156c3', 'Val Randolf Madrid', 'School of Computer Studies', 'Computer Science', 'Computer Science Department', 0),
 ('rene.crisostomo', 'rcris', 'Rene Crisostomo', 'School of Computer Studies', 'Computer Science', '', 0),
 ('cyrus.gabilla', 'cgab', 'Cyrus Gabilla', 'School of Computer Studies', 'Computer Science', '', 0),

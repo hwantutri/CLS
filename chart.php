@@ -39,7 +39,8 @@ if(!$login->get_session()){
   		<ul id="main" class="loggedout-right">
   			<li><a href="logout.php" id="sign_up_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
   			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header"><?php $login->get_name($uid);?></a></li>
-  		</ul>
+			<input type="image" src="images/cls_logo.png" name="name" width="300" height="45" style="margin-left:-70px;">
+		</ul>
   </div>
 </div>
 

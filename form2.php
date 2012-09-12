@@ -109,6 +109,7 @@ p{color: white;font-size:0.4px;}
 <body background="bg1.jpg">
 
 <div id="header">
+<input type="image" src="images/cls_logo.png" name="name" width="300" height="45" style="margin-left:100px;">
 </div>
 <div id="mid">
 	
