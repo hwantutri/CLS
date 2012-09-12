@@ -76,7 +76,7 @@ if(!$login->get_session()){
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
                 <li class="sliding-element"><a href="form.php">Consult</a></li>
                 <li class="sliding-element"><a href="form4.php">Review</a></li>
-                <li class="sliding-element"><a href="#">Chart</a></li>
+                <li class="sliding-element"><a href="chart.php">Chart</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
                 <li class="sliding-element"><a href="#">Help</a></li>
             </ul>
