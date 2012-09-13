@@ -207,7 +207,8 @@ function makedailychart(data,month,year,extra){
                 min: 0,
                 title: {
                     text: 'No. of Consultations'
-                }
+                },
+				allowDecimals: false
             },
             legend: {
                 layout: 'vertical',
@@ -258,7 +259,8 @@ function makemonthlychart(data,month,year,extra){
                 min: 0,
                 title: {
                     text: 'No. of Consultations'
-                }
+                },
+				allowDecimals: false
             },
             legend: {
                 layout: 'vertical',
