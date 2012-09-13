@@ -28,7 +28,7 @@ if($extra=="daily"){
 }
 else if($extra=="monthly"){
 	$logs = array();
-	for ($m = 1; $m < 12; $m++) {
+	for ($m = 1; $m <= 12; $m++) {
 		$result = mysql_query("SELECT COUNT(*) as logs
 							from consultation
 							where faculty_uid='$uid'
