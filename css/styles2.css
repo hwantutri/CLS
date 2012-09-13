@@ -42,6 +42,13 @@ p
 	margin-right: 700px;
 }
 
+#navigation-block4 {
+	position:relative;
+	top:-420px;
+	left:-245px;
+	margin-right: 700px;
+}
+
 #hide {
 	position:absolute;
 	top:-50px;

@@ -43,15 +43,34 @@ function resetForm(id) {
 	$('#'+id).each(function(){
 	        this.reset();
 	});
+	$("#optionHolder").hide();
+	$("#subsec").hide();
+	$("#subsec").html('').show();
+	$("#optionHolder").html('');
 	idno.focus();
 	}
 
 $(function() {
 
+$("#optionHolder").hide();
 $("label").inFieldLabels(); //infield labels for consultation form
 $( "#datepicker" ).datepicker(); //date picker
 
+/* get values to be inserted in the dropdown */
+
+function getDD(name){
+			var string="dropdown";
+			$("#subsec").hide();
+            $("#optionHolder").html('Retrieving...');
+			$.post("query_cls.php", {name: name, string: string }, function(data){
+							$("#subsec").html(data).show();
+							$("#optionHolder").html('');
+			});
+		}
+
+
 /* Autocomplete and auto-fill form*/
+
 
 			var ac_config = {
 				source: "query.php?phrase=phrase",
@@ -59,11 +78,33 @@ $( "#datepicker" ).datepicker(); //date picker
 						$("#idno").val(ui.item.idno);
 						$("#name").val(ui.item.fullname);
 						$("#courseyrlvl").val(ui.item.courseyrlvl);
+						
+						//ajax function to populate the dropdown
+						var name = ui.item.fullname;
+						getDD(name);
 				},
 				minLength:1
 			};		
 		
 		$( "#idno" ).autocomplete(ac_config);
+		
+		
+/*	Add students button */
+
+$("#addbtn").click(function(e){ 
+        	e.preventDefault();
+		var sval = $("#subsec").val();
+		var com = $("#comment").val();
+		if (sval.length > 0){
+			if(com.length > 0){
+				add_key(sval);
+			}
+		}
+		else {
+			alert('Both fields are required!');
+		}
+			subsec.focus();
+    });
 		
 		
 /* Submit and update function */
@@ -109,7 +150,7 @@ $( "#datepicker" ).datepicker(); //date picker
 	 
 	 // Function to submit clsform data to database using jquery post
 	 
-     function search_key(sk){
+    function search_key(sk){
        	 var datepicker = $("#datepicker").val();
 		 var subsec = $("#subsec").val();
 			 var comment = $("#comment").val();
@@ -121,11 +162,32 @@ $( "#datepicker" ).datepicker(); //date picker
 					$("#comment").val("");
 					$("#courseyrlvl").val("Course & Year Level");
 					$("#name").val("Name");
-					$("#subsec").val("");
+					$("#optionHolder").hide();
+					$("#subsec").hide();
+					$("#subsec").html('').show();
+					$("#optionHolder").html('');
 					idno.focus();
           		}
 			});
-		}
+	}
+	
+	// Function to submit addform data to database using jquery post
+	 
+    function add_key(sk){
+			 var comment = $("#comment").val();
+			 var string = "add";
+        	 $.post("query_cls.php", {comment : comment, subsec: sk, string: string }, function(data){
+		     data = $.trim(data);
+				if (data.length > 0){ 
+					alert('Students successfully added!');
+					$("#comment").val("");
+					$("#subsec").val("");
+					subsec.focus();
+          		}
+			});
+	}
+
+
 
 /* Function for "Set My Location" pop-up */
 

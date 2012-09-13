@@ -20,7 +20,6 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
 
-	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
@@ -41,38 +40,21 @@ if(!$login->get_session()){
   </div>
 </div>
 
-	<form id="clsform" name="clsform" action="" accept-charset="utf-8">
+	<form id="addform" name="addform" action="" accept-charset="utf-8">
 		<fieldset> <br /><br /><br /> <br /> <br /> <br />
-			<p><legend>Consultation Form</legend></p>
+			<p><legend>Add Students Form</legend></p>
 			<p>
-				<label for="idno" style="display: block; opacity: 1;">ID No.</label><br />
-				<input type="text" name="idno" value="" id="idno" autocomplete="off" autofocus="autofocus">
+				<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />
+				<input type="text" name="subsec" value="" id="subsec" >
 			</p>
 			<p>
-				<label for="name" style="display: block; opacity: 1;">Name</label><br />
-				<input type="text" name="name" value="Name" id="name" disabled="disabled">
-			</p>
-			<p>
-				<label for="courseyrlvl" style="display: block; opacity: 1;">Course and Year Level</label><br />
-				<input type="text" name="courseyrlvl" value="Course & Year Level" id="courseyrlvl" disabled="disabled">
-			</p>
-			<p>
-				<!--<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />-->
-				<select name="subsec" id="subsec" style="width:300px;"><option value>Subject and Section</option></select>
-					<p id="optionHolder" name="optionHolder"></p>
-			</p>
-			<p>
-				<label for="datepicker" style="display: block; opacity: 1;">Date</label><br />
-				<input type="text" name="datepicker" value="<?php echo date("Y/m/d"); ?>" id="datepicker" >
-			</p>
-			<p>
-				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
+				<label for="comment" style="display: block; opacity: 1;">ID numbers separated by comma</label><br />
 				<textarea cols="30" rows="10" name="comment" id="comment"></textarea>
 			</p>
 		</fieldset>
-		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
+		<p><input type="button" name="addbtn" id="addbtn" value="Submit &rarr;">
 	</form>	
-		<div id="navigation-block">
+		<div id="navigation-block4">
 			<img src="images/background.jpg" id="hide" />
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
