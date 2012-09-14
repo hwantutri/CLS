@@ -151,7 +151,12 @@ color:#ffffff;
 <body onload="checkbutton();">
 <div id="wrap">
 <div id="header">
- <li><a href="index.php"><input type="image" src="images/cls_logo.png" name="name" width="300" height="45" style="float:left"></li></a>
+   <div class="wrapper">
+  		<ul id="main" class="loggedout-right">
+  			<li><a href="javascript:javascript:history.go(-1)" id="sign_up_header_link" class="login-window" data-event="homepage.login" rel="header">Back</a></li>
+  			<input type="image" src="images/cls_logo.png" name="name" width="300" height="45" style="margin-left:-70px;">
+		</ul>
+  </div>
 </div>
 </div>
 <div id="md">
@@ -176,7 +181,7 @@ color:#ffffff;
 mysql_connect("127.0.0.1","root","");
 mysql_select_db("cls") or die ("cannot select db");
 
-$query1 = mysql_query("select * from consultation where faculty_uid='".$uid."'");
+$query1 = mysql_query("select * from consultation where faculty_uid='".$uid."'  and cid='".$_GET['p']."'");
 
            while ($row = mysql_fetch_array($query1)) {
 		   $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");

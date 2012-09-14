@@ -53,7 +53,7 @@ if(!$login->get_session()){
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
 				<?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
-            </ul>
+		    </ul>
         </div>
 		<div id="location-box" class="location-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
@@ -80,9 +80,10 @@ if(!$login->get_session()){
 
 	<thead>
 	<tr class="odd">
-	<th scope="col" abbr="College">Student Name</th>
-	<th scope="col" abbr="College">Date</th>
-	<th scope="col" abbr="Name" >Description</th>
+	<th scope="col" abbr="Name" >Name</th>	
+	<th scope="col" abbr="College">Consultations</th>
+	<th scope="col" abbr="College">Student Served</th>
+	<th scope="col" abbr="Department">Last Post</th>  
 	</tr>
 	</thead>
 
@@ -92,14 +93,21 @@ if(!$login->get_session()){
 mysql_connect("127.0.0.1","root","");
 mysql_select_db("cls") or die ("cannot select db");
 
-$query1 = mysql_query("select * from consultation where faculty_uid='".$uid."' order by date desc");
-			
+$query1 = mysql_query("select * from faculty");
+
            while ($row = mysql_fetch_array($query1)) {
-		   $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
-		   $row2 = mysql_fetch_array($query2);
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row2['stud_name'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row['date'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row['description'] . "</a></td>";
+			$query2 = mysql_query("select * from consultation where faculty_uid='".$row['faculty_uid']."' order by cid desc");
+			$consultations = mysql_num_rows($query2);
+			$row2 = mysql_fetch_array($query2);
+			$query3 = mysql_query("select distinct stud_id from consultation where faculty_uid='".$row['faculty_uid']."'");
+			$stud_count = mysql_num_rows($query3);
+            echo "<tbody>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $row['name'] . "</td>";
+			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $consultations . "</td>";
+			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $stud_count . "</td>";
+			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $row2['description'] . "<br>" . $row2['time'] . "</td>";
             echo "</tr>";
             echo "</thead>";
             echo "</tbody>";
@@ -107,7 +115,16 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."' o
             }         
 ?>
 </table>
+
 </div>
+		<div id="view-box" class="location-popup">
+        <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+          <form name="loginform" class="signin">
+                <fieldset class="textbox">
+            	<label>WHAT!<table><th>dfjhfdh</th></table> </label>
+                </fieldset>
+          </form>
+		</div>
 </form>	
 </body>
 </html>
