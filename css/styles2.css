@@ -37,14 +37,21 @@ p
 
 #navigation-block3 {
 	position:relative;
-	top:-605px;
+	top:-623px;
 	left:-245px;
 	margin-right: 700px;
 }
 
 #navigation-block4 {
 	position:relative;
-	top:30px;
+	top: -423px;
+	left:-245px;
+	margin-right: 700px;
+}
+
+#navigation-block5 {
+	position:relative;
+	top:28px;
 	left:-245px;
 	margin-right: 700px;
 }

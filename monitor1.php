@@ -43,7 +43,7 @@ if(!$login->get_session()){
   </div>
 </div>
 
-		<div id="navigation-block4">
+		<div id="navigation-block5">
 			<img src="images/background.jpg" id="hide" />
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>

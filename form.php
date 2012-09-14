@@ -57,8 +57,9 @@ if(!$login->get_session()){
 				<input type="text" name="courseyrlvl" value="Course & Year Level" id="courseyrlvl" disabled="disabled">
 			</p>
 			<p>
-				<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />
-				<input type="text" name="subsec" value="" id="subsec" >
+				<!--<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />-->
+				<select name="subsec" id="subsec" style="width:300px;"><option value>Subject and Section</option></select>
+					<p id="optionHolder" name="optionHolder"></p>
 			</p>
 			<p>
 				<label for="datepicker" style="display: block; opacity: 1;">Date</label><br />
@@ -78,9 +79,9 @@ if(!$login->get_session()){
                 <li class="sliding-element"><a href="form.php">Consult</a></li>
                 <li class="sliding-element"><a href="review.php">Review</a></li>
                 <li class="sliding-element"><a href="chart.php">Chart</a></li>
+				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
-                <li class="sliding-element"><a href="#">Help</a></li>
-				<?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
+                <?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
             </ul>
         </div>
 		<div id="location-box" class="location-popup">
