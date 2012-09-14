@@ -190,7 +190,25 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
 	width:100px;
 }
 
+#footer {
+	border-top: 1px solid #202020;
+	background:white;
+	bottom:0;
+	position:absolute;
+	height: 60px;
+	width: 100%;
+	text-align: center;
+}
 .button:hover { background:#ddd; }
+
+#footer .strong {font-weight: bold; font-size: 16px; color:black;}
+#footer p, p:hover, p:visited {color: #2F4F4F;}
+#footer .col1 {float: left; padding: 10px 0 10px 10px; width: 34%; }
+#footer .col2 {float: left; padding: 10px 0 10px ; width: 30%; }
+#footer .col3 {float: left; padding: 5px 0 10px ; width: 34%; }
+
+#wrap {min-height:   10%;}
+p{color: white;font-size:0.4px;}
 
 </style>
 
@@ -213,6 +231,7 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
      <img src="images/dummy-images/features.jpg" alt="and more features" height="300" width="450" />
 	  <img src="images/dummy-images/coffee.jpg" alt="CLS" height="300" width="450"/>
 		</div>
+		<input type="image" src="images/quote.png" style="position:relative; top:-300px; left:550px;">
 </div>
 
   <div id="login-box" class="login-popup">
@@ -240,5 +259,26 @@ form.signin input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #
           </form>
 	</div>
 </body>
-     <div id="footer-span"></div>
+     <div id="footer">
+     	 <div class="col1">
+   <p>
+     
+   </p>
+  </div><!--col1-->
+ <div class="col2">
+    <p>
+   
+    </p>
+ </div><!--col2-->
+  <div class="col3">
+    <p>
+   <span class="strong">&nbsp;<font size="2">Contact Us: </font></span>    
+    <span><font size="2">0906-139-1950</font></span></br>
+     <span class="strong"><font size="2">Visit Us: </font></span>
+    <a href="https://www.facebook.com/"><img src="images/fb.png" alt="facebook" height="20" width="20"></a>
+   <a href="http://twitter.com/"><img src="images/twit.jpg" alt="twitter" height="20" width="20"></a>
+    <a href="https://accounts.google.com/ServiceLogin?service=oz&continue=https://plus.google.com/?gpsrc%3Dgplp0&hl=en"><img src="images/g+.png" alt="google+" height="20" width="20"></a></p>
+  </div><!--col3-->	
+
+     </div>
 </html>

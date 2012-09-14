@@ -136,17 +136,18 @@ p{color: white;font-size:0.4px;}
 <div id = "footer">
  <div class="col1">
    <p>
-     <span class="strong"><font size="2">Consultation Log System</font></span>
+     
    </p>
   </div><!--col1-->
  <div class="col2">
     <p>
-   <span class="strong"><font size="2">Contact Us: </font></span>    
-    <span><font size="2">0906-139-1950</font></span>
+   
     </p>
  </div><!--col2-->
   <div class="col3">
     <p>
+   <span class="strong"><font size="2">Contact Us: </font></span>    
+    <span><font size="2">0906-139-1950</font></span></br>
      <span class="strong"><font size="2">Visit Us: </font></span>
     <a href="https://www.facebook.com/"><img src="images/fb.png" alt="facebook" height="20" width="20"></a>
    <a href="http://twitter.com/"><img src="images/twit.jpg" alt="twitter" height="20" width="20"></a>
