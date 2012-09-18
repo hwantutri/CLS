@@ -101,7 +101,8 @@ $("#addbtn").click(function(e){
 			}
 		}
 		else {
-			alert('Both fields are required!');
+			//alert('Both fields are required!');
+			$().toastmessage('showToast',{text:'Both fields are required!', position:'middle-right',type:'error'});
 		}
 			subsec.focus();
     });
@@ -116,28 +117,31 @@ $("#addbtn").click(function(e){
 	        search_key(sval);
 		}
 		else {
-			alert('No Input : Please enter ID number');
+			//alert('No Input : Please enter ID number');
+			$().toastmessage('showToast',{text:'No Input : Please enter ID number', position:'middle-right',type:'warning'});
 		}
-             $("#idno").val("");
+            $("#idno").val("");
     });
+	
 	
 /* Set My Location submit */
 	
 	$("#location_btn").click(function(e){ 
         e.preventDefault();
-		//alert("Bitch please!");
 		
 		var location = $("#location").val();
 		
 		if(location.length == 0){
-			alert("You cannot set your location to blank!");
+			//alert("You cannot set your location to blank!");
+			$().toastmessage('showToast',{text:'You cannot set your location </br>to blank!', position:'middle-right',type:'warning'});
 		}else{
 		
 		var string = "location";
 		$.post("query_cls.php", {location: location, string: string }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
-					alert('Your location has been successfully set!');
+					//alert('Your location has been successfully set!');
+					$().toastmessage('showToast',{text:'Your location has been successfully set!', position:'middle-right',type:'success'});
 						$('#mask , .location-popup').fadeOut(300 , function() {
 							$('#mask').remove();  
 						});
@@ -158,7 +162,8 @@ $("#addbtn").click(function(e){
         	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
-					alert('Consultation successfully logged!');
+					//alert('Consultation successfully logged!');
+					$().toastmessage('showToast',{text:'Consultation successfully</br> logged!', position:'middle-right',type:'success'});
 					$("#comment").val("");
 					$("#courseyrlvl").val("Course & Year Level");
 					$("#name").val("Name");
@@ -179,7 +184,8 @@ $("#addbtn").click(function(e){
         	 $.post("query_cls.php", {comment : comment, subsec: sk, string: string }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
-					alert('Students successfully added!');
+					//alert('Students successfully added!');
+					$().toastmessage('showToast',{text:'Students successfully added!', position:'middle-right',type:'success'});
 					$("#comment").val("");
 					$("#subsec").val("");
 					subsec.focus();
@@ -372,10 +378,10 @@ function makemonthlychart(data,month,year,extra){
 	function get_data(extra,year){
 		var month = parseInt($("#month").val());
 		if(extra=="daily"){
-		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);}makedailychart(temp,month,year,extra);});
+		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart(temp,month,year,extra);});
 		}
 		else if(extra=="monthly"){
-		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);}makemonthlychart(temp,month,year,extra);});
+		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart(temp,month,year,extra);});
 		}
 	}
 

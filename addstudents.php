@@ -19,6 +19,7 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.toastmessage.css" media="screen" />
 
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
@@ -26,6 +27,7 @@ if(!$login->get_session()){
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
 	
 </head>
 <body background = "bg1.jpg">

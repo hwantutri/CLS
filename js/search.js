@@ -17,7 +17,8 @@ var new_val = null;
 			};	
 			
 $(document).ready(function(){
-		refreshTable();
+		//refreshTable();
+		poll();
 		var radio1 = document.searchform.radioval[0];
 		var radio2 = document.searchform.radioval[1];
 		
@@ -43,6 +44,8 @@ $(document).ready(function(){
 
 	});
 	
+	/*
+	// function to refresh the data in the table every 5 seconds (5000 ms)
 	function refreshTable(){
 			setInterval(function() {
 				$.ajax({
@@ -55,4 +58,17 @@ $(document).ready(function(){
 					}
 				});
 			}, 5000);
+	}
+	*/
+	
+	// Long polling technique (alternative for refreshTable)
+	function poll(){
+			$.ajax({
+				type: "GET",
+				data: 'searchVal='+searchVal+'&button='+button,
+				url: "searchTable.php",
+				success: function(data) {
+					// data is a table in a form string of all output of the server script.
+					$("#tableHolder").html(data);
+				}, complete: poll, timeout: 5000 });
 	}

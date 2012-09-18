@@ -20,16 +20,19 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="development-bundle/themes/base/jquery.ui.all.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.toastmessage.css" media="screen" />
 	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="js/exporting.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
 	<script type="text/javascript" src="js/highcharts.js"></script>
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.core.js"></script>
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.tabs.js"></script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
 	
 </head>
 <body background = "bg1.jpg">
