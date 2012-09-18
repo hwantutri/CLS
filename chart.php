@@ -26,9 +26,9 @@ if(!$login->get_session()){
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
-	<script type="text/javascript" src="js/exporting.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
 	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script src="js/modules/exporting.js"></script>	
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.core.js"></script>
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="development-bundle/ui/jquery.ui.tabs.js"></script>
