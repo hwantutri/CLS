@@ -22,7 +22,6 @@ if(!$login->get_session()){
 	<link rel="stylesheet" type="text/css" href="css/jquery.toastmessage.css" media="screen" />
 
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>

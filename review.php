@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html>
     <head>
-        <title></title>
+        <title>Consultation Logs System</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
@@ -21,38 +21,25 @@ if(!$login->get_session()){
  	<link rel="stylesheet" type="text/css" href="css/noreset.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/CSSTableGenerator.css" media="screen" />
-
+	<link rel="stylesheet" type="text/css" href="css/jquery.toastmessage.css" media="screen" />
+	<style type="text/css">
+        @import "media/css/demo_table_jui.css";
+        @import "media/themes/smoothness/jquery-ui-1.8.4.custom.css";
+    </style>
+        
+    <style>
+        *{
+            font-family: arial;
+         }
+    </style>
+	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
-
-        
-        <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
-        
-        <style type="text/css">
-            @import "media/css/demo_table_jui.css";
-            @import "media/themes/smoothness/jquery-ui-1.8.4.custom.css";
-        </style>
-        
-        <style>
-            *{
-                font-family: arial;
-            }
-        </style>
-        <script type="text/javascript" charset="utf-8">
-            $(document).ready(function(){
-                $('#datatables').dataTable({
-                    "sPaginationType":"full_numbers",
-                    "aaSorting":[[2, "desc"]],
-                    "bJQueryUI":true
-                });
-            })
-            
-        </script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>  
+    <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
         
     </head>
     <body background = "bg1.jpg">
@@ -116,9 +103,9 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."' o
 		   $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
 		   $row2 = mysql_fetch_array($query2);
 		   	echo "</tr>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row2['stud_name'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row['date'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "'>" . $row['description'] . "</a></td>";
+			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row2['stud_name'] . "</a></td>";
+			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row['date'] . "</a></td>";
+			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row['description'] . "</a></td>";
             echo "</tr>";  
             }         
 ?>

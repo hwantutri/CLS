@@ -113,14 +113,20 @@ $("#addbtn").click(function(e){
 	$("#submitbtn").click(function(e){ 
         	e.preventDefault();
 		var sval = $("#idno").val();
-		if (sval.length > 0){
+		var name = $("#name").val();
+		if ((sval.length > 0)&&(name!="Name")){
 	        search_key(sval);
 		}
 		else {
-			//alert('No Input : Please enter ID number');
-			$().toastmessage('showToast',{text:'No Input : Please enter ID number', position:'middle-right',type:'warning'});
+			if((name=="Name")&&(sval.length>0)){
+				$().toastmessage('showToast',{text:'Please enter a valid ID number', position:'middle-right',type:'error'});
+				//alert('No Input : Please enter ID number');
+			}else{
+				$().toastmessage('showToast',{text:'No Input : Please enter ID number', position:'middle-right',type:'warning'});
+				$("#idno").val("");
+			}
 		}
-            $("#idno").val("");
+		$("#idno").val("");
     });
 	
 	
@@ -155,10 +161,10 @@ $("#addbtn").click(function(e){
 	 // Function to submit clsform data to database using jquery post
 	 
     function search_key(sk){
-       	 var datepicker = $("#datepicker").val();
-		 var subsec = $("#subsec").val();
-			 var comment = $("#comment").val();
-			 var string = "update";
+       	var datepicker = $("#datepicker").val();
+		var subsec = $("#subsec").val();
+		var comment = $("#comment").val();
+		var string = "update";
         	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
@@ -384,5 +390,14 @@ function makemonthlychart(data,month,year,extra){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart(temp,month,year,extra);});
 		}
 	}
+	
+	//review.php datatable
+	
+	$('#datatables').dataTable({
+        "sPaginationType":"full_numbers",
+        "aaSorting":[[2, "desc"]],
+        "bJQueryUI":true
+    });
+
 
 });

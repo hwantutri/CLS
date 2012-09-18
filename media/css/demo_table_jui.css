@@ -73,10 +73,10 @@ table.display thead th {
 
 div.dataTables_wrapper .ui-widget-header {
 	position: relative;
-	left: 105;
+	left: 50;
 	top: -220;
 	font-weight: normal;
-	width: 700px;	
+	width: 787px;	
 }
 
 
@@ -185,9 +185,9 @@ table.display thead th div.DataTables_sort_wrapper span {
 table.display {
 	position: relative;
 	top: -220;
-	left: 10px;
+	left: 0px;
 	margin: 0 auto;
-	width: 79%;
+	width: 800px;
 	clear: both;
 	border-collapse: collapse;
 }
