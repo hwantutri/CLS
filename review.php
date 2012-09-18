@@ -105,7 +105,12 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."' o
 		   	echo "</tr>";
 			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row2['stud_name'] . "</a></td>";
 			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row['date'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row['description'] . "</a></td>";
+			$string = $row['description'];
+			if(strlen($string)>40){
+				$string = substr($string,0,40);
+				$string = $string.' ...';
+			}
+			echo "<td style='text-align:middle;'><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $string . "</a></td>";
             echo "</tr>";  
             }         
 ?>
