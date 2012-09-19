@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html>
     <head>
-        <title></title>
+       <title>Consultation Logs System</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
@@ -115,9 +115,14 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$_GET['ui
            $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
            $row2 = mysql_fetch_array($query2);
             echo "<tr>";
-            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row2['stud_name'] . "</a></td>";
+            echo "<td style='width:230px;'><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row2['stud_name'] . "</a></td>";
             echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row['date'] . "</a></td>";
-            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" . $row['description'] . "</a></td>";
+            $string = $row['description'];
+			if(strlen($string)>40){
+				$string = substr($string,0,40);
+				$string = $string.' ...';
+			}
+			echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" . $string . "</a></td>";
             echo "</tr>";
             
             }         
