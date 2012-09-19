@@ -10,11 +10,12 @@ if(!$login->get_session()){
 }
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<title>Consultation Logs System</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
- 	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/styles4.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/noreset.css" media="screen" />
@@ -22,19 +23,40 @@ if(!$login->get_session()){
 	<link rel="stylesheet" type="text/css" href="css/form-css.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/CSSTableGenerator.css" media="screen" />
 
-	
 	<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/sliding_effect.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="js/form-script.js"></script>
-	
-</head>
-<body background = "bg1.jpg">
 
+        <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>
+        
+        <style type="text/css">
+            @import "media/css/demo_table_jui.css";
+            @import "media/themes/smoothness/jquery-ui-1.8.4.custom.css";
+        </style>
+        
+        <style>
+            *{
+                font-family: arial;
+            }
+        </style>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                $('#datatables1').dataTable({
+                    "sPaginationType":"full_numbers",
+                    "aaSorting":[[2, "desc"]],
+                    "bJQueryUI":true
+                });
+            })
+            
+        </script>
+        
+    </head>
+    <body background = "bg1.jpg">
 <div id="header">
-  <div class="wrapper">
+	<div class="wrapper">
   		<ul id="main" class="loggedout-right">
   			<li><a href="logout.php" id="sign_up_header_link" class="login-window" data-event="homepage.login" rel="header">Log Out</a></li>
   			<li><a href="#" id="login_header_link" class="login-window" data-event="homepage.login" rel="header"><?php $login->get_name($uid);?></a></li>
@@ -42,8 +64,7 @@ if(!$login->get_session()){
 		</ul>
   </div>
 </div>
-
-		<div id="navigation-block5">
+	<div id="navigation-block5">
 			<img src="images/background.jpg" id="hide" />
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
@@ -53,9 +74,10 @@ if(!$login->get_session()){
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
 				<?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
-		    </ul>
+            </ul>
         </div>
-		<div id="location-box" class="location-popup">
+        
+        	<div id="location-box" class="location-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
           <form name="loginform" class="signin">
                 <fieldset class="textbox">
@@ -73,51 +95,35 @@ if(!$login->get_session()){
           </form>
 		</div>
 
-<form id="searchform" name="searchform" method="post" action="search.php">
-
-<div class="CSSTableGenerator">
-<table>
-
-	<thead>
-	<tr class="odd">
-	<th scope="col" abbr="College">Student Name</th>
-	<th scope="col" abbr="College">Date</th>
-	<th scope="col" abbr="Name" >Description</th>
-	</tr>
-	</thead>
-
-<br>
-
+        <div>
+            <table id="datatables1" class="display">
+   <thead>
+    <tr class="odd">
+    <th scope="col" abbr="College">Student Name</th>
+    <th scope="col" abbr="College">Date</th>
+    <th scope="col" abbr="Name" >Description</th>
+    </tr>
+    </thead>
+                <tbody>
 <?php
 mysql_connect("127.0.0.1","root","");
 mysql_select_db("cls") or die ("cannot select db");
 
 $query1 = mysql_query("select * from consultation where faculty_uid='".$_GET['uid']."' order by date desc");
-			
+            
            while ($row = mysql_fetch_array($query1)) {
-		   $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
-		   $row2 = mysql_fetch_array($query2);
-			echo "<td><a href='monitor2.php?p=". $row['cid'] . "'>" . $row2['stud_name'] . "</a></td>";
-			echo "<td><a href='monitor2.php?p=". $row['cid'] . "'>" . $row['date'] . "</a></td>";
-			echo "<td><a href='monitor2.php?p=". $row['cid'] . "'>" . $row['description'] . "</a></td>";
+           $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
+           $row2 = mysql_fetch_array($query2);
+            echo "<tr>";
+            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row2['stud_name'] . "</a></td>";
+            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row['date'] . "</a></td>";
+            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" . $row['description'] . "</a></td>";
             echo "</tr>";
-            echo "</thead>";
-            echo "</tbody>";
-			
+            
             }         
 ?>
-</table>
-
-
-</div>
-		<div id="view-box" class="location-popup">
-        <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form name="loginform" class="signin">
-                <fieldset class="textbox">
-            	<label>WHAT!<table><th>dfjhfdh</th></table> </label>
-                </fieldset>
-          </form>
-		</div>
-</form>	
-</body>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
