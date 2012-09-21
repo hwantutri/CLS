@@ -65,20 +65,22 @@ form legend {
 
 }
 
-table{
-margin: 2em auto;
-text-align: left;
-border-collapse: collapse;
-empty-cells: show;
-border: none;
-}
-td{
+	table{
+	margin: 1em auto;
+	text-align: left;
 
-text-align: left;
-border: none;
-}tr{
-border: none;
+	empty-cells: show;
+	border: none;
+	}
+	table{width:100%;	box-shadow: 10px 10px 20px #888888;
 }
+	td{
+
+	text-align: left;
+	border: none;
+	}tr{
+	border: none;
+	}
 
 
 #footer .strong {font-weight: bold; font-size: 16px; color:black;}
@@ -90,6 +92,11 @@ border: none;
 #wrap {min-height:   10%;}
 p{color: white;font-size:0.4px;}
 
+
+
+
+
+
 </style>
 </head>
 <div style="height:120px"></div>
@@ -100,7 +107,9 @@ p{color: white;font-size:0.4px;}
 </div>
 <div id="mid">
 	
-<form id="searchform" name="searchform" method="post" action="search.php">
+<form>
+	<div class="CSSTableGenerator">
+	<table>
 	<?php
 mysql_connect("127.0.0.1","root","");
 mysql_select_db("cls") or die ("cannot select db");
@@ -110,30 +119,32 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."'  
            while ($row = mysql_fetch_array($query1)) {
        $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
        $row2 = mysql_fetch_array($query2);
-          
-       echo "<table  width=65% height=100>";    
+      
+
+       echo "<table bgcolor='#678197'  height=60%>";    
         echo "<tr>";     
-      echo "<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>Student Name:</FONT>" ."</td>" ."<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>". $row2['stud_name'] ."</td>";
+      echo "<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4 style='width:20px;'>Student Name:</FONT>" ."</td>" ."<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>". $row2['stud_name'] ."</td>";
        echo "</tr>";
         echo "<tr>";
-      echo "<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>Date:</FONT>". "</td>" ."<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>".$row['date'] ."</td>";
+      echo "<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4 style='width:20px;'>Date:</FONT>". "</td>" ."<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>".$row['date'] ."</td>";
        echo "</tr>";
         echo "<tr>";
-      echo "<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>Time:</FONT>"."</td>" ."<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>". $row['time'] ."</td>";
+      echo "<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4 style='width:20px;'>Time:</FONT>"."</td>" ."<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>". $row['time'] ."</td>";
        echo "</tr>";
         echo "<tr>";
-     echo "<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>Subject/Section:</FONT>". "</td>" ."<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>".$row['subsec'] ."</td>";
+     echo "<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4 style='width:20px;'>Subject & Section:</FONT>". "</td>" ."<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>".$row['subsec'] ."</td>";
        echo "</tr>";
         echo "<tr>";
-     echo "<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>Description:</FONT>"."</td>" ."<td><FONT COLOR=#157DEC FACE='Geneva, Arial' SIZE=6>". $row['description']."</td>";
+     echo "<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>Description:</FONT>"."</td>" ."<td><FONT COLOR=white FACE='Geneva, Arial' SIZE=4>". $row['description']."</td>";
        echo "</tr>";
         echo "</table>";  
-         
+        
             
       
             }         
 ?>
-
+</table>
+</div>
 
 </form>	
 </div>

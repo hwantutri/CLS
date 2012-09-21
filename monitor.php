@@ -73,7 +73,11 @@ if(!$login->get_session()){
                 <li class="sliding-element"><a href="chart.php">Chart</a></li>
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
-				<?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
+				<?php
+				$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+				$chairrow = mysql_fetch_array($chair);
+				if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+				?>
             </ul>
         </div>
         
@@ -121,16 +125,16 @@ $query1 = mysql_query("select * from faculty");
 			$query3 = mysql_query("select distinct stud_id from consultation where faculty_uid='".$row['faculty_uid']."'");
 			$stud_count = mysql_num_rows($query3);
             echo "<tr>";
-            echo "<td style='width:200px;'><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $row['name'] . "</td>";
-			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $consultations . "</td>";
-			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $stud_count . "</td>";
+            echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $row['name'] . "</td>";
+			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $consultations . "</td>";
+			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $stud_count . "</td>";
 			$string = $row2['description'];
 			if(strlen($string)>40){
 				$string = substr($string,0,40);
 				$string = $string.' ...';
 			}
-			echo "<td><a href='monitor1.php?uid=". $row['faculty_uid'] . "'>" . $string . "<br>" . $row2['time'] . "</td>";
-            echo "</tr>";
+			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $string . "<br>" . $row2['time'] . "</td>";
+			echo "</tr>";
             }         
 ?>
                 </tbody>

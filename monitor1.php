@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html>
     <head>
-       <title>Consultation Logs System</title>
+        <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
@@ -73,7 +73,11 @@ if(!$login->get_session()){
                 <li class="sliding-element"><a href="chart.php">Chart</a></li>
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
-				<?php if ($uid=='val.madrid') echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; ?>
+				<?php
+				$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+				$chairrow = mysql_fetch_array($chair);
+				if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+				?>
             </ul>
         </div>
         
@@ -109,13 +113,13 @@ if(!$login->get_session()){
 mysql_connect("127.0.0.1","root","");
 mysql_select_db("cls") or die ("cannot select db");
 
-$query1 = mysql_query("select * from consultation where faculty_uid='".$_GET['uid']."' order by date desc");
+$query1 = mysql_query("select * from consultation where faculty_uid='".$_GET['u']."' order by date desc");
             
            while ($row = mysql_fetch_array($query1)) {
            $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
            $row2 = mysql_fetch_array($query2);
             echo "<tr>";
-            echo "<td style='width:230px;'><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row2['stud_name'] . "</a></td>";
+            echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row2['stud_name'] . "</a></td>";
             echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" .$row['date'] . "</a></td>";
             $string = $row['description'];
 			if(strlen($string)>40){
@@ -123,7 +127,7 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$_GET['ui
 				$string = $string.' ...';
 			}
 			echo "<td><a href='form5.php?p=" . $row['cid'] . "' target='view_data'>" . $string . "</a></td>";
-            echo "</tr>";
+			echo "</tr>";
             
             }         
 ?>
