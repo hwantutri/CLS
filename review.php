@@ -57,15 +57,17 @@ if(!$login->get_session()){
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
                 <li class="sliding-element"><a href="form.php">Consult</a></li>
-                <li class="sliding-element"><a href="review.php">Review</a></li>
-                <li class="sliding-element"><a href="chart.php">Chart</a></li>
+                <li class="sliding-element"><a href="review.php">Review</a></li>                
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
 				<?php
-				$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
-				$chairrow = mysql_fetch_array($chair);
-				if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
-				?>
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>"; 
+                else  if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chart2.php'>Chart</a></li>"; 
+                else if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                ?>
+               
             </ul>
         </div>
         

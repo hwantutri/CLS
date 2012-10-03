@@ -246,10 +246,7 @@ $('a.location-window').click(function() {
 				}
 			}
 		});
-		
-		
-		
-		
+
 	//highcharts function
 
 function display(extra,month,year){
@@ -270,6 +267,59 @@ function makedailychart(data,month,year,extra){
             },
             title: {
                 text: 'Daily Consultation Logs'
+            },
+            subtitle: {
+                text: 'Month of ' +display(extra,month,year)
+            },
+            xAxis: {
+                categories:  <?php $lastday = date("d",mktime(0,0,0,$month+1,0,date("Y")));  echo "["; for ($d = 1; $d <= $lastday-1; $d++){echo "'".$d."',";} echo "'".$lastday."'"."]";?>
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No. of Consultations'
+                },
+				allowDecimals: false
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Consultations',
+                data: data
+            }]
+        });
+}
+
+function makedailychart2(data,month,year,extra){
+	var namedaily = $("#namedaily").val();
+	chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'myChart',
+                type: 'column'
+            },
+            title: {
+                text: 'Daily Consultation Logs'
+
             },
             subtitle: {
                 text: 'Month of ' +display(extra,month,year)
@@ -364,6 +414,56 @@ function makemonthlychart(data,month,year,extra){
             }]
         });
 }
+function makemonthlychart2(data,month,year,extra){
+		chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'myChart2',
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Consultation Logs'
+            },
+            subtitle: {
+                text: 'For the Year ' +display(extra,month,year)
+            },
+            xAxis: {
+                categories:  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No. of Consultations'
+                },
+				allowDecimals: false
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Consultations',
+                data: data
+            }]
+        });
+}
 		var year = $("#year").val();
 		// jquery functions for generating new charts
 		$("#genbtn0").click(function(e){					/* BUTTON 0 */
@@ -380,15 +480,38 @@ function makemonthlychart(data,month,year,extra){
 			var extra = "monthly";
 			get_data(extra,year);
 		});
+
+		$("#genbtn2").click(function(e){					/* BUTTON 2 */
+			e.preventDefault();
+			//var month = parseInt($("#month").val());
+			var extra = "daily2";
+			get_data(extra,year);
+		});
+
+		$("#genbtn3").click(function(e){					 /* BUTTON 3 */
+		e.preventDefault()
+		var year = parseInt($("#year").val());
+		//var month = parseInt($("#month").val());
+		var extra = "monthly2";
+		get_data(extra,year);
+		});
 		
-	function get_data(extra,year){
-		var month = parseInt($("#month").val());
+	function get_data(extra,year,namedaily,namemonthly){
+		var month = parseInt($("#month").val());		
+		var namedaily = $("#namedaily").val();
+		var namemonthly = $("#namemonthly").val();
 		if(extra=="daily"){
-		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart(temp,month,year,extra);});
+		$.post("chartQRY.php", {month:month,year:year,extra:extra,}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart(temp,month,year,extra);});
 		}
 		else if(extra=="monthly"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart(temp,month,year,extra);});
 		}
+		else if(extra=="daily2"){
+		$.post("chartQRY.php", {month:month,year:year,extra:extra,namedaily:namedaily}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart2(temp,month,year,extra);});
+		}
+		else if(extra=="monthly2"){
+		$.post("chartQRY.php", {month:month,year:year,extra:extra,namemonthly:namemonthly}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart2(temp,month,year,extra);});	
+		}			
 	}
 	
 	//review.php datatable
