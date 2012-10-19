@@ -22,7 +22,8 @@ html {
 }
 
 body {
-	width: 900px;
+	width: 900px;	
+	position: relative;
 	/*margin: 100px auto;*/
 	margin-bottom: auto;
 	margin-left: 254px;
