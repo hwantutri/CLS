@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html>
     <head>
-        <title>Consultation Log System</title>
+        <title>CLS - Monitor</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
@@ -75,9 +75,17 @@ if(!$login->get_session()){
                 <?php
                 $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
                 $chairrow = mysql_fetch_array($chair);
-                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>"; 
-                else  if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chart2.php'>Chart</a></li>"; 
-                else if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";                                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);                 
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
                 ?>
                
             </ul>
@@ -129,15 +137,15 @@ $query1 = mysql_query("select * from faculty where dept='".$rowdept['dept']."'")
 			$query3 = mysql_query("select distinct stud_id from consultation where faculty_uid='".$row['faculty_uid']."'");
 			$stud_count = mysql_num_rows($query3);
             echo "<tr>";
-            echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $row['name'] . "</td>";
-			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $consultations . "</td>";
-			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $stud_count . "</td>";
+            echo "<td><a href='monitorStud.php?u=". $row['faculty_uid'] . "&p=" . $row['name']."'>" . $row['name'] . "</td>";
+			echo "<td><a href='monitorStud.php?u=". $row['faculty_uid'] . "&p=" . $row['name']."'>" . $consultations . "</td>";
+			echo "<td><a href='monitorStud.php?u=". $row['faculty_uid'] . "&p=" . $row['name']."'>" . $stud_count . "</td>";
 			$string = $row2['description'];
 			if(strlen($string)>40){
 				$string = substr($string,0,40);
 				$string = $string.' ...';
 			}
-			echo "<td><a href='monitor1.php?u=". $row['faculty_uid'] . "'>" . $string . "<br>" . $row2['time'] . "</td>";
+			echo "<td><a href='monitorStud.php?u=". $row['faculty_uid'] . "'>" . $string . "<br>" . $row2['time'] . "</td>";
 			echo "</tr>";
             }         
 ?>

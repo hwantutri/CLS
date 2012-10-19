@@ -6,7 +6,7 @@ $selected_radio = $_POST['radioval'];
 ?>
 <html>
 <head>
-<title>Consultation Logs System</title>
+<title>CLS-Search Result</title>
 	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>    
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />

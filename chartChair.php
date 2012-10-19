@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Consultation Logs System</title>
+<title>CLS - Chart</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
@@ -56,12 +56,11 @@ if(!$login->get_session()){
 		<li><a href="#tabs-2">Monthly</a></li>
 	</ul>
 	<div id="tabs-1">
-		<p><font color="black">Generate a daily chart for consultations of each faculty.</font></p>
+		<p><font color="black">Generate a daily chart for consultations for each faculty.</font></p>
 		
 		<form style="padding: 0 20px 20px 50px;">
 			<br /> <br />
-
-			Faculty Name: &nbsp;&nbsp;<select name="namedaily" id="namedaily">
+			Faculty Name:<select name="namedaily" id="namedaily">
 							
                     <?php
                     	$res = mysql_query("SELECT dept from faculty WHERE faculty_uid = '".$uid."'");
@@ -74,12 +73,9 @@ if(!$login->get_session()){
                                 echo '<option value='.$row['faculty_uid'].'>'.$row['name'].'</option>';
                             }
 					?>
-				</select>	
-
-
-			<br /> <br />			
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				Year:&nbsp;&nbsp;&nbsp;<select name="month" id="month">
+				</select>				
+				
+				&nbsp;Month:<select name="month" id="month">
 					<option value="1">January</option>
 					<option value="2">February</option>
 					<option value="3">March</option>
@@ -93,22 +89,21 @@ if(!$login->get_session()){
 					<option value="11">November</option>
 					<option value="12">December</option>
 				</select>
-				<select name="year" id="year">
+				&nbsp;Year:<select name="year" id="year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
                             while ($row = mysql_fetch_object($result)) {                                
                                 echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>.';                                	
                             }
 					?>
-				</select> </br></br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</select> 
 			<input type="button" name="genbtn2" id="genbtn2" value="Generate &rarr;">
 		</form>
 		<div id="myChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
 	
 	<div id="tabs-2">
-		<p><font color="black">Generate a monthly chart for consultations of each faculty.</font></p>
+		<p><font color="black">Generate a monthly chart for consultations for each faculty.</font></p>
 		
 		<form style="padding: 0 20px 20px 50px;">
 		</br></br>
@@ -125,18 +120,16 @@ if(!$login->get_session()){
                             }
 					?>
 				</select>	
-
-
-			<br /> <br />			
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year:&nbsp;&nbsp;&nbsp;<select name="year" id="year">
+	
+				Year:&nbsp;&nbsp;&nbsp;<select name="year" id="year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
                             while ($row = mysql_fetch_object($result)) {
                                 echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
                             }
 					?>
-				</select> </br></br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</select> 
+			
 			<input type="button" name="genbtn3" id="genbtn3" value="Generate &rarr;">
 		</form>	
 		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -154,12 +147,20 @@ if(!$login->get_session()){
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
 				<li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
 				<?php
-				$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
-				$chairrow = mysql_fetch_array($chair);
-				if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>"; 
-				else  if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chart2.php'>Chart</a></li>"; 
-				else if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
-				?>
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";                                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);                 
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                ?>
                 				
             </ul>
         </div>

@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html>
     <head>
-        <title>Consultation Logs System</title>
+        <title>CLS - Review</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
@@ -63,10 +63,19 @@ if(!$login->get_session()){
 				<?php
                 $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
                 $chairrow = mysql_fetch_array($chair);
-                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>"; 
-                else  if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chart2.php'>Chart</a></li>"; 
-                else if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";                                
                 ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);                 
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                ?>
+
                
             </ul>
         </div>
@@ -109,14 +118,14 @@ $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."' o
 		   $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
 		   $row2 = mysql_fetch_array($query2);
 		   	echo "</tr>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row2['stud_name'] . "</a></td>";
-			echo "<td><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $row['date'] . "</a></td>";
+			echo "<td><a href='displayInfo.php?p=". $row['cid'] . "' target='view_data'>" . $row2['stud_name'] . "</a></td>";
+			echo "<td><a href='displayInfo.php?p=". $row['cid'] . "' target='view_data'>" . $row['date'] . "</a></td>";
 			$string = $row['description'];
 			if(strlen($string)>40){
 				$string = substr($string,0,40);
 				$string = $string.' ...';
 			}
-			echo "<td style='text-align:middle;'><a href='form5.php?p=". $row['cid'] . "' target='view_data'>" . $string . "</a></td>";
+			echo "<td style='text-align:middle;'><a href='displayInfo.php?p=". $row['cid'] . "' target='view_data'>" . $string . "</a></td>";
             echo "</tr>";  
             }         
 ?>

@@ -1,3 +1,14 @@
+<?php
+session_start();
+include_once 'class_login.php';
+
+$login = new Login();
+$uid = $_SESSION['uid_new'];
+
+if(!$login->get_session()){
+  header("location:index.php");
+}
+?>
 <html>
 <head>
 	<title>Consultation Logs System</title>
@@ -12,7 +23,8 @@
 	
 <style type="text/css">
 
-body {background-image:url('images/wallpaper3.jpg');
+body {
+	position:relative;background-image:url('images/wallpaper3.jpg');
 background-repeat: no-repeat;}
 
 form legend {
@@ -54,6 +66,27 @@ form legend {
 
 }
 
+	table{
+	margin: 1em auto;
+	text-align: left;
+	empty-cells: show;
+	border: none;
+	border-radius: 30px ;
+	-moz-border-radius: 30px ;
+	-webkit-border-radius: 10px ;
+	position:relative;	
+
+	}
+	table{width:60%;	box-shadow: 0px 10px 50px #888888;
+}
+	td{
+	width:5%;
+	border: none;
+	vertical-align: top;
+	}tr{
+	border: none;
+	}
+
 
 #footer .strong {font-weight: bold; font-size: 16px; color:black;}
 #footer p, p:hover, p:visited {color: #2F4F4F;}
@@ -64,46 +97,12 @@ form legend {
 #wrap {min-height:   10%;}
 p{color: white;font-size:0.4px;}
 
-</style>
- <script>
- 
-	var new_val = null;
-	var ac_config = {
-				source: "result.php?radioval=name",
-				select: function(event, ui){
-						$("#fullname").val(ui.item.fullname);						
-				},
-				minLength:1
-			};		
-	
-	$(document).ready(function(){
-		var radio1 = document.searchform.radioval[0];
-		var radio2 = document.searchform.radioval[1];
-		
-		$("input[name='radioval']").change(function(){
-			if ($("input[name='radioval']:checked").val() == "name"){
-				new_val = radio1.value;
-				//alert(new_val);
-			}else{
-				new_val = radio2.value;
-				//alert(new_val);
-			}
-			ac_config = {
-				source: "result.php?radioval="+new_val,
-				select: function(event, ui){
-						$("#fullname").val(ui.item.res);
-				},
-				minLength:1
-			};	
-			$("#fullname").autocomplete(ac_config);
-		});
-		
-		$("#fullname").autocomplete(ac_config);
 
-		$("input:submit, a, button", ".demo").button();
-		
-	});
-  </script>
+
+
+
+
+</style>
 </head>
 <div style="height:120px"></div>
 <body background="bg1.jpg">
@@ -113,21 +112,48 @@ p{color: white;font-size:0.4px;}
 </div>
 <div id="mid">
 	
-<form id="searchform" name="searchform" method="post" action="search.php">
-<br /><br /><br /> <br /> <br /> <br />
+<form>
+	<div class="CSSTableGenerator">
+	<table>
+	<?php
+mysql_connect("127.0.0.1","root","");
+mysql_select_db("cls") or die ("cannot select db");
 
-<div class="demo">	
-	<legend>Faculty Availability Search</legend>
-	
-<input id="fullname" name="fullname" type = "text"  style="width: 23em; height:1.87em;" autofocus>
- </br></br>
-<input type = "submit" value = "Search">
-<div id="style"></br></br>
-<input type="radio"  name="radioval" value="name" checked style="width:15px; height:15px;"/> Name
-&nbsp&nbsp&nbsp&nbsp;
-<input type="radio" name="radioval" value="dept" style="width:15px; height:15px;" /> Department
-<!--<input type="hidden" name="hiddenfield" value="" id="hiddenfield" />-->
-</div>
+$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+$chairrow = mysql_fetch_array($chair);
+ if ($chairrow['chairman'] == 1) {
+  $query1 = mysql_query("select * from consultation where cid='".$_GET['p']."'"); }
+  else {
+  $query1 = mysql_query("select * from consultation where faculty_uid='".$uid."'  and cid='".$_GET['p']."'"); }
+
+           while ($row = mysql_fetch_array($query1)) {
+       $query2 = mysql_query("select stud_name from student where stud_id='".$row['stud_id']."'");
+       $row2 = mysql_fetch_array($query2);
+      
+
+       echo "<table bgcolor='#F5F3F0'>"; 
+        echo "<tr>";     
+      echo "<td bgcolor='#6D7B8D'><FONT COLOR='white' FACE='Geneva, Arial' SIZE=5 style='width:20px;'>&nbsp;&nbsp;Student Name:</FONT>" ."</td>" ."<td bgcolor='#6D7B8D'><FONT COLOR='white' FACE='Geneva, Arial' SIZE=5>". $row2['stud_name'] ."</td>";
+       echo "</tr>";
+        echo "<tr>";
+      echo "<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4 style='width:20px;'>&nbsp;&nbsp;Date:</FONT>". "</td>" ."<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4>".$row['date'] ."</td>";
+       echo "</tr>";
+        echo "<tr>";
+      echo "<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4 style='width:20px;'>&nbsp;&nbsp;Time:</FONT>"."</td>" ."<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4>". $row['time'] ."</td>";
+       echo "</tr>";
+        echo "<tr>";
+     echo "<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4 style='width:20px;'>&nbsp;&nbsp;Subject & Section:</FONT>". "</td>" ."<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4>".$row['subsec'] ."</td>";
+       echo "</tr>";
+        echo "<tr>";
+     echo "<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4>&nbsp;&nbsp;Description:</FONT>"."</td>" ."<td><FONT COLOR=#6D7B8D FACE='Geneva, Arial' SIZE=4>". $row['description']."</td>";
+       echo "</tr>";
+        echo "</table>";  
+        
+            
+      
+            }         
+?>
+</table>
 </div>
 
 </form>	

@@ -6,7 +6,7 @@ $phrase = $_GET['phrase'];
 
 if($phrase=='phrase') {
  
-$query = "SELECT stud_id as idno, stud_name as fullname, stud_course as course, yearlvl as year FROM student WHERE stud_id LIKE '%$text%' ORDER BY stud_id ASC";
+$query = "SELECT stud_id as idno, stud_name as fullname, stud_course as course, yearlvl as year FROM student WHERE stud_id LIKE '%$text%' ORDER BY stud_id ASC LIMIT 5";
 $result = $mysqli->query($query);
 $json = '[';
 $first = true;

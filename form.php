@@ -12,7 +12,7 @@ if(!$login->get_session()){
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Consultation Logs System</title>
+<title>CLS - Consult</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
@@ -51,11 +51,11 @@ if(!$login->get_session()){
 			</p>
 			<p>
 				<label for="name" style="display: block; opacity: 1;">Name</label><br />
-				<input type="text" name="name" value="Name" id="name" disabled="disabled">
+				<input type="text" name="name" value="Name" id="name" readonly="readonly">
 			</p>
 			<p>
 				<label for="courseyrlvl" style="display: block; opacity: 1;">Course and Year Level</label><br />
-				<input type="text" name="courseyrlvl" value="Course & Year Level" id="courseyrlvl" disabled="disabled">
+				<input type="text" name="courseyrlvl" value="Course & Year Level" id="courseyrlvl" readonly="readonly">
 			</p>
 			<p>
 				<!--<label for="subsec" style="display: block; opacity: 1;">Subject and Section</label><br />-->
@@ -82,12 +82,20 @@ if(!$login->get_session()){
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
                 <?php
-				$chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
-				$chairrow = mysql_fetch_array($chair);
-				if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>"; 
-				else  if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chart2.php'>Chart</a></li>"; 
-				else if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
-				?>		
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";                                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);                 
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
+                ?>
+                <?php
+                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
+                $chairrow = mysql_fetch_array($chair);
+                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                ?>	
 				
             </ul>
         </div>
