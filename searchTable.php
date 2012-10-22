@@ -9,17 +9,17 @@ $selected_radio = $_GET['button'];
 $s_query = mysql_query("SELECT * FROM faculty WHERE name LIKE '%$search_value%'");
 $d_query = mysql_query("SELECT * FROM faculty WHERE dept LIKE '%$search_value%'");
 
-echo '<table name="result-table" style="width:1000px;">
+echo '<table name="result-table" style="width:1000px; ">
 
-	<thead>
-	<tr class="odd">
-	<th scope="col" abbr="Name">Name</th>	
-	<th scope="col" abbr="College">College</th>
-	<th scope="col" abbr="Department">Department</th>  
-  <th scope="col" abbr="Location">Location</th>
-	<th scope="col" abbr="Status">Status</th>
-	</tr>
-	</thead>
+<thead>
+<tr class="odd">
+<th scope="col" abbr="Name">Name</th>	
+<th scope="col" abbr="College">College</th>
+<th scope="col" abbr="Department">Department</th>  
+<th scope="col" abbr="Location">Location</th>
+<th scope="col" abbr="Status">Status</th>
+</tr>
+</thead>
 <br>';
 
 if ($selected_radio == 'name') {

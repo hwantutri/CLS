@@ -12,9 +12,14 @@ $option = $_POST['string'];
 $subsec = $_POST['subsec'];
 $location = $_POST['location'];
 $name = $_POST['name'];
+$actionTaken = $_POST['actionTaken'];
+$results = $_POST['results'];
+$comments = $_POST['comments'];
+$duration = is_int($_POST['duration']);
+
 
 if($option=="update"){
-	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description,subsec) VALUES ('$uid','$idnum','$date','$comment','$subsec')";
+	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description,subsec,actionTaken,results,comments,duration) VALUES ('$uid','$idnum','$date','$comment','$subsec','$actionTaken','$results','$comments','$duration')";
 	mysql_query($query);
 	echo "string";
 	

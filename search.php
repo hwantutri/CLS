@@ -87,7 +87,6 @@ h1 {
 </div>
 </div>
 	<div id="tableHolder"></div>
-</table>
 </form>	
 </div>
 </body>

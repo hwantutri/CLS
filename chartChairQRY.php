@@ -44,5 +44,21 @@ else if($extra=="monthly2"){
 		echo $string;
 
 }
+else if($extra=="sem2"){
+	$logs = array();
+	for ($m = 1; $m <= 12; $m++) {
+		$result = mysql_query("SELECT COUNT(*) as logs
+							from consultation
+							where faculty_uid='$search_value'
+							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
+			$json_logs = array();
+			while ($row = mysql_fetch_assoc($result)) {
+					$logs[] = $row['logs'];
+					array_push($json_logs, $row['logs']);
+				   }
+		}
+		$string = implode($logs, ', ');
+		echo $string;
 
+}
 ?>

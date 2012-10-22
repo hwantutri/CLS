@@ -5,6 +5,7 @@ $db = new Database();
 
 $uid = $_SESSION['uid_new'];
 
+$sem = $_POST['sem'];
 $month = $_POST['month'];
 $extra = $_POST['extra'];
 $year = $_POST['year'];
@@ -68,6 +69,39 @@ else if($extra=="monthly2"){
 		$result = mysql_query("SELECT COUNT(*) as logs
 							from consultation,faculty
 							where faculty.faculty_uid='$namemonthly' and consultation.faculty_uid=faculty.faculty_uid
+							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
+			$json_logs = array();
+			while ($row = mysql_fetch_assoc($result)) {
+					$logs[] = $row['logs'];
+					array_push($json_logs, $row['logs']);
+				   }
+		}
+		$string = implode($logs, ', ');
+		echo $string;
+}
+else if($extra=="sem"){
+	$logs = array();
+	for ($m = 1; $m <= 12; $m++) {
+		$result = mysql_query("SELECT COUNT(*) as logs
+							from consultation
+							where faculty_uid='$uid' AND consultation.sem='$sem'
+							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
+			$json_logs = array();
+			while ($row = mysql_fetch_assoc($result)) {
+					$logs[] = $row['logs'];
+					array_push($json_logs, $row['logs']);
+				   }
+		}
+		$string = implode($logs, ', ');
+		echo $string;
+}
+
+else if($extra=="sem2"){
+	$logs = array();
+	for ($m = 1; $m <= 12; $m++) {
+		$result = mysql_query("SELECT COUNT(*) as logs
+							from consultation,faculty
+							where faculty.faculty_uid='$namemonthly' and consultation.faculty_uid=faculty.faculty_uid AND consultation.sem='$sem'
 							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
 			$json_logs = array();
 			while ($row = mysql_fetch_assoc($result)) {

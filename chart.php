@@ -9,8 +9,42 @@ if(!$login->get_session()){
 	header("location:index.php");
 }
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<script type="text/javascript">
+    function configureDropDownLists(ddl1,location) {
+        var msuiit = new Array('SCS Lounge', 'CS Department', 'Main Library' );
+        var online = new Array('Facebook', 'Google', 'Twitter');
+
+
+        switch (ddl1.value) {
+            case 'msuiit':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < msuiit.length; i++) {
+                    createOption(document.getElementById(location), msuiit[i], msuiit[i]);
+                }
+                break;
+            case 'online':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < online.length; i++) {
+                    createOption(document.getElementById(location), online[i], online[i]);
+                }
+                break;
+                default:
+                    document.getElementById(location).options.length = 0;
+                break;
+        }
+
+    }
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
+
+
 <head>
 <title>CLS - Chart</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -54,6 +88,7 @@ if(!$login->get_session()){
 	<ul>
 		<li><a href="#tabs-1">Daily</a></li>
 		<li><a href="#tabs-2">Monthly</a></li>
+		<!--<li><a href="#tabs-3">Semestral</a></li>-->
 	</ul>
 	<div id="tabs-1">
 		<p><font color="black">Generate a daily chart for consultations.</font></p>
@@ -104,6 +139,29 @@ if(!$login->get_session()){
 		</form>	
 		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
+<!--
+		<div id="tabs-3">
+		<p><font color="black">Generate a chart by Semester.</font></p>
+		
+		<form style="padding: 0 20px 20px 50px;">
+			<br /> <br />			
+				Semester:&nbsp;&nbsp;<select name="month" id="month">
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</select>
+				&nbsp;&nbsp;Year:<select name="year" id="year">
+                    <?php
+						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
+                            while ($row = mysql_fetch_object($result)) {
+                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
+                            }
+					?>
+				</select>
+			<input type="button" name="genbtn4" id="genbtn4" value="Generate &rarr;">
+		</form>
+		<div id="myChart3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	</div>
+-->
 </div>
 
 </div>
@@ -145,8 +203,17 @@ if(!$login->get_session()){
 				</br></br>
 					</label>
             	<label class="location">
-                <input id="location" name="location" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus">
-                </label>
+<select id="ddl" onchange="configureDropDownLists(this,'location')">
+<option value="msuiit">MSU-IIT</option>
+<option value="online">Online</option>
+</select>
+
+<select id="location">
+<option value="SCS Lounge">SCS Lounge</option>
+<option value="CS Department">CS Department</option>
+<option value="Main Library">Main Library</option>
+</select>
+</label>
                 <label>
                 <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
                 </label>

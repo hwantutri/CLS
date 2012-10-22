@@ -9,8 +9,40 @@ if(!$login->get_session()){
 	header("location:index.php");
 }
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<script type="text/javascript">
+    function configureDropDownLists(ddl1,location) {
+        var msuiit = new Array('SCS Lounge', 'CS Department', 'Main Library' );
+        var online = new Array('Facebook', 'Google', 'Twitter');
+
+
+        switch (ddl1.value) {
+            case 'msuiit':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < msuiit.length; i++) {
+                    createOption(document.getElementById(location), msuiit[i], msuiit[i]);
+                }
+                break;
+            case 'online':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < online.length; i++) {
+                    createOption(document.getElementById(location), online[i], online[i]);
+                }
+                break;
+                default:
+                    document.getElementById(location).options.length = 0;
+                break;
+        }
+
+    }
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
 <head>
 <title>CLS - Chart</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -173,8 +205,17 @@ if(!$login->get_session()){
 				</br></br>
 					</label>
             	<label class="location">
-                <input id="location" name="location" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus">
-                </label>
+<select id="ddl" onchange="configureDropDownLists(this,'location')">
+<option value="msuiit">MSU-IIT</option>
+<option value="online">Online</option>
+</select>
+
+<select id="location">
+<option value="SCS Lounge">SCS Lounge</option>
+<option value="CS Department">CS Department</option>
+<option value="Main Library">Main Library</option>
+</select>
+</label>
                 <label>
                 <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
                 </label>

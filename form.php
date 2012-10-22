@@ -11,6 +11,39 @@ if(!$login->get_session()){
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<script type="text/javascript">
+    function configureDropDownLists(ddl1,location) {
+        var msuiit = new Array('SCS Lounge', 'CS Department', 'Main Library' );
+        var online = new Array('Facebook', 'Google', 'Twitter');
+
+
+        switch (ddl1.value) {
+            case 'msuiit':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < msuiit.length; i++) {
+                    createOption(document.getElementById(location), msuiit[i], msuiit[i]);
+                }
+                break;
+            case 'online':
+                document.getElementById(location).options.length = 0;
+            for (i = 0; i < online.length; i++) {
+                    createOption(document.getElementById(location), online[i], online[i]);
+                }
+                break;
+                default:
+                    document.getElementById(location).options.length = 0;
+                break;
+        }
+
+    }
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
 <head>
 <title>CLS - Consult</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -45,6 +78,8 @@ if(!$login->get_session()){
 	<form id="clsform" name="clsform" action="" accept-charset="utf-8">
 		<fieldset> <br /><br /><br /> <br /> <br /> <br />
 			<p><legend>Consultation Form</legend></p>
+
+			
 			<p>
 				<label for="idno" style="display: block; opacity: 1;">ID No.</label><br />
 				<input type="text" name="idno" value="" id="idno" autocomplete="off" autofocus="autofocus">
@@ -68,10 +103,23 @@ if(!$login->get_session()){
 			</p>
 			<p>
 				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
-				<textarea cols="30" rows="10" name="comment" id="comment"></textarea>
+				<textarea cols="30" rows="5" name="comment" id="comment"></textarea>
 			</p>
+			<p>
+				<label for="actionTaken" style="display: block; opacity: 1;">Action Taken</label><br />
+				<input type="text" name="actionTaken"  id="actionTaken" >
+			</p>
+			<p>
+				<label for="results" style="display: block; opacity: 1;">Result</label><br />
+				<input type="text" name="results"  id="results" >
+			</p>
+			<p>
+				<label for="comments" style="display: block; opacity: 1;">Comments</label><br />
+				<input type="text" name="comments"  id="comments" >
+			</p>
+			
 		</fieldset>
-		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
+		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp;&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
 	</form>	
 		<div id="navigation-block">
 			<img src="images/background.jpg" id="hide" />
@@ -101,18 +149,31 @@ if(!$login->get_session()){
         </div>
 		<div id="location-box" class="location-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form name="loginform" class="signin">
+          <form name="loginform" class="signin">	
                 <fieldset class="textbox">
+
                 <label>
 				<font size="5" color="white">Set Location</font>
 				</br></br>
 					</label>
-            	<label class="location">
-                <input id="location" name="location" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus">
-                </label>
+ 
+<label class="location">
+<select id="ddl" onchange="configureDropDownLists(this,'location')">
+<option value="msuiit">MSU-IIT</option>
+<option value="online">Online</option>
+</select>
+
+<select id="location">
+<option value="SCS Lounge">SCS Lounge</option>
+<option value="CS Department">CS Department</option>
+<option value="Main Library">Main Library</option>
+</select>
+</label>
+
                 <label>
                 <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
                 </label>
+                
                 </fieldset>
           </form>
 	</div>

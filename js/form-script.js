@@ -37,6 +37,13 @@ function int_to_month(number){
 		return "December";}
 }
 
+function int_to_sem(number){
+		if(number == 1){
+		return "June","August","September","August","October";}
+		else if(number == 2){
+		return "November","December","January","February","March";}
+}
+
 
 //Reset Form
 function resetForm(id) {
@@ -164,8 +171,12 @@ $("#addbtn").click(function(e){
        	var datepicker = $("#datepicker").val();
 		var subsec = $("#subsec").val();
 		var comment = $("#comment").val();
+		var actionTaken = $("#actionTaken").val();
+		var results = $("#results").val();
+		var comments = $("#comments").val();
+
 		var string = "update";
-        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec }, function(data){
+        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec,actionTaken:actionTaken,results:results,comments:comments }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
 					//alert('Consultation successfully logged!');
@@ -253,6 +264,11 @@ function display(extra,month,year){
 		if (extra=="daily"){
 			return int_to_month(month) + ' ' +year;
 		}
+
+		else if(extra=="sem"){
+			return int_to_sem(sem) + ' ' +year;
+		}
+
 		else if(extra=="monthly"){
 			return year;
 		}
@@ -363,7 +379,7 @@ function makedailychart2(data,month,year,extra){
         });
 }
 		
-		//charts
+		
 function makemonthlychart(data,month,year,extra){
 		chart2 = new Highcharts.Chart({
             chart: {
@@ -464,6 +480,108 @@ function makemonthlychart2(data,month,year,extra){
             }]
         });
 }
+
+function makesemchart2(data,month,year,extra){
+		chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'myChart3',
+                type: 'column'
+            },
+            title: {
+                text: 'Semestral Consultation Logs'
+            },
+            subtitle: {
+                text: 'For the Year ' +display(extra,month,year)
+            },
+            xAxis: {
+                categories:  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No. of Consultations'
+                },
+				allowDecimals: false
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Consultations',
+                data: data
+            }]
+        });
+}
+function makesemchart2(data,month,year,extra){
+	chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'myChart3',
+                type: 'column'
+            },
+            title: {
+                text: 'Semestral Consultation Logs'
+            },
+            subtitle: {
+                text: 'Month of ' +display(extra,month,year)
+            },
+            xAxis: {
+                categories:  <?php $lastday = date("d",mktime(0,0,0,$month+1,0,date("Y")));  echo "["; for ($d = 1; $d <= $lastday-1; $d++){echo "'".$d."',";} echo "'".$lastday."'"."]";?>
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No. of Consultations'
+                },
+				allowDecimals: false
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Consultations',
+                data: data
+            }]
+        });
+}
+
 		var year = $("#year").val();
 		// jquery functions for generating new charts
 		$("#genbtn0").click(function(e){					/* BUTTON 0 */
@@ -495,17 +613,39 @@ function makemonthlychart2(data,month,year,extra){
 		var extra = "monthly2";
 		get_data(extra,year);
 		});
-		
-	function get_data(extra,year,namedaily,namemonthly){
+
+		$("#genbtn4").click(function(e){					/* BUTTON 4 */
+			e.preventDefault();
+			//var month = parseInt($("#month").val());
+			var extra = "sem";
+			get_data(extra,year);
+		});
+
+		$("#genbtn5").click(function(e){					 /* BUTTON 5 */
+		e.preventDefault()
+		var year = parseInt($("#year").val());
+		//var month = parseInt($("#month").val());
+		var extra = "sem2";
+		get_data(extra,year);
+		});
+
+	function get_data(extra,year,namedaily,namemonthly,sem){
 		var month = parseInt($("#month").val());		
 		var namedaily = $("#namedaily").val();
 		var namemonthly = $("#namemonthly").val();
+		var sem = $("#sem").val();
 		if(extra=="daily"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra,}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart(temp,month,year,extra);});
 		}
 		else if(extra=="monthly"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart(temp,month,year,extra);});
 		}
+		else if(extra=="sem"){
+		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makesemchart(temp,month,year,extra);});
+		}
+		else if(extra=="sem2"){
+		$.post("chartQRY.php", {month:month,year:year,extra:extra,namemonthly:namemonthly}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlysem2(temp,month,year,extra);});	
+		}	
 		else if(extra=="daily2"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra,namedaily:namedaily}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart2(temp,month,year,extra);});
 		}
@@ -521,6 +661,42 @@ function makemonthlychart2(data,month,year,extra){
         "aaSorting":[[2, "desc"]],
         "bJQueryUI":true
     });
+
+    //set location
+
+    var data = [ // The data
+    ['ten', [
+        'eleven','twelve'
+    ]],
+    ['twenty', [
+        'twentyone', 'twentytwo'
+    ]]
+];
+
+$a = $('#a'); // The dropdowns
+$b = $('#b');
+
+for(var i = 0; i < data.length; i++) {
+    var first = data[i][0];
+    $a.append($("<option>"). // Add options
+       attr("value",first).
+       data("sel", i).
+       text(first));
+}
+
+$a.change(function() {
+    var index = $(this).children('option:selected').data('sel');
+    var second = data[index][1]; // The second-choice data
+
+    $b.html(''); // Clear existing options in second dropdown
+
+    for(var j = 0; j < second.length; j++) {
+        $b.append($("<option>"). // Add options
+           attr("value",second[j]).
+           data("sel", j).
+           text(second[j]));
+    }
+}).change(); // Trigger once to add options at load of first choice​​​​​
 
 
 });
