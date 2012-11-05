@@ -5,12 +5,13 @@ $db = new Database();
 
 $uid = $_SESSION['uid_new'];
 
-$sem = $_POST['sem'];
+$sem_value = $_POST['sem'];
 $month = $_POST['month'];
 $extra = $_POST['extra'];
 $year = $_POST['year'];
 $namedaily = $_POST['namedaily'];
 $namemonthly = $_POST['namemonthly'];
+$namesem = $_POST['namesem'];
 
 if($extra=="daily"){
 	$lastday = date("d",mktime(0,0,0,$month+1,0,$year));
@@ -79,12 +80,28 @@ else if($extra=="monthly2"){
 		$string = implode($logs, ', ');
 		echo $string;
 }
-else if($extra=="sem"){
+else if($extra=="sem1"){
 	$logs = array();
 	for ($m = 1; $m <= 12; $m++) {
 		$result = mysql_query("SELECT COUNT(*) as logs
 							from consultation
-							where faculty_uid='$uid' AND consultation.sem='$sem'
+							where faculty_uid='$uid' AND sem='$sem_value'
+							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
+			$json_logs = array();
+			while ($row = mysql_fetch_assoc($result)) {
+					$logs[] = $row['logs'];
+					array_push($json_logs, $row['logs']);
+				   }
+		}
+		$string = implode($logs, ', ');
+		echo $string;
+}
+else if($extra=="sem2"){
+	$logs = array();
+	for ($m = 1; $m <= 12; $m++) {
+		$result = mysql_query("SELECT COUNT(*) as logs
+							from consultation,faculty
+							where faculty.faculty_uid='$namesem' AND consultation.faculty_uid=faculty.faculty_uid AND sem='$sem_value'
 							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
 			$json_logs = array();
 			while ($row = mysql_fetch_assoc($result)) {
@@ -96,21 +113,5 @@ else if($extra=="sem"){
 		echo $string;
 }
 
-else if($extra=="sem2"){
-	$logs = array();
-	for ($m = 1; $m <= 12; $m++) {
-		$result = mysql_query("SELECT COUNT(*) as logs
-							from consultation,faculty
-							where faculty.faculty_uid='$namemonthly' and consultation.faculty_uid=faculty.faculty_uid AND consultation.sem='$sem'
-							and date LIKE '%".date("Y/m",mktime(0,0,0,$m,1,$year))."%'");
-			$json_logs = array();
-			while ($row = mysql_fetch_assoc($result)) {
-					$logs[] = $row['logs'];
-					array_push($json_logs, $row['logs']);
-				   }
-		}
-		$string = implode($logs, ', ');
-		echo $string;
-}
 
 ?>

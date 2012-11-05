@@ -86,6 +86,7 @@ if(!$login->get_session()){
 	<ul>
 		<li><a href="#tabs-1">Daily</a></li>
 		<li><a href="#tabs-2">Monthly</a></li>
+		<li><a href="#tabs-3">Semestral</a></li>
 	</ul>
 	<div id="tabs-1">
 		<p><font color="black">Generate a daily chart for consultations for each faculty.</font></p>
@@ -166,6 +167,44 @@ if(!$login->get_session()){
 		</form>	
 		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
+	<div id="tabs-3">
+		<p><font color="black">Generate a chart by Semester.</font></p>
+		
+		<form style="padding: 0 20px 20px 50px;">
+			</br></br>
+		Faculty Name: &nbsp;&nbsp;<select name="namesem" id="namesem">				
+                    <?php
+                    	$res = mysql_query("SELECT dept from faculty WHERE faculty_uid = '".$uid."'");
+						$rowdept = mysql_fetch_array($res);
+						$result = mysql_query("select * from faculty WHERE dept='".$rowdept['dept']."' AND faculty_uid !='".$uid."'   order by name ASC");		
+						echo '<option value='.$uid.'>'; 
+						echo $login->get_name($uid); 
+						echo '</option>';						
+                            while ($row = mysql_fetch_array($result)) {
+                                echo '<option value='.$row['faculty_uid'].'>'.$row['name'].'</option>';
+                            }
+					?>
+				</select>
+					
+				Semester:&nbsp;&nbsp;<select name="sem" id="sem">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
+				&nbsp;&nbsp;Year:<select name="year" id="year">
+                    <?php
+						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
+                            while ($row = mysql_fetch_object($result)) {
+                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
+                            }
+					?>
+				</select>
+			<input type="button" name="genbtn5" id="genbtn5" value="Generate &rarr;">
+		</form>
+		<div id="myChart3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	</div>
+
+
 </div>
 
 </div>

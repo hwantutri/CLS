@@ -37,14 +37,6 @@ function int_to_month(number){
 		return "December";}
 }
 
-function int_to_sem(number){
-		if(number == 1){
-		return "June","August","September","August","October";}
-		else if(number == 2){
-		return "November","December","January","February","March";}
-}
-
-
 //Reset Form
 function resetForm(id) {
 	$('#'+id).each(function(){
@@ -264,14 +256,21 @@ function display(extra,month,year){
 		if (extra=="daily"){
 			return int_to_month(month) + ' ' +year;
 		}
-
-		else if(extra=="sem"){
-			return int_to_sem(sem) + ' ' +year;
-		}
-
 		else if(extra=="monthly"){
 			return year;
 		}
+        else if(extra=="daily2"){
+            return year;
+        }
+        else if(extra=="monthly2"){
+            return year;
+        }
+        else if(extra=="sem1"){
+            return year;
+        }
+        else if(extra=="sem2"){
+            return year;
+        }
 }
 	
 	
@@ -481,7 +480,7 @@ function makemonthlychart2(data,month,year,extra){
         });
 }
 
-function makesemchart2(data,month,year,extra){
+function makesemchart(data,month,year,extra){
 		chart2 = new Highcharts.Chart({
             chart: {
                 renderTo: 'myChart3',
@@ -532,7 +531,7 @@ function makesemchart2(data,month,year,extra){
         });
 }
 function makesemchart2(data,month,year,extra){
-	chart = new Highcharts.Chart({
+        chart2 = new Highcharts.Chart({
             chart: {
                 renderTo: 'myChart3',
                 type: 'column'
@@ -541,17 +540,17 @@ function makesemchart2(data,month,year,extra){
                 text: 'Semestral Consultation Logs'
             },
             subtitle: {
-                text: 'Month of ' +display(extra,month,year)
+                text: 'For the Year ' +display(extra,month,year)
             },
             xAxis: {
-                categories:  <?php $lastday = date("d",mktime(0,0,0,$month+1,0,date("Y")));  echo "["; for ($d = 1; $d <= $lastday-1; $d++){echo "'".$d."',";} echo "'".$lastday."'"."]";?>
+                categories:  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
             },
             yAxis: {
                 min: 0,
                 title: {
                     text: 'No. of Consultations'
                 },
-				allowDecimals: false
+                allowDecimals: false
             },
             legend: {
                 layout: 'vertical',
@@ -617,7 +616,7 @@ function makesemchart2(data,month,year,extra){
 		$("#genbtn4").click(function(e){					/* BUTTON 4 */
 			e.preventDefault();
 			//var month = parseInt($("#month").val());
-			var extra = "sem";
+			var extra = "sem1";
 			get_data(extra,year);
 		});
 
@@ -633,6 +632,7 @@ function makesemchart2(data,month,year,extra){
 		var month = parseInt($("#month").val());		
 		var namedaily = $("#namedaily").val();
 		var namemonthly = $("#namemonthly").val();
+        var namesem = $("#namesem").val();
 		var sem = $("#sem").val();
 		if(extra=="daily"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra,}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart(temp,month,year,extra);});
@@ -640,11 +640,11 @@ function makesemchart2(data,month,year,extra){
 		else if(extra=="monthly"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlychart(temp,month,year,extra);});
 		}
-		else if(extra=="sem"){
-		$.post("chartQRY.php", {month:month,year:year,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makesemchart(temp,month,year,extra);});
+		else if(extra=="sem1"){
+		$.post("chartQRY.php", {month:month,year:year,sem:sem,extra:extra}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makesemchart(temp,month,year,extra);});
 		}
 		else if(extra=="sem2"){
-		$.post("chartQRY.php", {month:month,year:year,extra:extra,namemonthly:namemonthly}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makemonthlysem2(temp,month,year,extra);});	
+		$.post("chartQRY.php", {month:month,year:year,sem:sem,extra:extra,namesem:namesem}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makesemchart2(temp,month,year,extra);});	
 		}	
 		else if(extra=="daily2"){
 		$.post("chartQRY.php", {month:month,year:year,extra:extra,namedaily:namedaily}, function(data){ var temp = new Array();temp = data.split(",");for (a in temp ){temp[a] = parseInt(temp[a]);} $().toastmessage('showToast',{text:'Loading chart...', position:'middle-right',type:'notice'}); makedailychart2(temp,month,year,extra);});

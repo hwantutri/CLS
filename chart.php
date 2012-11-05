@@ -88,7 +88,7 @@ if(!$login->get_session()){
 	<ul>
 		<li><a href="#tabs-1">Daily</a></li>
 		<li><a href="#tabs-2">Monthly</a></li>
-		<!--<li><a href="#tabs-3">Semestral</a></li>-->
+		<li><a href="#tabs-3">Semestral</a></li>
 	</ul>
 	<div id="tabs-1">
 		<p><font color="black">Generate a daily chart for consultations.</font></p>
@@ -139,15 +139,16 @@ if(!$login->get_session()){
 		</form>	
 		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
-<!--
+
 		<div id="tabs-3">
 		<p><font color="black">Generate a chart by Semester.</font></p>
 		
 		<form style="padding: 0 20px 20px 50px;">
 			<br /> <br />			
-				Semester:&nbsp;&nbsp;<select name="month" id="month">
+				Semester:&nbsp;&nbsp;<select name="sem" id="sem">
 					<option value="1">1</option>
 					<option value="2">2</option>
+					<option value="3">3</option>
 				</select>
 				&nbsp;&nbsp;Year:<select name="year" id="year">
                     <?php
@@ -161,7 +162,7 @@ if(!$login->get_session()){
 		</form>
 		<div id="myChart3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
--->
+
 </div>
 
 </div>
