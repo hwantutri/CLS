@@ -75,17 +75,15 @@ if(!$login->get_session()){
                 <?php
                 $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
                 $chairrow = mysql_fetch_array($chair);
-                if ($chairrow['chairman'] == 0) echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";                                
-                ?>
-                <?php
-                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
-                $chairrow = mysql_fetch_array($chair);                 
-                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
-                ?>
-                <?php
-                $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
-                $chairrow = mysql_fetch_array($chair);
-                if ($chairrow['chairman'] == 1) echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>"; 
+                if ($chairrow['chairman'] == 0){
+					echo "<li class='sliding-element'><a href='chart.php'>Chart</a></li>";   
+					echo "<li class='sliding-element'><a href='reports.php'>Generate Report</a></li>";
+				}
+                else if ($chairrow['chairman'] == 1){
+					echo "<li class='sliding-element'><a href='chartChair.php'>Chart</a></li>";                
+					echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>";
+					echo "<li class='sliding-element'><a href='reportsChair.php'>Generate Report</a></li>";
+				}
                 ?>
                
             </ul>

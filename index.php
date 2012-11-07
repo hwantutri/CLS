@@ -262,22 +262,20 @@ p{color: white;font-size:0.4px;}
      <div id="footer">
      	 <div class="col1">
    <p>
-     
+     <span class="strong">&nbsp; CLS &copy 2012</span> 
    </p>
   </div><!--col1-->
  <div class="col2">
     <p>
-   
+	<span class="strong"><font color='gray'>About &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span> 
+	<span class="strong"><font color='gray'>Terms &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span> 
+	<span class="strong"><font color='gray'>Help</font></span> 
     </p>
  </div><!--col2-->
   <div class="col3">
-    <p>
-   <span class="strong">&nbsp;<font size="2">Contact Us: </font></span>    
-    <span><font size="2">0906-139-1950</font></span></br>
-     <span class="strong"><font size="2">Visit Us: </font></span>
-    <a href="https://www.facebook.com/"><img src="images/fb.png" alt="facebook" height="20" width="20"></a>
-   <a href="http://twitter.com/"><img src="images/twit.jpg" alt="twitter" height="20" width="20"></a>
-    <a href="https://accounts.google.com/ServiceLogin?service=oz&continue=https://plus.google.com/?gpsrc%3Dgplp0&hl=en"><img src="images/g+.png" alt="google+" height="20" width="20"></a></p>
+    <p>   
+     <span class="strong">Visit Us: </font></span>
+    <a href="https://www.facebook.com/groups/clsteam" target="my_target"><img src="images/fb.png" alt="facebook" height="20" width="20"></a>
   </div><!--col3-->	
 
      </div>

@@ -7,7 +7,7 @@ S.Y. 2012-2013, 1st Sem
 
 //highcharts variable
 
-var chart,chart2;
+var chart,chart2,chart3;
 
 
 function int_to_month(number){
@@ -481,7 +481,7 @@ function makemonthlychart2(data,month,year,extra){
 }
 
 function makesemchart(data,month,year,extra){
-		chart2 = new Highcharts.Chart({
+		chart3 = new Highcharts.Chart({
             chart: {
                 renderTo: 'myChart3',
                 type: 'column'
@@ -531,7 +531,7 @@ function makesemchart(data,month,year,extra){
         });
 }
 function makesemchart2(data,month,year,extra){
-        chart2 = new Highcharts.Chart({
+        chart3 = new Highcharts.Chart({
             chart: {
                 renderTo: 'myChart3',
                 type: 'column'

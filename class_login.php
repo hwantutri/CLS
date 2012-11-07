@@ -14,8 +14,16 @@ class Login{
 			if($no_rows == 1){
 				$_SESSION['user_new'] = true;
 				$_SESSION['uid_new'] = $user_data['faculty_uid'];
-				//$_SESSION['location'] = $user_data['location'];
+				$start = date('Y-m-d H:i:s');
+				$curr_day = date('Y-m-d');
 				mysql_query("UPDATE faculty SET status=1 where faculty_uid='$username'");
+				$the_same_date = mysql_query("SELECT * from daily_timer where hours_per_day LIKE '%$curr_day%' AND f_id='$username'");
+				$no_of_same_date = mysql_num_rows($the_same_date);
+				if($no_of_same_date > 0){
+					mysql_query("UPDATE daily_timer SET start_time='$start' where hours_per_day LIKE '%$curr_day%' AND f_id='$username'");
+				}else{
+					mysql_query("INSERT INTO daily_timer (hours_per_day,end_time,start_time,f_id) VALUES ('new_stamp','','$start','$username')");
+				}
 				return TRUE;
 			}else{
 				return FALSE;

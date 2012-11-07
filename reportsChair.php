@@ -43,8 +43,10 @@ if(!$login->get_session()){
         ddl.options.add(opt);
     }
 </script>
+
+
 <head>
-<title>CLS - Chart</title>
+<title>CLS - Reports</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
  	<link rel="stylesheet" type="text/css" href="css/styles2.css" media="screen" />
@@ -84,17 +86,16 @@ if(!$login->get_session()){
 </br></br></br></br>
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-1">Daily</a></li>
+		<li><a href="#tabs-1">Weekly</a></li>
 		<li><a href="#tabs-2">Monthly</a></li>
-		<li><a href="#tabs-3">Semestral</a></li>
 	</ul>
 	<div id="tabs-1">
-		<p><font color="black">Generate a daily chart for consultations for each faculty.</font></p>
+		<p><font color="black">Generate a weekly report for consultations.</font></p>
 		
-		<form style="padding: 0 20px 20px 50px;">
+		<form style="padding: 0 20px 20px 50px;" method="post" action="cpdfpreview.php" target="new_tab">
 			<br /> <br />
-			Faculty Name:<select name="namedaily" id="namedaily">
-							
+				Faculty Name: &nbsp;&nbsp;
+				<select name="cfid" id="cfid">				
                     <?php
                     	$res = mysql_query("SELECT dept from faculty WHERE faculty_uid = '".$uid."'");
 						$rowdept = mysql_fetch_array($res);
@@ -106,9 +107,9 @@ if(!$login->get_session()){
                                 echo '<option value='.$row['faculty_uid'].'>'.$row['name'].'</option>';
                             }
 					?>
-				</select>				
-				
-				&nbsp;Month:<select name="month" id="month">
+				</select>
+				</br></br>
+				Month and Year:&nbsp;&nbsp;<select name="report_month" id="report_month">
 					<option value="1">January</option>
 					<option value="2">February</option>
 					<option value="3">March</option>
@@ -122,94 +123,43 @@ if(!$login->get_session()){
 					<option value="11">November</option>
 					<option value="12">December</option>
 				</select>
-				&nbsp;Year:<select name="year" id="year">
+				<select name="report_year" id="report_year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
-                            while ($row = mysql_fetch_object($result)) {                                
-                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>.';                                	
+                            while ($row = mysql_fetch_object($result)) {
+                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
                             }
 					?>
-				</select> 
-			<input type="button" name="genbtn2" id="genbtn2" value="Generate &rarr;">
+				</select></br></br></br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+			<input type="submit" name="report_btn1" id="report_btn1" value="Generate PDF &rarr;">
+			</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 		</form>
-		<div id="myChart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
 	
 	<div id="tabs-2">
-		<p><font color="black">Generate a monthly chart for consultations for each faculty.</font></p>
+		<p><font color="black">Generate a monthly report for consultations.</font></p>
 		
 		<form style="padding: 0 20px 20px 50px;">
-		</br></br>
-		Faculty Name: &nbsp;&nbsp;<select name="namemonthly" id="namemonthly">				
-                    <?php
-                    	$res = mysql_query("SELECT dept from faculty WHERE faculty_uid = '".$uid."'");
-						$rowdept = mysql_fetch_array($res);
-						$result = mysql_query("select * from faculty WHERE dept='".$rowdept['dept']."' AND faculty_uid !='".$uid."'   order by name ASC");		
-						echo '<option value='.$uid.'>'; 
-						echo $login->get_name($uid); 
-						echo '</option>';						
-                            while ($row = mysql_fetch_array($result)) {
-                                echo '<option value='.$row['faculty_uid'].'>'.$row['name'].'</option>';
-                            }
-					?>
-				</select>	
-	
-				Year:&nbsp;&nbsp;&nbsp;<select name="year" id="year">
+			<br /> <br />			
+				Year:&nbsp;&nbsp;&nbsp;<select name="report_monthly_year" id="report_monthly_year">
                     <?php
 						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
                             while ($row = mysql_fetch_object($result)) {
                                 echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
                             }
 					?>
-				</select> 
-			
-			<input type="button" name="genbtn3" id="genbtn3" value="Generate &rarr;">
+				</select>
+			<input type="submit" name="report_btn2" id="report_btn2" value="Generate PDF &rarr;">
+			</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 		</form>	
-		<div id="myChart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
-	<div id="tabs-3">
-		<p><font color="black">Generate a chart by Semester.</font></p>
-		
-		<form style="padding: 0 20px 20px 50px;">
-			</br></br>
-		Faculty Name: &nbsp;&nbsp;<select name="namesem" id="namesem">				
-                    <?php
-                    	$res = mysql_query("SELECT dept from faculty WHERE faculty_uid = '".$uid."'");
-						$rowdept = mysql_fetch_array($res);
-						$result = mysql_query("select * from faculty WHERE dept='".$rowdept['dept']."' AND faculty_uid !='".$uid."'   order by name ASC");		
-						echo '<option value='.$uid.'>'; 
-						echo $login->get_name($uid); 
-						echo '</option>';						
-                            while ($row = mysql_fetch_array($result)) {
-                                echo '<option value='.$row['faculty_uid'].'>'.$row['name'].'</option>';
-                            }
-					?>
-				</select>
-					
-				Semester:&nbsp;&nbsp;<select name="sem" id="sem">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</select>
-				&nbsp;&nbsp;Year:<select name="year" id="year">
-                    <?php
-						$result = mysql_query("select distinct substring_index(time,'-',1) as AYEAR from consultation order by AYEAR desc");
-                            while ($row = mysql_fetch_object($result)) {
-                                echo '<option value='.$row->AYEAR.'>'.$row->AYEAR.'</option>';
-                            }
-					?>
-				</select>
-			<input type="button" name="genbtn5" id="genbtn5" value="Generate &rarr;">
-		</form>
-		<div id="myChart3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-	</div>
-
 
 </div>
 
 </div>
 	
-		<div id="navigation-block6">
+		<div id="navigation-block3">
 			<img src="images/background.jpg" id="hide" />
             <ul id="sliding-navigation">
                 <li class="sliding-element"><h3>CLS NAVIGATION</h3></li>
@@ -229,7 +179,9 @@ if(!$login->get_session()){
 					echo "<li class='sliding-element'><a href='monitor.php'>Monitor</a></li>";
 					echo "<li class='sliding-element'><a href='reportsChair.php'>Generate Report</a></li>";
 				}
-                ?>                				
+                ?>
+
+                				
             </ul>
         </div>
 		<div id="location-box" class="location-popup">

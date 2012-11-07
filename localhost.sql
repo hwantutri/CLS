@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 19, 2012 at 11:50 AM
+-- Generation Time: Nov 07, 2012 at 11:46 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -24,6 +24,24 @@ USE `cls`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `college_code`
+--
+
+CREATE TABLE IF NOT EXISTS `college_code` (
+  `ccode` varchar(40) NOT NULL,
+  `cdesc` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `college_code`
+--
+
+INSERT INTO `college_code` (`ccode`, `cdesc`) VALUES
+('SCS', 'School of Computer Studies');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `consultation`
 --
 
@@ -35,88 +53,116 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `description` mediumtext NOT NULL,
   `subsec` varchar(30) NOT NULL,
+  `actionTaken` text NOT NULL,
+  `results` text NOT NULL,
+  `comments` text NOT NULL,
+  `sem` varchar(2) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=103 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
 
 --
 -- Dumping data for table `consultation`
 --
 
-INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`, `subsec`) VALUES
-(39, 'mark.manlimos', '2009-0000', '11/09/2012', '2012-09-14 10:29:39', 'C++', 'csc102-s1'),
-(38, 'eli.mostrales', '2009-0009', '11/15/2012', '2012-09-14 10:29:39', 'Erlang', 'csc142-b2'),
-(37, 'eli.mostrales', '2009-0001', '11/09/2012', '2012-09-14 10:29:39', 'Erlang', 'csc142-b2'),
-(29, 'dorward.villaruz', '2008-4123', '11/09/2012', '2012-09-14 10:29:39', 'Java Programming', 'csc102-lr1'),
-(28, 'dorward.villaruz', '2006-3332', '11/09/2012', '2012-09-14 10:29:39', 'Java Programming', 'csc102-lr1'),
-(27, 'dorward.villaruz', '2005-5188', '11/09/2012', '2012-09-14 10:29:39', 'Java Programming', 'csc102-lr1'),
-(30, 'val.madrid', '2009-0000', '11/09/2012', '2012-09-14 10:29:39', 'Data Structure', 'csc102-lr1'),
-(31, 'val.madrid', '2009-0001', '11/09/2012', '2012-09-14 10:29:39', 'Data Structure', 'csc124-s4'),
-(32, 'dorward.villaruz', '2009-0007', '11/09/2012', '2012-09-14 10:29:39', 'Operating Sytem', 'csc155-w2'),
-(33, 'rene.crisostomo', '2009-0005', '11/09/2012', '2012-09-14 10:29:39', 'Database Sql', 'csc151-w3'),
-(34, 'rene.crisostomo', '2005-5188', '11/09/2012', '2012-09-14 10:29:39', 'Database Sql', 'csc151-w3'),
-(35, 'cyrus.gabilla', '2009-0007', '11/09/2012', '2012-09-14 10:29:39', 'Thesis', 'csc199-h2'),
-(36, 'eli.mostrales', '2005-5188', '11/09/2012', '2012-09-14 10:29:40', 'Erlang', 'csc142-b2'),
-(40, 'mark.manlimos', '2009-0003', '11/09/2012', '2012-09-14 10:29:40', 'C Language', 'csc100-d6'),
-(41, 'jennifer.montemayor', '2005-5188', '11/09/2012', '2012-09-14 10:29:40', 'Lovelife', 'love1-d3'),
-(42, 'jennifer.montemayor', '2008-4123', '11/09/2012', '2012-09-14 10:29:40', 'Lovelife', 'love1-d3'),
-(43, 'fatima.santos', '2009-0000', '11/09/2012', '2012-09-14 10:29:40', 'Tutoring English', 'ch1-a2'),
-(44, 'nelia.balgoa', '2009-0009', '11/09/2012', '2012-09-14 10:29:40', 'Dota Combos', 'lol3-c2'),
-(45, 'nelia.balgoa', '2009-3869', '11/09/2012', '2012-09-14 10:29:40', 'Dota Combos', 'lol3-c2'),
-(46, 'judith.cagaanan', '2006-3332', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6'),
-(47, 'judith.cagaanan', '2005-5188', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6'),
-(48, 'judith.cagaanan', '2009-0001', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6'),
-(49, 'michelle.caracut', '2009-0003', '11/22/2012', '2012-09-14 10:29:40', 'Animeseason.com', 'anc2-s6'),
-(50, 'judith.cagaanan', '2006-3332', '11/13/2012', '2012-09-14 10:29:40', 'Churva', 'vm3-s6'),
-(51, 'rosario.dizon', '2009-0003', '11/09/2012', '2012-09-14 10:29:40', 'English to German ', 'eng101-g4'),
-(52, 'kristine.herbito', '2009-0002', '11/22/2012', '2012-09-14 10:29:40', 'Mental Problem', 'mp3-f4'),
-(53, 'kristine.herbito', '2009-0005', '11/22/2012', '2012-09-14 10:29:40', 'UNO', 'uno101-s4'),
-(55, 'eli.mostrales', '2009-0007', '11/09/2012', '2012-09-14 10:29:40', 'Deterministic Finite Automaton', 'csc144-b4'),
-(57, 'dorward.villaruz', '2005-5188', '2012/01/12', '2012-09-14 10:29:40', 'char', 'csc155-w3'),
-(58, 'dorward.villaruz', '2009-0000', '2012/02/15', '2012-09-14 01:22:52', 'watching movies', 'csc-102'),
-(59, 'dorward.villaruz', '2006-3332', '2012/02/24', '2012-09-14 01:24:06', 'lovelife problem', 'csc-151'),
-(60, 'dorward.villaruz', '2009-0000', '2012/02/24', '2012-09-14 01:25:16', 'orange and bronze updates', 'csc102-b3'),
-(61, 'dorward.villaruz', '2006-3332', '2012/03/02', '2012-09-14 01:27:30', 'User Interface Design', 'csc181-a3'),
-(62, 'dorward.villaruz', '2009-0002', '2012/04/12', '2012-09-14 01:29:02', 'tailedfox.com', 'csc183-d2'),
-(63, 'dorward.villaruz', '2009-0003', '2012/05/10', '2012-09-14 01:31:04', 'business management ', 'csc184-d2'),
-(64, 'dorward.villaruz', '2009-4441', '2012/06/14', '2012-09-14 01:31:33', 'java programming', 'csc102'),
-(65, 'dorward.villaruz', '2009-1122', '2012/06/14', '2012-09-14 01:32:21', 'elective', 'bsn1-csc100'),
-(66, 'dorward.villaruz', '2005-5188', '2012/10/18', '2012-09-14 01:35:51', 'English', 'csc101-f1'),
-(67, 'dorward.villaruz', '2005-5188', '2012/10/18', '2012-09-14 01:36:34', 'Data Structure', 'csc124-a1'),
-(68, 'dorward.villaruz', '2009-4441', '2012/10/20', '2012-09-14 01:37:20', 'Ambot', 'ce111-w2'),
-(69, 'dorward.villaruz', '2009-7604', '2012/10/26', '2012-09-14 01:37:54', 'problems', 'chem2-s1'),
-(70, 'dorward.villaruz', '2008-4123', '2012/11/16', '2012-09-14 01:38:58', 'like a rose', 'ee11-s2'),
-(71, 'dorward.villaruz', '2009-0007', '2012/12/06', '2012-09-14 01:39:52', 'La Na Ko Kabalo Unsa Pay Ibutang', 'csc171-e2'),
-(72, 'dorward.villaruz', '2009-0000', '2012/08/08', '2012-09-14 01:41:56', 'proposal updates', 'csc198-a1'),
-(73, 'dorward.villaruz', '2009-0009', '2012/08/09', '2012-09-14 01:42:43', 'Anything', 'eng1-s5'),
-(74, 'dorward.villaruz', '2009-0007', '2012/08/17', '2012-09-14 01:43:21', ' Unsa pay Lain', 'csc199-d2'),
-(75, 'dorward.villaruz', '2009-1122', '2012/08/24', '2012-09-14 01:44:03', 'Dota Highlights Palit', 'bsn2-q1'),
-(76, 'dorward.villaruz', '2005-5188', '2012/08/30', '2012-09-14 01:44:54', 'Adobe Photoshop', 'csc111-c1'),
-(77, 'dorward.villaruz', '2009-5432', '2012/09/11', '2012-09-14 01:45:36', 'Sasaw', 'mar1-g2'),
-(78, 'dorward.villaruz', '2009-0000', '2012/07/10', '2012-09-14 01:46:49', 'Lechon Baboy', 'It1-ss1'),
-(79, 'val.madrid', '2005-5188', '2012/01/11', '2012-09-14 08:27:31', 'Java Programming', 'csc102-b1'),
-(80, 'val.madrid', '2006-3332', '2012/02/03', '2012-09-14 08:28:05', 'C++', 'csc101-c2'),
-(81, 'val.madrid', '2009-0002', '2012/03/15', '2012-09-14 08:28:53', 'Ultimate Orb', 'csc124-d3'),
-(82, 'val.madrid', '2009-0003', '2012/03/16', '2012-09-14 08:29:40', 'Ultimate Orb', 'csc124-d2'),
-(83, 'val.madrid', '2009-0005', '2012/09/14', '2012-09-14 08:31:05', 'Simple Javascript', 'csc100-d4'),
-(84, 'val.madrid', '2009-0005', '2012/09/15', '2012-09-14 08:31:43', 'Simple Javascript', 'csc100-d4'),
-(85, 'rene.crisostomo', '2005-5188', '2012/09/14', '2012-09-14 10:20:05', 'Database Sql', 'csc151-s1'),
-(86, 'rene.crisostomo', '2005-5188', '2012/09/15', '2012-09-14 10:20:39', 'Database Sql', 'csc151-s1'),
-(87, 'rene.crisostomo', '2009-0000', '2012/09/15', '2012-09-14 10:20:52', 'Database Sql', 'csc151-s1'),
-(88, 'rene.crisostomo', '2009-0005', '2012/10/11', '2012-09-14 10:21:11', 'Database Sql', 'csc151-s1'),
-(89, 'rene.crisostomo', '2009-0009', '2012/10/24', '2012-09-14 10:21:31', 'Youtube ', 'csc151-s1'),
-(90, 'rene.crisostomo', '2009-0009', '2012/10/25', '2012-09-14 10:21:44', 'Ambot', 'csc151-s1'),
-(91, 'rene.crisostomo', '2009-1122', '2012/10/25', '2012-09-14 10:22:07', 'UI design', 'csc151-s1'),
-(92, 'rene.crisostomo', '2009-3869', '2012/11/15', '2012-09-14 10:22:31', 'I Dont Know', 'csc151-s1'),
-(93, 'rene.crisostomo', '2009-0007', '2012/12/20', '2012-09-14 10:33:21', 'Database Sql', 'csc151-d3'),
-(94, 'rene.crisostomo', '2009-1122', '2012/12/20', '2012-09-14 10:33:35', 'Database Sql', 'csc151-d3'),
-(95, 'rene.crisostomo', '2009-0007', '2012/12/20', '2012-09-14 10:34:03', 'Database Sql', 'csc151-d3'),
-(96, 'rene.crisostomo', '2009-7604', '2012/08/22', '2012-09-14 10:34:36', 'Wala na ko kabalo unsa ibutang', 'csc151-d3'),
-(97, 'rene.crisostomo', '2009-0002', '2012/08/22', '2012-09-14 10:34:49', 'bayot ko', 'csc151-d3'),
-(98, 'rene.crisostomo', '2009-4441', '2012/07/08', '2012-09-14 10:35:11', 'Unsa pa?', 'csc151-d3'),
-(99, 'rene.crisostomo', '2009-0002', '2012/06/11', '2012-09-14 10:35:31', 'Asa', 'csc151-d3'),
-(100, 'dorward.villaruz', '2005-5188', '2012/09/14', '2012-09-14 13:22:22', 'rots', 'CSc 111 - JP'),
-(101, 'dorward.villaruz', '2005-5188', '2012/08/09', '2012-09-14 13:24:56', 'char', 'CSc 111 - JP'),
-(102, 'dorward.villaruz', '2005-5188', '2012/09/19', '2012-09-19 11:46:04', 'The second law poses an additional condition on thermodynamic processes. It is not enough to conserve energy and thus obey the first law. A machine that would deliver work while violating the second law is called a â€œperpetual-motion machine of the second kind,â€ since, for example, energy could then be continually drawn from a cold environment to do work in ', 'CSc 111 - JP');
+INSERT INTO `consultation` (`cid`, `faculty_uid`, `stud_id`, `date`, `time`, `description`, `subsec`, `actionTaken`, `results`, `comments`, `sem`) VALUES
+(39, 'mark.manlimos', '2009-0000', '11/09/2012', '2012-10-22 12:58:12', 'mentoring C++', 'csc102-s1', '', '', '', '2'),
+(38, 'eli.mostrales', '2009-0009', '11/15/2012', '2012-10-22 12:58:24', 'Erlang', 'csc142-b2', '', '', '', '2'),
+(37, 'eli.mostrales', '2009-0001', '11/09/2012', '2012-09-14 10:29:39', 'Erlang', 'csc142-b2', '', '', '', ''),
+(33, 'rene.crisostomo', '2009-0005', '11/09/2012', '2012-09-14 10:29:39', 'Database Sql', 'csc151-w3', '', '', '', ''),
+(34, 'rene.crisostomo', '2005-5188', '11/09/2012', '2012-09-14 10:29:39', 'Database Sql', 'csc151-w3', '', '', '', ''),
+(35, 'cyrus.gabilla', '2009-0007', '11/09/2012', '2012-09-14 10:29:39', 'Thesis', 'csc199-h2', '', '', '', ''),
+(36, 'eli.mostrales', '2005-5188', '11/09/2012', '2012-09-14 10:29:40', 'Erlang', 'csc142-b2', '', '', '', ''),
+(40, 'mark.manlimos', '2009-0003', '11/09/2012', '2012-09-14 10:29:40', 'C Language', 'csc100-d6', '', '', '', ''),
+(41, 'jennifer.montemayor', '2005-5188', '11/09/2012', '2012-10-20 23:44:31', 'how to make a drop down list in html', 'csc100-es1', '', '', '', ''),
+(42, 'jennifer.montemayor', '2008-4123', '11/09/2012', '2012-10-20 23:44:31', 'how to make a drop down list in html', 'csc100-es1', '', '', '', ''),
+(43, 'fatima.santos', '2009-0000', '11/09/2012', '2012-09-14 10:29:40', 'Tutoring English', 'ch1-a2', '', '', '', ''),
+(44, 'nelia.balgoa', '2009-0009', '11/09/2012', '2012-10-20 23:44:31', 'elements', 'lol3-c2', '', '', '', ''),
+(45, 'nelia.balgoa', '2009-3869', '11/09/2012', '2012-09-14 10:29:40', 'Dota Combos', 'lol3-c2', '', '', '', ''),
+(46, 'judith.cagaanan', '2006-3332', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6', '', '', '', ''),
+(47, 'judith.cagaanan', '2005-5188', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6', '', '', '', ''),
+(48, 'judith.cagaanan', '2009-0001', '11/09/2012', '2012-09-14 10:29:40', 'Vmobile', 'vm3-s6', '', '', '', ''),
+(49, 'michelle.caracut', '2009-0003', '11/22/2012', '2012-09-14 10:29:40', 'Animeseason.com', 'anc2-s6', '', '', '', ''),
+(50, 'judith.cagaanan', '2006-3332', '11/13/2012', '2012-09-14 10:29:40', 'Churva', 'vm3-s6', '', '', '', ''),
+(51, 'rosario.dizon', '2009-0003', '11/09/2012', '2012-09-14 10:29:40', 'English to German ', 'eng101-g4', '', '', '', ''),
+(52, 'kristine.herbito', '2009-0002', '11/22/2012', '2012-09-14 10:29:40', 'Mental Problem', 'mp3-f4', '', '', '', ''),
+(53, 'kristine.herbito', '2009-0005', '11/22/2012', '2012-09-14 10:29:40', 'UNO', 'uno101-s4', '', '', '', ''),
+(55, 'eli.mostrales', '2009-0007', '11/09/2012', '2012-09-14 10:29:40', 'Deterministic Finite Automaton', 'csc144-b4', '', '', '', ''),
+(57, 'dorward.villaruz', '2005-5188', '2012/01/12', '2012-10-22 13:18:40', 'char', 'csc155-w3', '', '', '', '2'),
+(58, 'dorward.villaruz', '2009-0000', '2012/02/15', '2012-10-22 13:19:00', 'watching movies', 'csc-102', '', '', '', '2'),
+(59, 'dorward.villaruz', '2006-3332', '2012/02/24', '2012-09-14 01:24:06', 'lovelife problem', 'csc-151', '', '', '', ''),
+(60, 'dorward.villaruz', '2009-0000', '2012/02/24', '2012-09-14 01:25:16', 'orange and bronze updates', 'csc102-b3', '', '', '', ''),
+(61, 'dorward.villaruz', '2006-3332', '2012/03/02', '2012-09-14 01:27:30', 'User Interface Design', 'csc181-a3', '', '', '', ''),
+(62, 'dorward.villaruz', '2009-0002', '2012/04/12', '2012-09-14 01:29:02', 'tailedfox.com', 'csc183-d2', '', '', '', ''),
+(63, 'dorward.villaruz', '2009-0003', '2012/05/10', '2012-09-14 01:31:04', 'business management ', 'csc184-d2', '', '', '', ''),
+(64, 'dorward.villaruz', '2009-4441', '2012/06/14', '2012-11-05 07:22:47', 'java programming', 'csc102', '', '', '', '1'),
+(65, 'dorward.villaruz', '2009-1122', '2012/06/14', '2012-11-05 07:23:01', 'elective', 'bsn1-csc100', '', '', '', '1'),
+(66, 'dorward.villaruz', '2005-5188', '2012/10/18', '2012-11-05 07:23:36', 'English', 'csc101-f1', '', '', '', '1'),
+(67, 'dorward.villaruz', '2005-5188', '2012/10/18', '2012-11-05 07:23:48', 'Data Structure', 'csc124-a1', '', '', '', '1'),
+(68, 'dorward.villaruz', '2009-4441', '2012/10/20', '2012-11-05 07:24:22', 'Ambot', 'ce111-w2', '', '', '', '1'),
+(69, 'dorward.villaruz', '2009-7604', '2012/10/26', '2012-11-05 07:24:32', 'problems', 'chem2-s1', '', '', '', '1'),
+(70, 'dorward.villaruz', '2008-4123', '2012/11/16', '2012-09-14 01:38:58', 'like a rose', 'ee11-s2', '', '', '', ''),
+(71, 'dorward.villaruz', '2009-0007', '2012/12/06', '2012-09-14 01:39:52', 'La Na Ko Kabalo Unsa Pay Ibutang', 'csc171-e2', '', '', '', ''),
+(72, 'dorward.villaruz', '2009-0000', '2012/08/08', '2012-11-05 07:24:50', 'proposal updates', 'csc198-a1', '', '', '', '1'),
+(73, 'dorward.villaruz', '2009-0009', '2012/08/09', '2012-11-05 07:25:00', 'Anything', 'eng1-s5', '', '', '', '1'),
+(74, 'dorward.villaruz', '2009-0007', '2012/08/17', '2012-09-14 01:43:21', ' Unsa pay Lain', 'csc199-d2', '', '', '', ''),
+(75, 'dorward.villaruz', '2009-1122', '2012/08/24', '2012-09-14 01:44:03', 'Dota Highlights Palit', 'bsn2-q1', '', '', '', ''),
+(76, 'dorward.villaruz', '2005-5188', '2012/08/30', '2012-09-14 01:44:54', 'Adobe Photoshop', 'csc111-c1', '', '', '', ''),
+(77, 'dorward.villaruz', '2009-5432', '2012/09/11', '2012-11-05 07:25:16', 'Sasaw', 'mar1-g2', '', '', '', '1'),
+(78, 'dorward.villaruz', '2009-0000', '2012/07/10', '2012-09-14 01:46:49', 'Lechon Baboy', 'It1-ss1', '', '', '', ''),
+(79, 'val.madrid', '2005-5188', '2012/01/11', '2012-11-05 08:42:07', 'Java Programming', 'csc102-b1', '', '', '', '2'),
+(80, 'val.madrid', '2006-3332', '2012/02/03', '2012-11-05 08:42:14', 'C++', 'csc101-c2', '', '', '', '2'),
+(81, 'val.madrid', '2009-0002', '2012/03/15', '2012-11-05 08:42:21', 'Ultimate Orb', 'csc124-d3', '', '', '', '2'),
+(82, 'val.madrid', '2009-0003', '2012/03/16', '2012-09-14 08:29:40', 'Ultimate Orb', 'csc124-d2', '', '', '', ''),
+(83, 'val.madrid', '2009-0005', '2012/09/14', '2012-11-05 08:42:30', 'Simple Javascript', 'csc100-d4', '', '', '', '1'),
+(84, 'val.madrid', '2009-0005', '2012/09/15', '2012-11-05 08:42:36', 'Simple Javascript', 'csc100-d4', '', '', '', '1'),
+(85, 'rene.crisostomo', '2005-5188', '2012/09/14', '2012-09-14 10:20:05', 'Database Sql', 'csc151-s1', '', '', '', ''),
+(86, 'rene.crisostomo', '2005-5188', '2012/09/15', '2012-09-14 10:20:39', 'Database Sql', 'csc151-s1', '', '', '', ''),
+(87, 'rene.crisostomo', '2009-0000', '2012/09/15', '2012-09-14 10:20:52', 'Database Sql', 'csc151-s1', '', '', '', ''),
+(88, 'rene.crisostomo', '2009-0005', '2012/10/11', '2012-09-14 10:21:11', 'Database Sql', 'csc151-s1', '', '', '', ''),
+(89, 'rene.crisostomo', '2009-0009', '2012/10/24', '2012-09-14 10:21:31', 'Youtube ', 'csc151-s1', '', '', '', ''),
+(90, 'rene.crisostomo', '2009-0009', '2012/10/25', '2012-09-14 10:21:44', 'Ambot', 'csc151-s1', '', '', '', ''),
+(91, 'rene.crisostomo', '2009-1122', '2012/10/25', '2012-09-14 10:22:07', 'UI design', 'csc151-s1', '', '', '', ''),
+(92, 'rene.crisostomo', '2009-3869', '2012/11/15', '2012-09-14 10:22:31', 'I Dont Know', 'csc151-s1', '', '', '', ''),
+(93, 'rene.crisostomo', '2009-0007', '2012/12/20', '2012-09-14 10:33:21', 'Database Sql', 'csc151-d3', '', '', '', ''),
+(94, 'rene.crisostomo', '2009-1122', '2012/12/20', '2012-09-14 10:33:35', 'Database Sql', 'csc151-d3', '', '', '', ''),
+(95, 'rene.crisostomo', '2009-0007', '2012/12/20', '2012-09-14 10:34:03', 'Database Sql', 'csc151-d3', '', '', '', ''),
+(96, 'rene.crisostomo', '2009-7604', '2012/08/22', '2012-09-14 10:34:36', 'Wala na ko kabalo unsa ibutang', 'csc151-d3', '', '', '', ''),
+(97, 'rene.crisostomo', '2009-0002', '2012/08/22', '2012-09-14 10:34:49', 'bayot ko', 'csc151-d3', '', '', '', ''),
+(98, 'rene.crisostomo', '2009-4441', '2012/07/08', '2012-09-14 10:35:11', 'Unsa pa?', 'csc151-d3', '', '', '', ''),
+(99, 'rene.crisostomo', '2009-0002', '2012/06/11', '2012-09-14 10:35:31', 'Asa', 'csc151-d3', '', '', '', ''),
+(100, 'dorward.villaruz', '2005-5188', '2012/09/14', '2012-09-14 13:22:22', 'rots', 'CSc 111 - JP', '', '', '', ''),
+(101, 'dorward.villaruz', '2005-5188', '2012/08/09', '2012-09-14 13:24:56', 'char', 'CSc 111 - JP', '', '', '', ''),
+(102, 'dorward.villaruz', '2005-5188', '2012/09/19', '2012-09-19 11:46:04', 'The second law poses an additional condition on thermodynamic processes. It is not enough to conserve energy and thus obey the first law. A machine that would deliver work while violating the second law is called a â€œperpetual-motion machine of the second kind,â€ since, for example, energy could then be continually drawn from a cold environment to do work in ', 'CSc 111 - JP', '', '', '', ''),
+(103, 'dorward.villaruz', '2009-0005', '2012/09/19', '2012-10-09 10:34:23', 'ekasal nako', 'null', '', '', '', ''),
+(104, 'dorward.villaruz', '2005-5188', '2012/10/19', '2012-10-12 14:39:24', 'churva', 'CSc 111 - JP', '', '', '', ''),
+(105, 'dorward.villaruz', '2005-5188', '2012/10/19', '2012-10-19 11:39:44', 'Projects', 'CSc 111 - JP', '', '', '', ''),
+(120, 'dorward.villaruz', '2005-5188', '2012/10/22', '2012-10-22 01:09:10', '', 'CSc 111 - JP', '', '', '', ''),
+(121, 'dorward.villaruz', '2005-5188', '2012/10/22', '2012-10-22 01:10:18', '555', 'CSc 111 - JP', '5', '5', '5', ''),
+(122, 'dorward.villaruz', '2005-5188', '2012/10/22', '2012-10-22 01:12:03', '53434df', 'CSc 111 - JP', '5', '5', '5', ''),
+(123, 'dorward.villaruz', '2005-5188', '2012/10/22', '2012-10-22 01:14:05', 'bhkj', 'CSc 111 - JP', 'kjbjkb', 'bkjb', 'kb', ''),
+(124, 'dorward.villaruz', '2005-5188', '2012/10/22', '2012-10-22 01:16:18', 'sadas', 'CSc 111 - JP', 'kjbjkb', 'bkjb', 'kb', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daily_timer`
+--
+
+CREATE TABLE IF NOT EXISTS `daily_timer` (
+  `hours_per_day` varchar(30) NOT NULL,
+  `start_time` varchar(30) NOT NULL,
+  `end_time` varchar(30) NOT NULL,
+  `f_id` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `daily_timer`
+--
+
+INSERT INTO `daily_timer` (`hours_per_day`, `start_time`, `end_time`, `f_id`) VALUES
+('2012-11-06 08:16:02', '2012-11-06 05:40:38', '2012-11-06 02:49:15', 'dorward.villaruz'),
+('2012-11-07 00:03:22', '2012-11-07 23:41:57', '2012-11-07 23:45:04', 'val.madrid'),
+('2012-11-07 00:00:19', '2012-11-07 23:40:59', '2012-11-07 23:41:04', 'dorward.villaruz');
 
 -- --------------------------------------------------------
 
@@ -141,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 --
 
 INSERT INTO `faculty` (`faculty_uid`, `password`, `name`, `college`, `dept`, `status`, `location`, `chairman`) VALUES
-('dorward.villaruz', '123e7cd7f3c39c508f07c8f974dd2f55', 'Dorward Villaruz', 'SCS', 'Computer Science', 1, 'cs dept', 0),
+('dorward.villaruz', '123e7cd7f3c39c508f07c8f974dd2f55', 'Dorward Villaruz', 'SCS', 'Computer Science', 0, 'SCS Lounge', 0),
 ('val.madrid', 'd34f9f73de4e49c41bb8cb5ae0a156c3', 'Val Randolf Madrid', 'SCS', 'Computer Science', 0, 'CSM', 1),
 ('rene.crisostomo', 'afd7d29926d89e1fae7f8c04a58c25df', 'Rene Crisostomo', 'SCS', 'Computer Science', 0, 'hubport', 0),
 ('cyrus.gabilla', '0eaca0ffd0461ba0dd21ee9b1434db75', 'Cyrus Gabilla', 'SCS', 'Computer Science', 0, 'comp lab', 0),
@@ -206,7 +252,16 @@ INSERT INTO `sections` (`fid`, `section`, `sid`) VALUES
 ('dorward.villaruz', 'CSc 124 - ALG', '2009-0001'),
 ('dorward.villaruz', 'CSc 111 - JP', ' 2009-0002'),
 ('dorward.villaruz', 'CSc 111 - JP', ' 2012-5332'),
-('dorward.villaruz', 'CSc 171 - AIA', '2009-0001');
+('dorward.villaruz', 'CSc 171 - AIA', '2009-0001'),
+('dorward.villaruz', 'Math71', '2010'),
+('dorward.villaruz', 'Math71', '7011'),
+('val.madrid', 'CSC 155 SC2', '2000-0001'),
+('dorward.villaruz', 'CSC151 CS1', '2009-0000'),
+('val.madrid', 'CSc 188 - 1S', '2006-4247'),
+('val.madrid', 'CSc 188 - 1S', '2007-2005'),
+('val.madrid', 'CSc 188 - 1S', '3409-5368'),
+('dorward.villaruz', 'csc124-c2s', '2005-1123'),
+('dorward.villaruz', 'csc124-c2s', '2005-5543');
 
 -- --------------------------------------------------------
 
