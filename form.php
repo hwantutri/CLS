@@ -13,36 +13,59 @@ if(!$login->get_session()){
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <script type="text/javascript">
     function configureDropDownLists(ddl1,location) {
-        var msuiit = new Array('SCS Lounge', 'CS Department', 'Main Library' );
-        var online = new Array('Facebook', 'Google', 'Twitter');
-
-
-        switch (ddl1.value) {
+    	<?php
+    		$array = array();
+    		$array1 = array();
+            $res = mysql_query("SELECT * from location WHERE type = 0");		
+            $res1 = mysql_query("SELECT * from location WHERE type = 1");
+                while ($row = mysql_fetch_array($res)) {
+                   	$array[] = $row['name'];
+                      }
+                while ($row1 = mysql_fetch_array($res1)) {
+                   	$array1[] = $row1['name'];
+                      }
+                      echo 'var msuiit = '.json_encode($array).';'; 
+                      echo 'var online = '.json_encode($array1).';';
+					?>
+		var others = new Array('Please specify');
+;        switch (ddl1.value) {
             case 'msuiit':
                 document.getElementById(location).options.length = 0;
+                document.getElementById('others').value ="";
+                document.getElementById('others').style.visibility = "hidden";
             for (i = 0; i < msuiit.length; i++) {
                     createOption(document.getElementById(location), msuiit[i], msuiit[i]);
                 }
                 break;
             case 'online':
                 document.getElementById(location).options.length = 0;
+                document.getElementById('others').value ="";
+                document.getElementById('others').style.visibility = "hidden";
             for (i = 0; i < online.length; i++) {
                     createOption(document.getElementById(location), online[i], online[i]);
                 }
                 break;
-                default:
-                    document.getElementById(location).options.length = 0;
+			case 'others':
+				document.getElementById(location).options.length = 0;
+			 for (i = 0; i < others.length; i++) {
+				createOption(document.getElementById(location), others[i], others[i]);
+				 }
+                document.getElementById('others').style.visibility = 'visible';                
                 break;
+            default:
+                document.getElementById(location).options.length = 0;
+            break;
         }
 
     }
+
 
     function createOption(ddl, text, value) {
         var opt = document.createElement('option');
         opt.value = value;
         opt.text = text;
         ddl.options.add(opt);
-    }
+    }    
 </script>
 <head>
 <title>CLS - Consult</title>
@@ -75,11 +98,10 @@ if(!$login->get_session()){
   </div>
 </div>
 
-	<form id="clsform" name="clsform" action="" accept-charset="utf-8">
-		<fieldset> <br /><br /><br /> <br /> <br /> <br />
-			<p><legend>Consultation Form</legend></p>
 
-			
+	<form id="clsform" name="clsform" action="" accept-charset="utf-8">
+		<fieldset> <br /><br /><br />
+			<p><legend>Consultation Form</legend></p>
 			<p>
 				<label for="idno" style="display: block; opacity: 1;">ID No.</label><br />
 				<input type="text" name="idno" value="" id="idno" autocomplete="off" autofocus="autofocus">
@@ -97,14 +119,22 @@ if(!$login->get_session()){
 				<select name="subsec" id="subsec" style="width:300px;"><option value>Subject and Section</option></select>
 					<p id="optionHolder" name="optionHolder"></p>
 			</p>
+			
+			<p>	
+				<select name="semval" id="semval" style="width:300px";>			
+					<option value="1">1st Semester</option>
+					<option value="2">2nd Semester</option>
+					<option value="3">Summer</option>
+				</select>
+			</p>			
 			<p>
 				<label for="datepicker" style="display: block; opacity: 1;">Date</label><br />
 				<input type="text" name="datepicker" value="<?php echo date("Y/m/d"); ?>" id="datepicker" >
-			</p>
+			</p>			
 			<p>
 				<label for="comment" style="display: block; opacity: 1;">Description</label><br />
-				<textarea cols="30" rows="5" name="comment" id="comment"></textarea>
-			</p>
+				<textarea cols="30" rows="10" name="comment" id="comment"></textarea>
+			</p>			
 			<p>
 				<label for="actionTaken" style="display: block; opacity: 1;">Action Taken</label><br />
 				<input type="text" name="actionTaken"  id="actionTaken" >
@@ -117,9 +147,9 @@ if(!$login->get_session()){
 				<label for="comments" style="display: block; opacity: 1;">Comments</label><br />
 				<input type="text" name="comments"  id="comments" >
 			</p>
-			
+
 		</fieldset>
-		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp;&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
+		<p><input type="button" name="submitbtn" id="submitbtn" value="Submit &rarr;">&nbsp&nbsp;<input name="reset_btn" type="button" value="Reset" onclick="resetForm('clsform');" ></p>
 	</form>	
 		<div id="navigation-block">
 			<img src="images/background.jpg" id="hide" />
@@ -129,7 +159,7 @@ if(!$login->get_session()){
                 <li class="sliding-element"><a href="review.php">Review</a></li>                
 				<li class="sliding-element"><a href="addstudents.php">Add Students</a></li>
                 <li class="sliding-element"><a href="#location-box" class="location-window">Set My Location</a></li>
-				<?php
+                <?php
                 $chair = mysql_query("select chairman from faculty where faculty_uid='".$uid."'");
                 $chairrow = mysql_fetch_array($chair);
                 if ($chairrow['chairman'] == 0){
@@ -145,34 +175,36 @@ if(!$login->get_session()){
 				
             </ul>
         </div>
-		<div id="location-box" class="location-popup">
+        <div id="location-box" class="location-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form name="loginform" class="signin">	
+          <form name="loginform" id="signin">
+                <form name="loginform" class="signin">
                 <fieldset class="textbox">
-
-                <label>
-				<font size="5" color="white">Set Location</font>
+               <font size="5" color="white">Set Location</font>
 				</br></br>
-					</label>
- 
-<label class="location">
+					          	
 <select id="ddl" onchange="configureDropDownLists(this,'location')">
 <option value="msuiit">MSU-IIT</option>
 <option value="online">Online</option>
+<option value="others">Others</option>
 </select>
 
 <select id="location">
-<option value="SCS Lounge">SCS Lounge</option>
-<option value="CS Department">CS Department</option>
-<option value="Main Library">Main Library</option>
+	
+<?php
+            $res = mysql_query("SELECT * from location WHERE type = 0");
+                while ($row = mysql_fetch_array($res)) {
+                echo '<option value="'.$row['name'].'"">'.$row['name'].'</option>';
+                }
+?>
 </select>
-</label>
 
-                <label>
+<input id="others" name="others" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus" style="visibility:hidden">
+
+                </br></br>
                 <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
-                </label>
                 
-                </fieldset>
+                </fieldset>	
           </form>
 	</div>
 </body>

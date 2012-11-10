@@ -141,18 +141,35 @@ $("#addbtn").click(function(e){
 			$().toastmessage('showToast',{text:'You cannot set your location </br>to blank!', position:'middle-right',type:'warning'});
 		}else{
 		
-		var string = "location";
-		$.post("query_cls.php", {location: location, string: string }, function(data){
-		     data = $.trim(data);
-				if (data.length > 0){ 
-					//alert('Your location has been successfully set!');
-					$().toastmessage('showToast',{text:'Your location has been successfully set!', position:'middle-right',type:'success'});
-						$('#mask , .location-popup').fadeOut(300 , function() {
-							$('#mask').remove();  
-						});
-					$("#location").val("");
-          		}
-		});
+             if (document.getElementById('others').value == ""){ 
+                   var string = "location";
+                   $.post("query_cls.php", {location: location, string: string }, function(data){
+                    data = $.trim(data);
+                    if (data.length > 0){ 
+                    //alert('Your location has been successfully set!');
+                    $().toastmessage('showToast',{text:'Your location has been successfully set!', position:'middle-right',type:'success'});
+                        $('#mask , .location-popup').fadeOut(300 , function() {
+                            $('#mask').remove();  
+                        });
+                    $("#location").val("");
+                      }
+                });
+               
+            } else{ 
+            var location = $("#others").val(); 
+            var string = "other";
+                   $.post("query_cls.php", {location: location, string: string }, function(data){
+                    data = $.trim(data);
+                    if (data.length > 0){ 
+                    //alert('Your location has been successfully set!');
+                    $().toastmessage('showToast',{text:'Your location has been successfully set!', position:'middle-right',type:'success'});
+                        $('#mask , .location-popup').fadeOut(300 , function() {
+                            $('#mask').remove();  
+                        });
+                    $("#location").val("");
+                      }
+                });
+            }
 		}
     });
 	 
@@ -160,26 +177,33 @@ $("#addbtn").click(function(e){
 	 // Function to submit clsform data to database using jquery post
 	 
     function search_key(sk){
+       
        	var datepicker = $("#datepicker").val();
 		var subsec = $("#subsec").val();
+        //var semval = $("#semval").val();
 		var comment = $("#comment").val();
 		var actionTaken = $("#actionTaken").val();
 		var results = $("#results").val();
 		var comments = $("#comments").val();
+        var semval = $("#semval").val();
 
 		var string = "update";
-        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec,actionTaken:actionTaken,results:results,comments:comments }, function(data){
+        	 $.post("query_cls.php", {datepicker : datepicker, comment : comment, idno: sk, string: string,subsec:subsec,actionTaken:actionTaken,results:results,comments:comments,semval:semval }, function(data){
 		     data = $.trim(data);
 				if (data.length > 0){ 
 					//alert('Consultation successfully logged!');
 					$().toastmessage('showToast',{text:'Consultation successfully</br> logged!', position:'middle-right',type:'success'});
 					$("#comment").val("");
+                    $("#actionTaken").val("");
+                    $("#results").val("");
+                    $("#comments").val("");
 					$("#courseyrlvl").val("Course & Year Level");
 					$("#name").val("Name");
 					$("#optionHolder").hide();
 					$("#subsec").hide();
 					$("#subsec").html('').show();
 					$("#optionHolder").html('');
+
 					idno.focus();
           		}
 			});

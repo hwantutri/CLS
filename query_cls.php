@@ -4,22 +4,21 @@ session_start();
 include_once 'database.php';
 $db = new Database();
 
-$uid = $_SESSION['uid_new'];
 $date = $_POST['datepicker'];
+$uid = $_SESSION['uid_new'];
 $comment = $_POST['comment'];
 $idnum = $_POST['idno'];
 $option = $_POST['string'];
 $subsec = $_POST['subsec'];
 $location = $_POST['location'];
 $name = $_POST['name'];
+$semval = $_POST['semval'];
 $actionTaken = $_POST['actionTaken'];
 $results = $_POST['results'];
 $comments = $_POST['comments'];
-$duration = is_int($_POST['duration']);
-
 
 if($option=="update"){
-	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description,subsec,actionTaken,results,comments,duration) VALUES ('$uid','$idnum','$date','$comment','$subsec','$actionTaken','$results','$comments','$duration')";
+	$query = "INSERT INTO consultation (faculty_uid,stud_id,date,description,subsec,actionTaken,results,comments,sem) VALUES ('$uid','$idnum','$date','$comment','$subsec','$actionTaken','$results','$comments','$semval')";
 	mysql_query($query);
 	echo "string";
 	

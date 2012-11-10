@@ -232,30 +232,36 @@ if(!$login->get_session()){
                 ?>                				
             </ul>
         </div>
-		<div id="location-box" class="location-popup">
+        <div id="location-box" class="location-popup">
         <a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form name="loginform" class="signin">
+          <form name="loginform" id="signin">
+                <form name="loginform" class="signin">
                 <fieldset class="textbox">
-                <label>
-				<font size="5" color="white">Set Location</font>
+               <font size="5" color="white">Set Location</font>
 				</br></br>
-					</label>
-            	<label class="location">
+					          	
 <select id="ddl" onchange="configureDropDownLists(this,'location')">
 <option value="msuiit">MSU-IIT</option>
 <option value="online">Online</option>
+<option value="others">Others</option>
 </select>
 
 <select id="location">
-<option value="SCS Lounge">SCS Lounge</option>
-<option value="CS Department">CS Department</option>
-<option value="Main Library">Main Library</option>
+	
+<?php
+            $res = mysql_query("SELECT * from location WHERE type = 0");
+                while ($row = mysql_fetch_array($res)) {
+                echo '<option value="'.$row['name'].'"">'.$row['name'].'</option>';
+                }
+?>
 </select>
-</label>
-                <label>
+
+<input id="others" name="others" value="" type="text" autocomplete="on" placeholder="My Location" autofocus="autofocus" style="visibility:hidden">
+
+                </br></br>
                 <button name="location_btn" id="location_btn" class="submit button" type="button">Set  &rarr;</button>
-                </label>
-                </fieldset>
+                
+                </fieldset>	
           </form>
 	</div>
 </body>
